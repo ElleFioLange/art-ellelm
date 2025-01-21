@@ -28,7 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html
+      lang="en"
+      className={`${cormorant_unicase.className} ${cormorant.variable}`}
+    >
       <body>{children}</body>
     </html>
   );

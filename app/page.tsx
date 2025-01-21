@@ -102,7 +102,7 @@ const Platter = () => {
           transformStyle: "preserve-3d",
         }}
         href="/projects/image"
-        className="absolute italic top-1/4 left-1/4"
+        className="absolute text-xl top-1/4 left-1/4"
       >
         Image
       </Link>
@@ -111,8 +111,8 @@ const Platter = () => {
           transform: "translateZ(15px) translate(-50%, -50%)",
           transformStyle: "preserve-3d",
         }}
-        href="/projects/image"
-        className="absolute italic top-1/4 left-3/4"
+        href="/projects/cloudwatching"
+        className="absolute text-xl top-1/4 left-3/4"
       >
         Cloudwatching
       </Link>
@@ -121,8 +121,8 @@ const Platter = () => {
           transform: "translateZ(15px) translate(-50%, -50%)",
           transformStyle: "preserve-3d",
         }}
-        href="/projects/image"
-        className="absolute italic top-3/4 left-1/4"
+        href="/projects/time-space"
+        className="absolute text-xl top-3/4 left-1/4"
       >
         Time-Space
       </Link>
@@ -131,8 +131,8 @@ const Platter = () => {
           transform: "translateZ(15px) translate(-50%, -50%)",
           transformStyle: "preserve-3d",
         }}
-        href="/projects/image"
-        className="absolute top-3/4 left-3/4"
+        href="/projects/paintings"
+        className="absolute text-xl top-3/4 left-3/4"
       >
         Paintings
       </Link>
