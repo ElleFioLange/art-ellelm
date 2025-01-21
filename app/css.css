@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    --baby-powder: 251 249 244;
+    --raisin-black: 32 34 46;
+    --hookers-green: 93 119 101;
+    --tea-green: 202 227 200;
+    --celadon: 100 180 105;
+    --amaranth: 221 44 76;
+    --sky: 177 199 213;
+
+    --fg: var(--raisin-black);
+    --bg: var(--baby-powder);
+
+    --green: var(--celadon);
+    --red: var(--amaranth);
+
+    --accent-fg: var(--sky);
+    --accent-bg: var(--tea-green);
+
+    scrollbar-color: rgb(var(--fg)) #00000000;
+
+    @apply bg-bg text-fg box-border h-full p-0 m-0 select-none;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    html {
+      --fg: var(--baby-powder);
+      --bg: var(--raisin-black);
+      --accent-fg: var(--sky);
+      --accent-bg: var(--hookers-green);
+    }
+  }
+
+  body {
+    @apply bg-bg;
+  }
+
+  h1 {
+    @apply text-5xl;
+  }
+
+  h2 {
+    @apply text-2xl;
+  }
+
+  nav {
+    @apply gap-12 text-lg;
+  }
+
+  @media (max-width: 768px) {
+    nav {
+      @apply gap-4;
+    }
+  }
+
+  a:hover {
+    @apply underline;
+  }
+
+  button:disabled {
+    @apply cursor-default;
+  }
+}
+
+@layer components {
+}
+
+@layer utilities {
+  /* Safari */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+  }
+
+  .drop-shadow {
+    /* prettier-ignore */
+    filter: drop-shadow(0 20px 13px var(--dark)08)
+    /* prettier-ignore */
+      drop-shadow(0 8px 5px var(--dark)24);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .drop-shadow {
+      /* prettier-ignore */
+      filter: drop-shadow(0 20px 13px var(--light)08)
+      /* prettier-ignore */
+        drop-shadow(0 8px 5px var(--light)24);
+    }
+  }
+
+  .invert-theme {
+    @apply bg-fg text-bg;
+  }
+}

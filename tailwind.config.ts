@@ -9,8 +9,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        fg: "rgb(var(--fg) / <alpha-value>)",
+        bg: "rgb(var(--bg) / <alpha-value>)",
+        // ===========================================
+        accent: {
+          fg: "rgb(var(--accent-fg) / <alpha-value>)",
+          bg: "rgb(var(--accent-bg) / <alpha-value>)",
+        },
+        // ===========================================
+        green: "rgb(var(--green) / <alpha-value>)",
+        red: "rgb(var(--red) / <alpha-value>)",
       },
     },
   },
