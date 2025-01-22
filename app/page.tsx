@@ -11,8 +11,6 @@ import {
 import Link from "next/link";
 import Logo from "./icons/logo";
 import dynamic from "next/dynamic";
-import { useDeviceOrientation } from "./utils/useOrientation";
-import { useMobileOrientation } from "react-device-detect";
 
 const MobileView = dynamic(() => import("./utils/mobile-view"), { ssr: false });
 
