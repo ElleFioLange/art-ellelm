@@ -41,6 +41,7 @@ const Links = () => {
 const Platter = () => {
   return (
     <>
+      {/* Shadow */}
       <div
         className="w-full h-full absolute bg-[radial-gradient(circle,_rgba(0,0,0,0)_15%,_rgba(0,0,0,1)_30%,_rgba(0,0,0,1)_50%,_rgba(0,0,0,0.35)_60%,_rgba(0,0,0,0.15)_65%,_rgba(0,0,0,0)_70%)]"
         style={{
@@ -83,7 +84,7 @@ const Platter = () => {
 
 const ROTATION_RANGE = 32.5;
 
-const Motion = () => {
+const Motion = ({ engine }: { engine: "mouse" | "gyro" }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const x = useMotionValue(0);
@@ -95,6 +96,8 @@ const Motion = () => {
   const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
 
   const handleMouseMove: MouseEventHandler = (e) => {
+    if (engine !== "mouse") return;
+
     if (!ref.current) return [0, 0];
 
     // Working with radius because we can assume circle
@@ -114,23 +117,26 @@ const Motion = () => {
   };
 
   const handleMouseLeave = () => {
+    if (engine !== "mouse") return;
+
     x.set(0);
     y.set(0);
   };
 
-  const { orientation, requestAccess } = useDeviceOrientation();
-
   useEffect(() => {
-    requestAccess();
-  });
+    if (engine === "gyro") {
+      const handleOrientation = (e: DeviceOrientationEvent) => {
+        if (!e.beta || !e.gamma) return;
+        x.set(Math.max(Math.min(e.beta - 30, ROTATION_RANGE), -ROTATION_RANGE));
+        y.set(-Math.max(Math.min(e.gamma, ROTATION_RANGE), -ROTATION_RANGE));
+      };
 
-  useEffect(() => {
-    console.log(orientation);
-    if (orientation && orientation.beta && orientation.gamma) {
-      x.set(orientation.beta - 30);
-      y.set(-orientation.gamma);
-    }
-  });
+      window.addEventListener("deviceorientation", handleOrientation);
+
+      return () =>
+        window.removeEventListener("deviceorientation", handleOrientation);
+    } else return () => {};
+  }, [engine]);
 
   return (
     <motion.div
@@ -143,13 +149,6 @@ const Motion = () => {
       }}
       className="w-3/4 max-w-[60vh] relative"
     >
-      {/* <div
-        className="w-full h-full absolute bg-fg bg-opacity-5 rounded-full"
-        style={{
-          transform: "translateZ(-41px) scale(1.25)",
-          transformStyle: "preserve-3d",
-        }}
-      /> */}
       <Logo
         className="w-1/12 absolute text-fg opacity-5 fill-current top-1/2 left-1/2"
         style={{
@@ -163,64 +162,52 @@ const Motion = () => {
   );
 };
 
-// const GyroPermission = ({
-//   callback,
-// }: {
-//   callback: (access: "granted" | "denied") => void;
-// }) => {
-//   const show = useState(false);
-//   const test = useState("testing");
+const GyroPermission = ({
+  callback,
+}: {
+  callback: (access: PermissionState) => void;
+}) => {
+  const show = useState(true);
 
-//   useEffect(() => {
-//     // Typescript
-//     const dme = DeviceMotionEvent as {
-//       requestPermission?: () => Promise<"granted" | "denied">;
-//     };
+  const onClick = () => {
+    // Typescript
+    const dme = DeviceMotionEvent as {
+      requestPermission?: () => Promise<"granted" | "denied">;
+    };
 
-//     if (typeof dme.requestPermission == "function")
-//       dme.requestPermission().then((access) => {
-//         test[1](access);
-//       });
+    if (typeof dme.requestPermission !== "function") return;
 
-//     show[1](dme.requestPermission ? true : false);
-//   }, []);
+    dme.requestPermission().then((access) => {
+      show[1](false);
+      callback(access);
+    });
+  };
 
-//   const onClick = () => {
-//     // Typescript
-//     const dme = DeviceMotionEvent as {
-//       requestPermission?: () => Promise<"granted" | "denied">;
-//     };
-
-//     if (typeof dme.requestPermission !== "function") return;
-
-//     dme.requestPermission().then((access) => {
-//       show[1](false);
-//       callback(access);
-//     });
-//   };
-
-//   return (
-//     <div
-//       className={`w-full h-full top-0 left-0 fixed bg-bg flex justify-center items-center flex-col text-center font-cormorant p-8 gap-8 transition-opacity duration-200 ${
-//         show[0] ? "opacity-100" : "opacity-0 pointer-events-none"
-//       }`}
-//     >
-//       <h1>{test[0]}</h1>
-//       {/* <h1>This page is more beautiful when it can sense your movement</h1> */}
-//       <button onClick={onClick}>Accept</button>
-//       <button onClick={() => show[1](false)}>No thanks</button>
-//     </div>
-//   );
-// };
+  return (
+    <div
+      className={`w-full h-full top-0 left-0 fixed bg-bg flex justify-center items-center flex-col text-center font-cormorant p-8 gap-8 transition-opacity duration-200 ${
+        show[0] ? "opacity-100" : "opacity-0 pointer-events-none"
+      }`}
+    >
+      <h1>This page is more beautiful when it can sense your movement</h1>
+      <button onClick={onClick}>Accept</button>
+      <button onClick={() => show[1](false)}>No thanks</button>
+    </div>
+  );
+};
 
 export default function Home() {
-  const gyroCallback = (access: "granted" | "denied") => {};
+  const engine = useState<"mouse" | "gyro">("mouse");
+
+  const gyroCallback = (access: PermissionState) => {
+    if (access === "granted") engine[1]("gyro");
+  };
 
   return (
     <main className="w-full h-full flex justify-center items-center">
-      <Motion />
+      <Motion engine={engine[0]} />
       <MobileView>
-        {/* <GyroPermission callback={gyroCallback} /> */}
+        <GyroPermission callback={gyroCallback} />
       </MobileView>
     </main>
   );
