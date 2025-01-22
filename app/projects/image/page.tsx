@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import useScrollIndicator from "../utils/useScrollIndicator";
+import useScrollIndicator from "../../utils/useScrollIndicator";
 
 // Underscore so as not to overlap with next/image
 export default function _Image() {
