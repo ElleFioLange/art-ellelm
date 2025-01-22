@@ -66,11 +66,18 @@ const Links = () => {
 
 const Platter = () => {
   const loaded = useState(false);
-  console.log(loaded);
   return (
     <>
       {loaded[0] && (
         <>
+          {/* Background */}
+          <div
+            className="w-full h-full absolute bg-fg bg-opacity-5 rounded-lg"
+            style={{
+              transform: "translateZ(-41px) scale(1.08)",
+              transformStyle: "preserve-3d",
+            }}
+          />
           {/* Shadow */}
           <div
             className="w-full h-full absolute bg-[radial-gradient(circle,_rgba(0,0,0,0)_15%,_rgba(0,0,0,1)_30%,_rgba(0,0,0,1)_50%,_rgba(0,0,0,0.35)_60%,_rgba(0,0,0,0.15)_65%,_rgba(0,0,0,0)_70%)]"
@@ -179,7 +186,7 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
         transformStyle: "preserve-3d",
         transform,
       }}
-      className="w-3/4 max-w-[60vh] relative animate-fade-in"
+      className="w-3/4 max-w-[60vh] relative"
     >
       <Logo
         className="w-1/12 absolute text-fg opacity-5 fill-current top-1/2 left-1/2"
@@ -199,34 +206,38 @@ const GyroPermission = ({
 }: {
   callback: (access: PermissionState) => void;
 }) => {
-  const show = useState(true);
+  const show = useState(false);
 
   useEffect(() => {
-    const asked = localStorage.getItem("asked");
+    const dme = DeviceMotionEvent as {
+      requestPermission?: () => Promise<PermissionState>;
+    };
 
-    if (!asked) {
+    if (typeof dme.requestPermission === "function") {
       show[1](true);
-      localStorage.setItem("asked", "true");
+    } else {
+      callback("granted");
     }
-  });
+  }, []);
 
-  const onClick = () => {
+  const onClick = async () => {
     // Typescript
     const dme = DeviceMotionEvent as {
-      requestPermission?: () => Promise<"granted" | "denied">;
+      requestPermission?: () => Promise<PermissionState>;
     };
 
     if (typeof dme.requestPermission !== "function") return;
 
-    dme.requestPermission().then((access) => {
-      show[1](false);
-      callback(access);
-    });
+    const access = await dme.requestPermission();
+    show[1](false);
+    callback(access);
   };
+
+  console.log(show[0]);
 
   return (
     <div
-      className={`w-full h-[25dvh] min-h-min bottom-0 left-0 fixed bg-bg bg-opacity-50 text-center p-8 transition-opacity duration-200 animate-fade-in ${
+      className={`w-full h-[25dvh] min-h-min bottom-0 left-0 fixed bg-bg bg-opacity-50 text-center p-8 transition-opacity duration-200 ${
         show[0] ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
@@ -260,7 +271,7 @@ export default function Home() {
   };
 
   return (
-    <main className="w-full h-full flex justify-center items-center">
+    <main className="w-full h-full flex justify-center items-center animate-fade-in">
       <Motion engine={engine[0]} />
       <MobileView>
         <GyroPermission callback={gyroCallback} />
