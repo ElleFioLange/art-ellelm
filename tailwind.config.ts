@@ -6,6 +6,7 @@ export default {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: ["top-1/4", "left-1/4", "top-3/4", "left-3/4"],
   theme: {
     extend: {
       colors: {

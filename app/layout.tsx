@@ -32,7 +32,8 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant_unicase.className} ${cormorant.variable}`}
     >
-      <body>{children}</body>
+      {/* dvh = dynamic view height, accomodates url bar for mobile */}
+      <body className="h-[100dvh]">{children}</body>
     </html>
   );
 }

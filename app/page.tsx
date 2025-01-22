@@ -9,22 +9,83 @@ import {
   useSpring,
 } from "framer-motion";
 import Link from "next/link";
+import Logo from "./icons/logo";
+
+const Links = () => {
+  return (
+    <>
+      {["Image", "Cloudwatching", "Time-Space", "Paintings"].map((name, i) => (
+        <Link
+          key={name}
+          style={{
+            transform: "translateZ(15px) translate(-50%, -50%)",
+            transformStyle: "preserve-3d",
+          }}
+          href={`/projects/${name.toLowerCase()}`}
+          className={`absolute xl:text-2xl lg:text-xl md:text-lg sm:text-base text-xs top-${
+            i % 2 ? "3" : "1"
+          }/4 left-${i > 1 ? "1" : "3"}/4`}
+        >
+          {name}
+        </Link>
+      ))}
+    </>
+  );
+};
+
+const Platter = () => {
+  return (
+    <>
+      <div
+        className="w-full h-full absolute bg-[radial-gradient(circle,_rgba(0,0,0,0)_15%,_rgba(0,0,0,1)_30%,_rgba(0,0,0,1)_50%,_rgba(0,0,0,0.35)_60%,_rgba(0,0,0,0.15)_65%,_rgba(0,0,0,0)_70%)]"
+        style={{
+          transform: "translateZ(-40px) scale(1.08)",
+          transformStyle: "preserve-3d",
+        }}
+      />
+      <Image
+        src="/platter.png"
+        className="object-contain absolute brightness-50"
+        alt="Hard Drive Platter"
+        width={2400}
+        height={2400}
+        style={{
+          transform: "translateZ(-10px) scale(1.005)",
+          transformStyle: "preserve-3d",
+        }}
+      />
+      <Image
+        src="/platter.png"
+        className="object-contain absolute brightness-50"
+        alt="Hard Drive Platter"
+        width={2400}
+        height={2400}
+        style={{
+          transform: "translateZ(-5px) scale(0.975)",
+          transformStyle: "preserve-3d",
+        }}
+      />
+      <Image
+        src="/platter.png"
+        className="object-contain"
+        alt="Hard Drive Platter"
+        width={2400}
+        height={2400}
+      />
+    </>
+  );
+};
 
 const ROTATION_RANGE = 32.5;
 
-const Platter = () => {
+const Motion = () => {
   const ref = useRef<HTMLDivElement>(null);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
 
-  const springConfig = {
-    // stiffness: 300,
-    // damping: 10,
-    // mass: 2,
-  };
-  const xSpring = useSpring(x, springConfig);
-  const ySpring = useSpring(y, springConfig);
+  const xSpring = useSpring(x);
+  const ySpring = useSpring(y);
 
   const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
 
@@ -41,8 +102,6 @@ const Platter = () => {
 
     const rX = (mouseY / height - ROTATION_RANGE / 2) * -1;
     const rY = mouseX / width - ROTATION_RANGE / 2;
-
-    console.log(rX, rY);
 
     x.set(rX);
     y.set(rY);
@@ -62,91 +121,47 @@ const Platter = () => {
         transformStyle: "preserve-3d",
         transform,
       }}
-      className="w-1/2 max-w-[50vh] flex justify-center items-center relative"
+      className="w-1/2 max-w-[50vh] relative"
     >
       <div
         className="w-full h-full absolute bg-fg bg-opacity-5 rounded-lg"
         style={{
-          transform: "translateZ(-31px) scale(1.08)",
+          transform: "translateZ(-41px) scale(1.1)",
           transformStyle: "preserve-3d",
         }}
       />
-      <div
-        className="w-full h-full absolute bg-[radial-gradient(circle,_rgba(0,0,0,0)_15%,_rgba(0,0,0,1)_30%,_rgba(0,0,0,1)_50%,_rgba(0,0,0,0.35)_60%,_rgba(0,0,0,0.15)_65%,_rgba(0,0,0,0)_70%)]"
+      <Logo
+        className="w-1/12 absolute text-bg fill-current top-1/2 left-1/2"
         style={{
-          transform: "translateZ(-30px) scale(1.08)",
+          transform: "translateZ(-15px) translate(-50%, -50%)",
           transformStyle: "preserve-3d",
         }}
       />
-      <Image
-        src="/platter.png"
-        className="object-contain absolute brightness-50"
-        alt="Hard Drive Platter"
-        width={2400}
-        height={2400}
-        style={{
-          transform: "translateZ(-15px)",
-          transformStyle: "preserve-3d",
-        }}
-      />
-      <Image
-        src="/platter.png"
-        className="object-contain"
-        alt="Hard Drive Platter"
-        width={2400}
-        height={2400}
-      />
-      <Link
-        style={{
-          transform: "translateZ(15px) translate(-50%, -50%)",
-          transformStyle: "preserve-3d",
-        }}
-        href="/projects/image"
-        className="absolute text-xl top-1/4 left-1/4"
-      >
-        Image
-      </Link>
-      <Link
-        style={{
-          transform: "translateZ(15px) translate(-50%, -50%)",
-          transformStyle: "preserve-3d",
-        }}
-        href="/projects/cloudwatching"
-        className="absolute text-xl top-1/4 left-3/4"
-      >
-        Cloudwatching
-      </Link>
-      <Link
-        style={{
-          transform: "translateZ(15px) translate(-50%, -50%)",
-          transformStyle: "preserve-3d",
-        }}
-        href="/projects/time-space"
-        className="absolute text-xl top-3/4 left-1/4"
-      >
-        Time-Space
-      </Link>
-      <Link
-        style={{
-          transform: "translateZ(15px) translate(-50%, -50%)",
-          transformStyle: "preserve-3d",
-        }}
-        href="/projects/paintings"
-        className="absolute text-xl top-3/4 left-3/4"
-      >
-        Paintings
-      </Link>
+      <Platter />
+      <Links />
+      {/* {["Image", "Cloudwatching", "Time-Space", "Paintings"].map((name, i) => (
+        <Link
+          key={name}
+          style={{
+            transform: "translateZ(15px) translate(-50%, -50%)",
+            transformStyle: "preserve-3d",
+          }}
+          href={`/projects/${name.toLowerCase()}`}
+          className={`absolute xl:text-2xl lg:text-xl md:text-lg sm:text-base text-xs top-${
+            i < 2 ? "1" : "3"
+          }/4 left-3/4`}
+        >
+          {name}
+        </Link>
+      ))} */}
     </motion.div>
   );
 };
 
 export default function Home() {
   return (
-    <main className="w-screen h-screen">
-      <div className="w-full h-full flex justify-center items-center">
-        {/* Image container for sizing */}
-        <Platter />
-      </div>
+    <main className="w-full h-full flex justify-center items-center">
+      <Motion />
     </main>
   );
 }
