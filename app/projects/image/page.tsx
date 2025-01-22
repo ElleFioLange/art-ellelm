@@ -23,10 +23,10 @@ export default function _Image() {
       <section
         // Using ID instead of ref is necessary for managing scroll indication behavior
         id="pictures"
-        className="relative min-h-0 max-h-full sm:overflow-y-auto sm:no-scrollbar sm:h-full max-sm:overflow-x-auto max-sm:overflow-y-hidden max-sm:flex max-sm:gap-8"
+        className="relative min-h-0 max-h-full sm:overflow-y-auto sm:no-scrollbar sm:h-full sm:snap-y max-sm:overflow-x-auto max-sm:overflow-y-hidden max-sm:flex max-sm:gap-8 max-sm:snap-x"
       >
         <Image
-          className={`object-contain w-full sm:h-full max-sm:max-h-full max-sm:px-4 ${
+          className={`object-contain w-full snap-center sm:h-full max-sm:max-h-full max-sm:px-4 ${
             showScroll
               ? "sm:animate-indicate-scroll-y max-sm:animate-indicate-scroll-x"
               : ""
@@ -37,42 +37,42 @@ export default function _Image() {
           height={1000}
         />
         <Image
-          className="w-full sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
+          className="w-full snap-center sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
           src="/platter.png"
           alt="test"
           width={1000}
           height={1000}
         />
         <Image
-          className="w-full sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
+          className="w-full snap-center sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
           src="/platter.png"
           alt="test"
           width={1000}
           height={1000}
         />
         <Image
-          className="w-full sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
+          className="w-full snap-center sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
           src="/platter.png"
           alt="test"
           width={1000}
           height={1000}
         />
         <Image
-          className="w-full sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
+          className="w-full snap-center sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
           src="/platter.png"
           alt="test"
           width={1000}
           height={1000}
         />
         <Image
-          className="w-full sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
+          className="w-full snap-center sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
           src="/platter.png"
           alt="test"
           width={1000}
           height={1000}
         />
         <Image
-          className="w-full sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
+          className="w-full snap-center sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
           src="/platter.png"
           alt="test"
           width={1000}

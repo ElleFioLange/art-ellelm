@@ -1,6 +1,12 @@
 "use client";
 
-import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
+import React, {
+  MouseEvent,
+  MouseEventHandler,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Image from "next/image";
 import {
   motion,
@@ -11,6 +17,7 @@ import {
 import Link from "next/link";
 import Logo from "./icons/logo";
 import dynamic from "next/dynamic";
+import gsap from "gsap";
 
 const MobileView = dynamic(() => import("./utils/mobile-view"), { ssr: false });
 
@@ -74,18 +81,19 @@ const Platter = () => {
           <div
             className="w-full h-full absolute bg-fg bg-opacity-5 rounded-lg"
             style={{
-              transform: "translateZ(-41px) scale(1.08)",
+              transform: "translateZ(-81px) scale(1.08)",
               transformStyle: "preserve-3d",
             }}
           />
           {/* Shadow */}
           <div
-            className="w-full h-full absolute bg-[radial-gradient(circle,_rgba(0,0,0,0)_15%,_rgba(0,0,0,1)_30%,_rgba(0,0,0,1)_50%,_rgba(0,0,0,0.35)_60%,_rgba(0,0,0,0.15)_65%,_rgba(0,0,0,0)_70%)]"
+            className="w-full h-full absolute bg-[radial-gradient(circle,_rgba(0,0,0,0)_15%,_rgba(0,0,0,0.4)_30%,_rgba(0,0,0,0.4)_50%,_rgba(0,0,0,0.35)_60%,_rgba(0,0,0,0.15)_65%,_rgba(0,0,0,0)_70%)]"
             style={{
-              transform: "translateZ(-40px) scale(1.08)",
+              transform: "translateZ(-80px) scale(1.08)",
               transformStyle: "preserve-3d",
             }}
           />
+          {/* Adds depth to outer edge */}
           <Image
             src="/platter.png"
             className="object-contain absolute brightness-50"
@@ -97,6 +105,7 @@ const Platter = () => {
               transformStyle: "preserve-3d",
             }}
           />
+          {/* Adds depth to inner edge */}
           <Image
             src="/platter.png"
             className="object-contain absolute brightness-50"
@@ -110,6 +119,7 @@ const Platter = () => {
           />
         </>
       )}
+      {/* Main platter image */}
       <Image
         priority
         src="/platter.png"
@@ -124,58 +134,81 @@ const Platter = () => {
   );
 };
 
-const ROTATION_RANGE = 32.5;
-
 const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
+  const ROTATION_RANGE = 30;
+  const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
+
   const ref = useRef<HTMLDivElement>(null);
 
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-
-  const xSpring = useSpring(x);
-  const ySpring = useSpring(y);
-
-  const transform = useMotionTemplate`rotateX(${xSpring}deg) rotateY(${ySpring}deg)`;
-
-  const handleMouseMove: MouseEventHandler = (e) => {
-    if (engine !== "mouse") return;
-
-    if (!ref.current) return [0, 0];
+  // Mouse movement handler
+  const handleMouseMove = (e: MouseEvent) => {
+    if (engine !== "mouse" || !ref.current) return;
 
     const { width, height, left, top } = ref.current.getBoundingClientRect();
 
     const mouseX = (e.clientX - left) * ROTATION_RANGE;
     const mouseY = (e.clientY - top) * ROTATION_RANGE;
 
-    const rX = (mouseY / height - ROTATION_RANGE / 2) * -1;
-    const rY = mouseX / width - ROTATION_RANGE / 2;
+    const rotationX = (mouseY / height - ROTATION_RANGE / 2) * -1;
+    const rotationY = mouseX / width - ROTATION_RANGE / 2;
 
-    x.set(rX);
-    y.set(rY);
+    gsap.to(ref.current, {
+      rotationX,
+      rotationY,
+      duration: 1.5,
+      ease: "elastic.out(1.2, 0.5)",
+    });
   };
 
+  // Reset function to return card to neutral position
+  const resetRotation = () => {
+    gsap.to(ref.current, {
+      rotationX: 0,
+      rotationY: 0,
+      duration: 1.5,
+      ease: "elastic.out(1.2, 0.5)",
+    });
+  };
+
+  // Mouse leave handler
   const handleMouseLeave = () => {
     if (engine !== "mouse") return;
-
-    x.set(0);
-    y.set(0);
+    resetRotation();
   };
 
+  // Gyroscope handler
   useEffect(() => {
-    if (engine === "gyro") {
-      const handleOrientation = (e: DeviceOrientationEvent) => {
-        if (!e.beta || !e.gamma) return;
-        x.set(
-          Math.max(Math.min(e.beta - 37.5, ROTATION_RANGE), -ROTATION_RANGE)
-        );
-        y.set(-Math.max(Math.min(e.gamma, ROTATION_RANGE), -ROTATION_RANGE));
-      };
+    // Phones/tablets usually held ~30deg
+    const BETA_REST_ANGLE = 30;
 
-      window.addEventListener("deviceorientation", handleOrientation);
+    if (!ref.current || engine !== "gyro") return;
 
-      return () =>
-        window.removeEventListener("deviceorientation", handleOrientation);
-    } else return () => {};
+    const handleOrientation = (e: DeviceOrientationEvent) => {
+      console.log(engine);
+      if (engine !== "gyro" || !e.beta || !e.gamma) return;
+
+      const rotationX = Math.max(
+        Math.min(e.beta - BETA_REST_ANGLE, ROTATION_RANGE),
+        -ROTATION_RANGE
+      );
+      const rotationY = -Math.max(
+        Math.min(e.gamma, ROTATION_RANGE),
+        -ROTATION_RANGE
+      );
+
+      gsap.to(ref.current, {
+        rotationX,
+        rotationY,
+        duration: 1.5,
+        ease: "elastic.out(1.2, 0.5)",
+      });
+    };
+
+    window.addEventListener("deviceorientation", handleOrientation);
+
+    // Cleanup
+    return () =>
+      window.removeEventListener("deviceorientation", handleOrientation);
   }, [engine]);
 
   return (
@@ -184,8 +217,8 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       style={{
+        // transform,
         transformStyle: "preserve-3d",
-        transform,
       }}
       className="w-3/4 max-w-[60vh] relative"
     >
