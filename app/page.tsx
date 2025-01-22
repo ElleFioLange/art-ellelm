@@ -1,6 +1,6 @@
 "use client";
 
-import React, { MouseEventHandler, useRef } from "react";
+import React, { MouseEventHandler, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
   motion,
@@ -10,6 +10,11 @@ import {
 } from "framer-motion";
 import Link from "next/link";
 import Logo from "./icons/logo";
+import dynamic from "next/dynamic";
+import { useDeviceOrientation } from "./utils/useOrientation";
+import { useMobileOrientation } from "react-device-detect";
+
+const MobileView = dynamic(() => import("./utils/mobile-view"), { ssr: false });
 
 const Links = () => {
   return (
@@ -22,9 +27,9 @@ const Links = () => {
             transformStyle: "preserve-3d",
           }}
           href={`/projects/${name.toLowerCase()}`}
-          className={`absolute xl:text-2xl lg:text-xl md:text-lg sm:text-base text-xs top-${
-            i % 2 ? "3" : "1"
-          }/4 left-${i > 1 ? "1" : "3"}/4`}
+          className={`absolute xl:text-2xl lg:text-xl md:text-lg ${
+            i % 2 ? "top-3/4" : "top-1/4"
+          } ${i > 1 ? "left-1/4" : "left-3/4"}`}
         >
           {name}
         </Link>
@@ -92,6 +97,7 @@ const Motion = () => {
   const handleMouseMove: MouseEventHandler = (e) => {
     if (!ref.current) return [0, 0];
 
+    // Working with radius because we can assume circle
     const rect = ref.current.getBoundingClientRect();
 
     const width = rect.width;
@@ -112,6 +118,20 @@ const Motion = () => {
     y.set(0);
   };
 
+  const { orientation, requestAccess } = useDeviceOrientation();
+
+  useEffect(() => {
+    requestAccess();
+  });
+
+  useEffect(() => {
+    console.log(orientation);
+    if (orientation && orientation.beta && orientation.gamma) {
+      x.set(orientation.beta - 30);
+      y.set(-orientation.gamma);
+    }
+  });
+
   return (
     <motion.div
       ref={ref}
@@ -121,17 +141,17 @@ const Motion = () => {
         transformStyle: "preserve-3d",
         transform,
       }}
-      className="w-1/2 max-w-[50vh] relative"
+      className="w-3/4 max-w-[60vh] relative"
     >
-      <div
-        className="w-full h-full absolute bg-fg bg-opacity-5 rounded-lg"
+      {/* <div
+        className="w-full h-full absolute bg-fg bg-opacity-5 rounded-full"
         style={{
-          transform: "translateZ(-41px) scale(1.1)",
+          transform: "translateZ(-41px) scale(1.25)",
           transformStyle: "preserve-3d",
         }}
-      />
+      /> */}
       <Logo
-        className="w-1/12 absolute text-bg fill-current top-1/2 left-1/2"
+        className="w-1/12 absolute text-fg opacity-5 fill-current top-1/2 left-1/2"
         style={{
           transform: "translateZ(-15px) translate(-50%, -50%)",
           transformStyle: "preserve-3d",
@@ -139,29 +159,69 @@ const Motion = () => {
       />
       <Platter />
       <Links />
-      {/* {["Image", "Cloudwatching", "Time-Space", "Paintings"].map((name, i) => (
-        <Link
-          key={name}
-          style={{
-            transform: "translateZ(15px) translate(-50%, -50%)",
-            transformStyle: "preserve-3d",
-          }}
-          href={`/projects/${name.toLowerCase()}`}
-          className={`absolute xl:text-2xl lg:text-xl md:text-lg sm:text-base text-xs top-${
-            i < 2 ? "1" : "3"
-          }/4 left-3/4`}
-        >
-          {name}
-        </Link>
-      ))} */}
     </motion.div>
   );
 };
 
+// const GyroPermission = ({
+//   callback,
+// }: {
+//   callback: (access: "granted" | "denied") => void;
+// }) => {
+//   const show = useState(false);
+//   const test = useState("testing");
+
+//   useEffect(() => {
+//     // Typescript
+//     const dme = DeviceMotionEvent as {
+//       requestPermission?: () => Promise<"granted" | "denied">;
+//     };
+
+//     if (typeof dme.requestPermission == "function")
+//       dme.requestPermission().then((access) => {
+//         test[1](access);
+//       });
+
+//     show[1](dme.requestPermission ? true : false);
+//   }, []);
+
+//   const onClick = () => {
+//     // Typescript
+//     const dme = DeviceMotionEvent as {
+//       requestPermission?: () => Promise<"granted" | "denied">;
+//     };
+
+//     if (typeof dme.requestPermission !== "function") return;
+
+//     dme.requestPermission().then((access) => {
+//       show[1](false);
+//       callback(access);
+//     });
+//   };
+
+//   return (
+//     <div
+//       className={`w-full h-full top-0 left-0 fixed bg-bg flex justify-center items-center flex-col text-center font-cormorant p-8 gap-8 transition-opacity duration-200 ${
+//         show[0] ? "opacity-100" : "opacity-0 pointer-events-none"
+//       }`}
+//     >
+//       <h1>{test[0]}</h1>
+//       {/* <h1>This page is more beautiful when it can sense your movement</h1> */}
+//       <button onClick={onClick}>Accept</button>
+//       <button onClick={() => show[1](false)}>No thanks</button>
+//     </div>
+//   );
+// };
+
 export default function Home() {
+  const gyroCallback = (access: "granted" | "denied") => {};
+
   return (
     <main className="w-full h-full flex justify-center items-center">
       <Motion />
+      <MobileView>
+        {/* <GyroPermission callback={gyroCallback} /> */}
+      </MobileView>
     </main>
   );
 }

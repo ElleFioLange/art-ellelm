@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Cormorant_Unicase, Cormorant } from "next/font/google";
-import "swiper/css";
 import "./css.css";
 
 const cormorant = Cormorant({
