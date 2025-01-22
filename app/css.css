@@ -27,7 +27,7 @@
 
     scrollbar-color: rgb(var(--fg)) #00000000;
 
-    @apply bg-bg text-fg box-border h-full p-0 m-0 select-none;
+    @apply bg-bg text-fg h-screen box-border p-0 m-0 select-none;
   }
 
   @media (prefers-color-scheme: dark) {
@@ -40,7 +40,9 @@
   }
 
   body {
-    @apply w-screen h-screen bg-bg;
+    height: 100dvh;
+
+    @apply w-full bg-bg;
   }
 
   h1 {

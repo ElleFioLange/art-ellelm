@@ -111,13 +111,14 @@ const Platter = () => {
         </>
       )}
       <Image
+        priority
         src="/platter.png"
         className="object-contain"
         alt="Hard Drive Platter"
         style={{ transformStyle: "preserve-3d" }}
         width={2400}
         height={2400}
-        onLoadingComplete={() => loaded[1](true)}
+        onLoad={() => loaded[1](true)}
       />
     </>
   );
@@ -232,8 +233,6 @@ const GyroPermission = ({
     show[1](false);
     callback(access);
   };
-
-  console.log(show[0]);
 
   return (
     <div
