@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function _Image() {
   return (
     <>
-      <section>
+      <section className="">
         <h1>Image</h1>
         <h2>Mirros and platters nblah alsdkf</h2>
         <p>
@@ -17,7 +17,16 @@ export default function _Image() {
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </section>
-      <section>
+      <section
+        id="pictures"
+        className="h-full sm:overflow-y-auto  max-sm:overflow-x-auto max-sm:flex"
+      >
+        <Image src="/platter.png" alt="test" width={1000} height={1000} />
+        <Image src="/platter.png" alt="test" width={1000} height={1000} />
+        <Image src="/platter.png" alt="test" width={1000} height={1000} />
+        <Image src="/platter.png" alt="test" width={1000} height={1000} />
+        <Image src="/platter.png" alt="test" width={1000} height={1000} />
+        <Image src="/platter.png" alt="test" width={1000} height={1000} />
         <Image src="/platter.png" alt="test" width={1000} height={1000} />
       </section>
     </>
