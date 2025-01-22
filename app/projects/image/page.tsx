@@ -1,59 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import { isMobile, isTablet } from "react-device-detect";
+import useScrollIndicator from "../utils/useScrollIndicator";
 
 // Underscore so as not to overlap with next/image
 export default function _Image() {
-  const showScroll = useState(true);
-
-  useEffect(() => {
-    const shown = localStorage.getItem("shown-scroll");
-
-    if (shown || !showScroll[0]) {
-      showScroll[1](false);
-      return;
-    }
-
-    const scrollHandler = () => {
-      console.log("hi");
-      showScroll[1](false);
-      localStorage.setItem("shown-scroll", "true");
-    };
-
-    window.addEventListener("wheel", scrollHandler);
-
-    const pictures = document.getElementById("pictures");
-
-    if (!pictures)
-      return () => window.removeEventListener("resize", scrollHandler);
-
-    const _swipeHandler = (prevTop: number, prevLeft: number) => {
-      console.log("hi");
-      const pictures = document.getElementById("pictures");
-
-      if (!pictures) return;
-
-      if (pictures.scrollTop !== prevTop || pictures.scrollLeft !== prevLeft)
-        scrollHandler();
-    };
-
-    const prevTop = pictures.scrollTop;
-    const prevLeft = pictures.scrollLeft;
-
-    // Using a factory here to check against previous value
-    const swipeHandler = () => _swipeHandler(prevTop, prevLeft);
-
-    window.addEventListener("touchmove", swipeHandler);
-
-    return () => {
-      window.removeEventListener("resize", scrollHandler);
-      window.removeEventListener("touchmove", swipeHandler);
-    };
-  }, [showScroll[0]]);
-
-  // console.log(isMobile || isTablet);
+  const [showScroll] = useScrollIndicator();
 
   return (
     <>
@@ -75,7 +27,7 @@ export default function _Image() {
       >
         <Image
           className={`object-contain w-full sm:h-full max-sm:max-h-full max-sm:px-4 ${
-            showScroll[0]
+            showScroll
               ? "sm:animate-indicate-scroll-y max-sm:animate-indicate-scroll-x"
               : ""
           }`}

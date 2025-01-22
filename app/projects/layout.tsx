@@ -26,6 +26,7 @@ export default function ProjectLayout({
 
     const scrollHandler = (e: WheelEvent) => {
       if (e.deltaY && pictures) {
+        // Apply to horizontal scroll if past breakpoint
         if (invert) pictures.scrollLeft += e.deltaY + e.deltaX;
         else pictures.scrollTop += e.deltaY;
 
