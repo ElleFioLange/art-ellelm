@@ -16,65 +16,101 @@ const MobileView = dynamic(() => import("./utils/mobile-view"), { ssr: false });
 
 const Links = () => {
   return (
-    <>
-      {["Image", "Cloudwatching", "Time-Space", "Paintings"].map((name, i) => (
-        <Link
-          key={name}
-          style={{
-            transform: "translateZ(15px) translate(-50%, -50%)",
-            transformStyle: "preserve-3d",
-          }}
-          href={`/projects/${name.toLowerCase()}`}
-          className={`absolute xl:text-2xl lg:text-xl md:text-lg ${
-            i % 2 ? "top-3/4" : "top-1/4"
-          } ${i > 1 ? "left-1/4" : "left-3/4"}`}
-        >
-          {name}
-        </Link>
-      ))}
-    </>
+    <div
+      className="absolute top-0 left-0 w-full h-full xl:text-2xl lg:text-xl md:text-lg *:-translate-x-1/2 *:-translate-y-1/2 *:absolute"
+      style={{
+        transform: "translateZ(15px)",
+        transformStyle: "preserve-3d",
+      }}
+    >
+      <Link href="/featured" className="top-[20%] left-[36%]">
+        Featured
+      </Link>
+      <Link href="/about" className="top-[20%] left-[64%]">
+        About
+      </Link>
+      <Link href="/contact" className="top-[39%] left-[80%]">
+        Contact
+      </Link>
+      <Link href="/performance" className="top-[61%] left-[80%]">
+        Performance
+      </Link>
+      <Link href="/design" className="top-[80%] left-[64%]">
+        Design
+      </Link>
+      <Link href="/sculpture" className="top-[80%] left-[36%]">
+        Sculpture
+      </Link>
+      <Link href="/photography" className="top-[61%] left-[20%]">
+        Photography
+      </Link>
+      <Link href="/painting" className="top-[39%] left-[20%]">
+        Painting
+      </Link>
+    </div>
   );
 };
 
+// Design
+// Photography
+// Performance
+// Featured
+//   Image
+//   Cloudwatching
+//   White Feather
+//   Time-Space
+// About
+// Contact
+// Paintings
+// Sculpture
+
 const Platter = () => {
+  const loaded = useState(false);
+  console.log(loaded);
   return (
     <>
-      {/* Shadow */}
-      <div
-        className="w-full h-full absolute bg-[radial-gradient(circle,_rgba(0,0,0,0)_15%,_rgba(0,0,0,1)_30%,_rgba(0,0,0,1)_50%,_rgba(0,0,0,0.35)_60%,_rgba(0,0,0,0.15)_65%,_rgba(0,0,0,0)_70%)]"
-        style={{
-          transform: "translateZ(-40px) scale(1.08)",
-          transformStyle: "preserve-3d",
-        }}
-      />
-      <Image
-        src="/platter.png"
-        className="object-contain absolute brightness-50"
-        alt="Hard Drive Platter"
-        width={2400}
-        height={2400}
-        style={{
-          transform: "translateZ(-10px) scale(1.005)",
-          transformStyle: "preserve-3d",
-        }}
-      />
-      <Image
-        src="/platter.png"
-        className="object-contain absolute brightness-50"
-        alt="Hard Drive Platter"
-        width={2400}
-        height={2400}
-        style={{
-          transform: "translateZ(-5px) scale(0.975)",
-          transformStyle: "preserve-3d",
-        }}
-      />
+      {loaded[0] && (
+        <>
+          {/* Shadow */}
+          <div
+            className="w-full h-full absolute bg-[radial-gradient(circle,_rgba(0,0,0,0)_15%,_rgba(0,0,0,1)_30%,_rgba(0,0,0,1)_50%,_rgba(0,0,0,0.35)_60%,_rgba(0,0,0,0.15)_65%,_rgba(0,0,0,0)_70%)]"
+            style={{
+              transform: "translateZ(-40px) scale(1.08)",
+              transformStyle: "preserve-3d",
+            }}
+          />
+          <Image
+            src="/platter.png"
+            className="object-contain absolute brightness-50"
+            alt="Hard Drive Platter"
+            width={2400}
+            height={2400}
+            style={{
+              transform: "translateZ(-10px) scale(1.005)",
+              transformStyle: "preserve-3d",
+            }}
+          />
+          <Image
+            src="/platter.png"
+            className="object-contain absolute brightness-50"
+            alt="Hard Drive Platter"
+            width={2400}
+            height={2400}
+            style={{
+              transform: "translateZ(-5px) scale(0.975)",
+              transformStyle: "preserve-3d",
+            }}
+          />
+        </>
+      )}
       <Image
         src="/platter.png"
         className="object-contain"
         alt="Hard Drive Platter"
+        style={{ transformStyle: "preserve-3d" }}
         width={2400}
         height={2400}
+        onLoadingComplete={() => loaded[1](true)}
       />
     </>
   );
@@ -82,7 +118,7 @@ const Platter = () => {
 
 const ROTATION_RANGE = 32.5;
 
-const Motion = ({ engine }: { engine: "mouse" | "gyro" }) => {
+const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const x = useMotionValue(0);
@@ -98,14 +134,10 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" }) => {
 
     if (!ref.current) return [0, 0];
 
-    // Working with radius because we can assume circle
-    const rect = ref.current.getBoundingClientRect();
+    const { width, height, left, top } = ref.current.getBoundingClientRect();
 
-    const width = rect.width;
-    const height = rect.height;
-
-    const mouseX = (e.clientX - rect.left) * ROTATION_RANGE;
-    const mouseY = (e.clientY - rect.top) * ROTATION_RANGE;
+    const mouseX = (e.clientX - left) * ROTATION_RANGE;
+    const mouseY = (e.clientY - top) * ROTATION_RANGE;
 
     const rX = (mouseY / height - ROTATION_RANGE / 2) * -1;
     const rY = mouseX / width - ROTATION_RANGE / 2;
@@ -125,7 +157,9 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" }) => {
     if (engine === "gyro") {
       const handleOrientation = (e: DeviceOrientationEvent) => {
         if (!e.beta || !e.gamma) return;
-        x.set(Math.max(Math.min(e.beta - 30, ROTATION_RANGE), -ROTATION_RANGE));
+        x.set(
+          Math.max(Math.min(e.beta - 37.5, ROTATION_RANGE), -ROTATION_RANGE)
+        );
         y.set(-Math.max(Math.min(e.gamma, ROTATION_RANGE), -ROTATION_RANGE));
       };
 
@@ -145,7 +179,7 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" }) => {
         transformStyle: "preserve-3d",
         transform,
       }}
-      className="w-3/4 max-w-[60vh] relative"
+      className="w-3/4 max-w-[60vh] relative animate-fade-in"
     >
       <Logo
         className="w-1/12 absolute text-fg opacity-5 fill-current top-1/2 left-1/2"
@@ -167,6 +201,15 @@ const GyroPermission = ({
 }) => {
   const show = useState(true);
 
+  useEffect(() => {
+    const asked = localStorage.getItem("asked");
+
+    if (!asked) {
+      show[1](true);
+      localStorage.setItem("asked", "true");
+    }
+  });
+
   const onClick = () => {
     // Typescript
     const dme = DeviceMotionEvent as {
@@ -183,22 +226,37 @@ const GyroPermission = ({
 
   return (
     <div
-      className={`w-full h-full top-0 left-0 fixed bg-bg flex justify-center items-center flex-col text-center font-cormorant p-8 gap-8 transition-opacity duration-200 ${
+      className={`w-full h-[25dvh] min-h-min bottom-0 left-0 fixed bg-bg bg-opacity-50 text-center p-8 transition-opacity duration-200 animate-fade-in ${
         show[0] ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
     >
-      <h1>This page is more beautiful when it can sense your movement</h1>
-      <button onClick={onClick}>Accept</button>
-      <button onClick={() => show[1](false)}>No thanks</button>
+      <h2 className="font-cormorant pb-2">
+        This page is more beautiful when it can feel your movement
+      </h2>
+      <div className="grid grid-cols-2">
+        <button
+          className="text-red"
+          onClick={() => {
+            callback("denied");
+            show[1](false);
+          }}
+        >
+          No thanks
+        </button>
+        <button onClick={onClick} className="text-green">
+          Accept
+        </button>
+      </div>
     </div>
   );
 };
 
 export default function Home() {
-  const engine = useState<"mouse" | "gyro">("mouse");
+  const engine = useState<"mouse" | "gyro" | null>("mouse");
 
   const gyroCallback = (access: PermissionState) => {
     if (access === "granted") engine[1]("gyro");
+    else if (access === "denied") engine[1](null);
   };
 
   return (
