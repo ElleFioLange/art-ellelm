@@ -155,7 +155,6 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
     if (!ref.current || engine !== "gyro") return;
 
     const handleOrientation = (e: DeviceOrientationEvent) => {
-      console.log(engine);
       if (engine !== "gyro" || !e.beta || !e.gamma) return;
 
       const rotationX = Math.max(
@@ -262,6 +261,8 @@ const GyroPermission = ({
 
 export default function Home() {
   const engine = useState<"mouse" | "gyro" | null>("mouse");
+
+  // useEffect(() => localStorage.setItem("shown-scroll", ""));
 
   const gyroCallback = (access: PermissionState) => {
     if (access === "granted") engine[1]("gyro");

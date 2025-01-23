@@ -27,13 +27,16 @@ const content: {
   }[];
 } = {
   keyframes: [
-    { step: 1, title: "new aklsjdfla title 2 asdfjlk " },
-    { step: 3, subtitle: "test subtitle 2 test asdl;fkaj" },
+    { step: 1, title: "Images are about telling old men to shut up" },
+    {
+      step: 3,
+      subtitle: "You have no clue if you're going to be okay until you try",
+    },
     {
       step: 4,
-      title: "ajlws;dfja TITLE 3 asdlkf test test",
+      title: "Now THIS is a capitalized word",
       paragraph:
-        " magna  enim adminim veniam, quis nostrud exercitation ullamco laboris nisi ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, aliqua. Ut sed do eiusmod tempor incididunt ut labore et dolore",
+        "Oh, capitalized words. The Capitol of my heart. I sure do wish that I could find a better way to transition this text, something smoother. I suspect that there would be something amazing if I were to use the TextSplit plugin, something nice and smooth and buttery and sleek. Alas, I do not want to pay $99.",
     },
   ],
   images: [
@@ -88,6 +91,7 @@ export default function _Image() {
 
   // GSAP scope
   const picturesRef = useRef<HTMLDivElement>(null);
+  const test = useRef<HTMLImageElement>(null);
 
   // Targets for GSAP
   const text = useRef<HTMLDivElement>(null);
@@ -112,7 +116,7 @@ export default function _Image() {
   useGSAP(
     () => {
       const width = window.innerWidth;
-      const vert = width >= 1024;
+      const horizontal = width < 1024;
       const { keyframes } = content;
 
       for (let i = 0; i < keyframes.length; i++) {
@@ -122,9 +126,11 @@ export default function _Image() {
         tl.current = gsap.timeline({
           scrollTrigger: {
             trigger: `#image-${keyframes[i].step}`,
-            start: vert ? "center bottom" : "center right",
+            scroller: picturesRef.current,
+            start: horizontal ? "center right" : "center bottom",
+            horizontal,
             end: "center center",
-            scrub: 1,
+            scrub: 0.25,
             snap: {
               snapTo: [0, 1],
               duration: { min: 0.2, max: 3 },
@@ -136,8 +142,8 @@ export default function _Image() {
 
         for (const [section, value] of Object.entries(keyframe)) {
           if (section === "step") continue;
-          console.log(section);
-          tl.current.to(
+
+          tl.current = tl.current.to(
             // Disgusting type casting here sorry
             contentElements[section as keyof typeof contentElements].current,
             {
@@ -152,6 +158,48 @@ export default function _Image() {
           );
         }
       }
+
+      // tl1.current = gsap.timeline({
+      //   scrollTrigger: {
+      //     trigger: test.current,
+      //     scroller: picturesRef.current,
+      //     start: "center bottom",
+      //     end: "center center",
+      //     markers: true,
+      //     scrub: true,
+      //     snap: {
+      //       snapTo: [0, 1],
+      //       duration: { min: 0.2, max: 3 },
+      //       delay: 0.2,
+      //       ease: "none",
+      //     },
+      //   },
+      // });
+
+      // tl1.current
+      //   .to(
+      //     title.current,
+      //     {
+      //       text: {
+      //         value: "new aklsjdfla title 2 asdfjlk ",
+      //         // speed: 0.5,
+      //       },
+      //       duration: 2,
+      //     },
+      //     0
+      //   )
+      //   .to(
+      //     paragraph.current,
+      //     {
+      //       text: {
+      //         value:
+      //           "magna enim adminim veniam, quis nostrud exercitation ullamco laboris nisi ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, aliqua. Ut sed do eiusmod tempor incididunt ut labore et dolore",
+      //         // speed: 0.5,
+      //       },
+      //       duration: 2,
+      //     },
+      //     0
+      //   );
     },
     { scope: picturesRef }
   );
@@ -159,12 +207,14 @@ export default function _Image() {
   return (
     <>
       <section ref={text} className="max-sm:mx-4">
-        <h1 ref={title}>Title test 1 asdfjalkj a;lsdkjfl;al;sjkld fas</h1>
-        <h2 ref={subtitle}>subtitle test 1 asdkl;fjkas;2323kl; al;sd fz</h2>
+        <h1 ref={title}>Image</h1>
+        <h2 ref={subtitle}>Mixed-media 2024</h2>
         <p className="font-cormorant" ref={paragraph}>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-          adminim veniam, quis nostrud exercitation ullamco laboris nisi ut
+          Image is about building an object, a sculpture. Something that can be
+          held in one's hands and thrown into the sun. Where am I going? Where
+          did I go? Where did I come from? Cotton Eye Joe. A wise man once said
+          to me. Hark! Look yonder, there angels sing. And I said, "Shut the
+          fuck up you tired old man and let me go to bed."
         </p>
       </section>
 
@@ -177,12 +227,12 @@ export default function _Image() {
       >
         {content.images.map(({ src, alt, width, height }, index) => (
           <Image
+            id={`image-${index}`}
             className={`object-contain w-full sm:h-full max-sm:max-h-full max-sm:px-4 ${
               showScroll && index === 0
                 ? "sm:animate-indicate-scroll-y max-sm:animate-indicate-scroll-x"
                 : ""
             }`}
-            id={`image-${index}`}
             key={index}
             src={src}
             alt={alt}
@@ -202,7 +252,8 @@ export default function _Image() {
           height={1000}
         />
         <Image
-          className="w-full sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
+          ref={test}
+          className="w-full sm:h-full max-sm:max-h-full max-sm:px-4 object-contain image-1"
           src="/platter.png"
           alt="test"
           width={1000}

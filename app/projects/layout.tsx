@@ -49,7 +49,7 @@ export default function ProjectLayout({
     <main
       id="main"
       ref={mainRef}
-      className="min-h-0 min-w-0 w-full h-full overflow-clip mx-auto max-w-5xl grid gap-4 items-center lg:w-3/4 sm:grid-cols-[1fr_1px_1fr] sm:px-8 max-sm:grid-rows-[1fr_1px_1fr]] max-sm:py-4"
+      className="min-h-0 min-w-0 w-full h-full overflow-visible mx-auto max-w-5xl grid gap-4 items-center lg:w-3/4 sm:grid-cols-[1fr_1px_1fr] sm:px-8 max-sm:grid-rows-[1fr_1px_1fr]] max-sm:py-4"
     >
       {children}
     </main>
