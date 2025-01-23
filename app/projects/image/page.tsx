@@ -86,6 +86,9 @@ const content: {
 export default function _Image() {
   const [showScroll] = useScrollIndicator();
 
+  // GSAP scope
+  const picturesRef = useRef<HTMLDivElement>(null);
+
   // Targets for GSAP
   const text = useRef<HTMLDivElement>(null);
   const title = useRef<HTMLHeadingElement>(null);
@@ -106,49 +109,52 @@ export default function _Image() {
   const tl3 = useRef<Timeline>(null);
   const tls = [tl1, tl2, tl3];
 
-  useGSAP(() => {
-    const width = window.innerWidth;
-    const vert = width >= 1024;
-    const { keyframes } = content;
+  useGSAP(
+    () => {
+      const width = window.innerWidth;
+      const vert = width >= 1024;
+      const { keyframes } = content;
 
-    for (let i = 0; i < keyframes.length; i++) {
-      const tl = tls[i];
-      const keyframe = keyframes[i];
+      for (let i = 0; i < keyframes.length; i++) {
+        const tl = tls[i];
+        const keyframe = keyframes[i];
 
-      tl.current = gsap.timeline({
-        scrollTrigger: {
-          trigger: `#image-${keyframes[i].step}`,
-          start: vert ? "center bottom" : "center right",
-          end: "center center",
-          scrub: 1,
-          snap: {
-            snapTo: [0, 1],
-            duration: { min: 0.2, max: 3 },
-            delay: 0.2,
-            ease: "none",
-          },
-        },
-      });
-
-      for (const [section, value] of Object.entries(keyframe)) {
-        if (section === "step") continue;
-        console.log(section);
-        tl.current.to(
-          // Disgusting type casting here sorry
-          contentElements[section as keyof typeof contentElements].current,
-          {
-            text: {
-              // Asserting because the step key-value has been combed out above
-              value: value as string,
-              speed: 0.5,
+        tl.current = gsap.timeline({
+          scrollTrigger: {
+            trigger: `#image-${keyframes[i].step}`,
+            start: vert ? "center bottom" : "center right",
+            end: "center center",
+            scrub: 1,
+            snap: {
+              snapTo: [0, 1],
+              duration: { min: 0.2, max: 3 },
+              delay: 0.2,
+              ease: "none",
             },
-            duration: 2,
           },
-          0
-        );
+        });
+
+        for (const [section, value] of Object.entries(keyframe)) {
+          if (section === "step") continue;
+          console.log(section);
+          tl.current.to(
+            // Disgusting type casting here sorry
+            contentElements[section as keyof typeof contentElements].current,
+            {
+              text: {
+                // Asserting because the step key-value has been combed out above
+                value: value as string,
+                speed: 0.5,
+              },
+              duration: 2,
+            },
+            0
+          );
+        }
       }
-    }
-  });
+    },
+    { scope: picturesRef }
+  );
 
   return (
     <>
@@ -164,7 +170,8 @@ export default function _Image() {
 
       <div className="bg-fg sm:h-1/3 sm:w-px max-sm:w-2/3 max-sm:h-px place-self-center" />
       <section
-        // Using ID instead of ref is necessary for managing scroll indication behavior
+        ref={picturesRef}
+        // Using ID is necessary for managing scroll indication behavior
         id="pictures"
         className="relative min-h-0 max-h-full sm:overflow-y-auto sm:no-scrollbar sm:h-full sm:snap-y max-sm:overflow-x-auto max-sm:overflow-y-hidden max-sm:flex max-sm:gap-8 max-sm:snap-x"
       >
