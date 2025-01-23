@@ -90,22 +90,6 @@
     scrollbar-width: none;
   }
 
-  .drop-shadow {
-    /* prettier-ignore */
-    filter: drop-shadow(0 20px 13px var(--dark)08)
-    /* prettier-ignore */
-      drop-shadow(0 8px 5px var(--dark)24);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .drop-shadow {
-      /* prettier-ignore */
-      filter: drop-shadow(0 20px 13px var(--light)08)
-      /* prettier-ignore */
-        drop-shadow(0 8px 5px var(--light)24);
-    }
-  }
-
   .invert-theme {
     @apply bg-fg text-bg;
   }

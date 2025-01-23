@@ -94,7 +94,7 @@ const Platter = () => {
       <Image
         priority
         src="/platter.png"
-        className="object-contain transform-3d"
+        className="object-contain transform-3d drop-shadow-lg"
         alt="Hard Drive Platter"
         width={2400}
         height={2400}
@@ -148,42 +148,39 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
   });
 
   // Gyroscope handler
-  useGSAP(
-    () => {
-      // Phones/tablets usually held ~30deg
-      const BETA_REST_ANGLE = 30;
+  useGSAP(() => {
+    // Phones/tablets usually held ~30deg
+    const BETA_REST_ANGLE = 30;
 
-      if (!ref.current || engine !== "gyro") return;
+    if (!ref.current || engine !== "gyro") return;
 
-      const handleOrientation = (e: DeviceOrientationEvent) => {
-        console.log(engine);
-        if (engine !== "gyro" || !e.beta || !e.gamma) return;
+    const handleOrientation = (e: DeviceOrientationEvent) => {
+      console.log(engine);
+      if (engine !== "gyro" || !e.beta || !e.gamma) return;
 
-        const rotationX = Math.max(
-          Math.min(e.beta - BETA_REST_ANGLE, ROTATION_RANGE),
-          -ROTATION_RANGE
-        );
-        const rotationY = -Math.max(
-          Math.min(e.gamma, ROTATION_RANGE),
-          -ROTATION_RANGE
-        );
+      const rotationX = Math.max(
+        Math.min(e.beta - BETA_REST_ANGLE, ROTATION_RANGE),
+        -ROTATION_RANGE
+      );
+      const rotationY = -Math.max(
+        Math.min(e.gamma, ROTATION_RANGE),
+        -ROTATION_RANGE
+      );
 
-        gsap.to(ref.current, {
-          rotationX,
-          rotationY,
-          duration: 1.5,
-          ease: "elastic.out(1.2, 0.5)",
-        });
-      };
+      gsap.to(ref.current, {
+        rotationX,
+        rotationY,
+        duration: 1.5,
+        ease: "elastic.out(1.2, 0.5)",
+      });
+    };
 
-      window.addEventListener("deviceorientation", handleOrientation);
+    window.addEventListener("deviceorientation", handleOrientation);
 
-      // Cleanup
-      return () =>
-        window.removeEventListener("deviceorientation", handleOrientation);
-    },
-    { scope: ref, dependencies: [engine] }
-  );
+    // Cleanup
+    return () =>
+      window.removeEventListener("deviceorientation", handleOrientation);
+  }, [engine]);
 
   return (
     <div
