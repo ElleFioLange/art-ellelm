@@ -20,7 +20,7 @@ export default function ProjectLayout({
 
     const shownScroll = localStorage.getItem("shown-scroll");
 
-    const breakpoint = 1024;
+    const breakpoint = 640;
     const width = window.innerWidth;
     const invert = width < breakpoint;
 

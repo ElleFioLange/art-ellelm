@@ -3,7 +3,7 @@
 import Image from "next/image";
 import useScrollIndicator from "../../utils/useScrollIndicator";
 import { useGSAP } from "@gsap/react";
-import { useCallback, useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 import gsap from "gsap";
 import TextPlugin from "gsap/TextPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -87,6 +87,8 @@ const content: {
 
 // Underscore so as not to overlap with next/image
 export default function _Image() {
+  // Recalculate GSAP if layout changes from vertical to horizontal
+  const reset = useState<boolean>();
   const [showScroll] = useScrollIndicator();
 
   // GSAP scope
@@ -116,7 +118,8 @@ export default function _Image() {
   useGSAP(
     () => {
       const width = window.innerWidth;
-      const horizontal = width < 1024;
+      const horizontal = width < 640;
+      if (reset[0] !== horizontal) reset[1](horizontal);
       const { keyframes } = content;
 
       for (let i = 0; i < keyframes.length; i++) {
@@ -201,7 +204,7 @@ export default function _Image() {
       //     0
       //   );
     },
-    { scope: picturesRef }
+    { scope: picturesRef, dependencies: [reset[0]] }
   );
 
   return (
