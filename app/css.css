@@ -109,4 +109,8 @@
   .invert-theme {
     @apply bg-fg text-bg;
   }
+
+  .transform-3d {
+    transform-style: preserve-3d;
+  }
 }

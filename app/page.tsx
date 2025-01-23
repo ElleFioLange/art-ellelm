@@ -24,10 +24,9 @@ const MobileView = dynamic(() => import("./utils/mobile-view"), { ssr: false });
 const Links = () => {
   return (
     <div
-      className="absolute top-0 left-0 w-full h-full xl:text-2xl lg:text-xl md:text-lg *:-translate-x-1/2 *:-translate-y-1/2 *:absolute"
+      className="absolute top-0 left-0 w-full h-full xl:text-2xl lg:text-xl md:text-lg *:-translate-x-1/2 *:-translate-y-1/2 *:absolute transform-3d"
       style={{
         transform: "translateZ(15px)",
-        transformStyle: "preserve-3d",
       }}
     >
       <Link href="/featured" className="top-[20%] left-[36%]">
@@ -79,42 +78,38 @@ const Platter = () => {
         <>
           {/* Background */}
           <div
-            className="w-full h-full absolute bg-fg bg-opacity-5 rounded-lg"
+            className="w-full h-full absolute bg-fg bg-opacity-5 rounded-lg transform-3d"
             style={{
-              transform: "translateZ(-81px) scale(1.08)",
-              transformStyle: "preserve-3d",
+              transform: "translateZ(max(-20vw, -25dvh)) scale(1.08)",
             }}
           />
           {/* Shadow */}
           <div
-            className="w-full h-full absolute bg-[radial-gradient(circle,_rgba(0,0,0,0)_15%,_rgba(0,0,0,0.4)_30%,_rgba(0,0,0,0.4)_50%,_rgba(0,0,0,0.35)_60%,_rgba(0,0,0,0.15)_65%,_rgba(0,0,0,0)_70%)]"
+            className="w-full h-full absolute bg-[radial-gradient(circle,_rgba(0,0,0,0)_15%,_rgba(0,0,0,0.4)_30%,_rgba(0,0,0,0.4)_50%,_rgba(0,0,0,0.35)_60%,_rgba(0,0,0,0.15)_65%,_rgba(0,0,0,0)_70%)] transform-3d"
             style={{
-              transform: "translateZ(-80px) scale(1.08)",
-              transformStyle: "preserve-3d",
+              transform: "translateZ(max(-20vw, -25dvh)) scale(1.08)",
             }}
           />
           {/* Adds depth to outer edge */}
           <Image
             src="/platter.png"
-            className="object-contain absolute brightness-50"
+            className="object-contain absolute brightness-50 transform-3d"
             alt="Hard Drive Platter"
             width={2400}
             height={2400}
             style={{
-              transform: "translateZ(-10px) scale(1.005)",
-              transformStyle: "preserve-3d",
+              transform: "translateZ(max(-2.5vw, -3dvh)) scale(1.005)",
             }}
           />
           {/* Adds depth to inner edge */}
           <Image
             src="/platter.png"
-            className="object-contain absolute brightness-50"
+            className="object-contain absolute brightness-50 transform-3d"
             alt="Hard Drive Platter"
             width={2400}
             height={2400}
             style={{
-              transform: "translateZ(-5px) scale(0.975)",
-              transformStyle: "preserve-3d",
+              transform: "translateZ(max(-1.25vw, -1.5vdh)) scale(0.975)",
             }}
           />
         </>
@@ -123,9 +118,8 @@ const Platter = () => {
       <Image
         priority
         src="/platter.png"
-        className="object-contain"
+        className="object-contain transform-3d"
         alt="Hard Drive Platter"
-        style={{ transformStyle: "preserve-3d" }}
         width={2400}
         height={2400}
         onLoad={() => loaded[1](true)}
@@ -136,7 +130,6 @@ const Platter = () => {
 
 const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
   const ROTATION_RANGE = 30;
-  const HALF_ROTATION_RANGE = ROTATION_RANGE / 2;
 
   const ref = useRef<HTMLDivElement>(null);
 
@@ -216,17 +209,12 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      style={{
-        // transform,
-        transformStyle: "preserve-3d",
-      }}
-      className="w-3/4 max-w-[60vh] relative"
+      className="w-3/4 max-w-[60dvh] relative transform-3d"
     >
       <Logo
-        className="w-1/12 absolute text-fg opacity-5 fill-current top-1/2 left-1/2"
+        className="w-1/12 absolute text-fg opacity-5 fill-current top-1/2 left-1/2 transform-3d"
         style={{
-          transform: "translateZ(-15px) translate(-50%, -50%)",
-          transformStyle: "preserve-3d",
+          transform: "translateZ(max(-3.75vw, -4.5dvh)) translate(-50%, -50%)",
         }}
       />
       <Platter />
