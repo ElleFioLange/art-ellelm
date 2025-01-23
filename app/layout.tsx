@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Cormorant_Unicase, Cormorant } from "next/font/google";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import "./css.css";
+
+gsap.registerPlugin(useGSAP);
 
 const cormorant = Cormorant({
   weight: "300",

@@ -1,23 +1,12 @@
 "use client";
 
-import React, {
-  MouseEvent,
-  MouseEventHandler,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import React, { MouseEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import {
-  motion,
-  useMotionTemplate,
-  useMotionValue,
-  useSpring,
-} from "framer-motion";
 import Link from "next/link";
 import Logo from "./icons/logo";
 import dynamic from "next/dynamic";
 import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const MobileView = dynamic(() => import("./utils/mobile-view"), { ssr: false });
 
@@ -56,19 +45,6 @@ const Links = () => {
     </div>
   );
 };
-
-// Design
-// Photography
-// Performance
-// Featured
-//   Image
-//   Cloudwatching
-//   White Feather
-//   Time-Space
-// About
-// Contact
-// Paintings
-// Sculpture
 
 const Platter = () => {
   const loaded = useState(false);
@@ -133,8 +109,10 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
 
   const ref = useRef<HTMLDivElement>(null);
 
+  const { contextSafe } = useGSAP({ scope: ref });
+
   // Mouse movement handler
-  const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = contextSafe((e: MouseEvent) => {
     if (engine !== "mouse" || !ref.current) return;
 
     const { width, height, left, top } = ref.current.getBoundingClientRect();
@@ -151,61 +129,64 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
       duration: 1.5,
       ease: "elastic.out(1.2, 0.5)",
     });
-  };
+  });
 
   // Reset function to return card to neutral position
-  const resetRotation = () => {
+  const resetRotation = contextSafe(() => {
     gsap.to(ref.current, {
       rotationX: 0,
       rotationY: 0,
       duration: 1.5,
       ease: "elastic.out(1.2, 0.5)",
     });
-  };
+  });
 
   // Mouse leave handler
-  const handleMouseLeave = () => {
+  const handleMouseLeave = contextSafe(() => {
     if (engine !== "mouse") return;
     resetRotation();
-  };
+  });
 
   // Gyroscope handler
-  useEffect(() => {
-    // Phones/tablets usually held ~30deg
-    const BETA_REST_ANGLE = 30;
+  useGSAP(
+    () => {
+      // Phones/tablets usually held ~30deg
+      const BETA_REST_ANGLE = 30;
 
-    if (!ref.current || engine !== "gyro") return;
+      if (!ref.current || engine !== "gyro") return;
 
-    const handleOrientation = (e: DeviceOrientationEvent) => {
-      console.log(engine);
-      if (engine !== "gyro" || !e.beta || !e.gamma) return;
+      const handleOrientation = (e: DeviceOrientationEvent) => {
+        console.log(engine);
+        if (engine !== "gyro" || !e.beta || !e.gamma) return;
 
-      const rotationX = Math.max(
-        Math.min(e.beta - BETA_REST_ANGLE, ROTATION_RANGE),
-        -ROTATION_RANGE
-      );
-      const rotationY = -Math.max(
-        Math.min(e.gamma, ROTATION_RANGE),
-        -ROTATION_RANGE
-      );
+        const rotationX = Math.max(
+          Math.min(e.beta - BETA_REST_ANGLE, ROTATION_RANGE),
+          -ROTATION_RANGE
+        );
+        const rotationY = -Math.max(
+          Math.min(e.gamma, ROTATION_RANGE),
+          -ROTATION_RANGE
+        );
 
-      gsap.to(ref.current, {
-        rotationX,
-        rotationY,
-        duration: 1.5,
-        ease: "elastic.out(1.2, 0.5)",
-      });
-    };
+        gsap.to(ref.current, {
+          rotationX,
+          rotationY,
+          duration: 1.5,
+          ease: "elastic.out(1.2, 0.5)",
+        });
+      };
 
-    window.addEventListener("deviceorientation", handleOrientation);
+      window.addEventListener("deviceorientation", handleOrientation);
 
-    // Cleanup
-    return () =>
-      window.removeEventListener("deviceorientation", handleOrientation);
-  }, [engine]);
+      // Cleanup
+      return () =>
+        window.removeEventListener("deviceorientation", handleOrientation);
+    },
+    { scope: ref, dependencies: [engine] }
+  );
 
   return (
-    <motion.div
+    <div
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -219,7 +200,7 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
       />
       <Platter />
       <Links />
-    </motion.div>
+    </div>
   );
 };
 
