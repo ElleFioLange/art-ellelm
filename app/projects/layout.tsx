@@ -3,6 +3,25 @@
 import { useEffect, useMemo, useRef } from "react";
 import useViewport from "../utils/useViewport";
 
+export type Keyframes = {
+  step: number;
+  title?: string;
+  subtitle?: string;
+  paragraph?: string;
+}[];
+
+export type Pictures = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+}[];
+
+export type Content = {
+  keyframes: Keyframes;
+  pictures: Pictures;
+};
+
 export default function ProjectLayout({
   children,
 }: {
