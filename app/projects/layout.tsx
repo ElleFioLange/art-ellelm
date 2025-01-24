@@ -1,6 +1,6 @@
 "use client";
 
-import { Children, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import useViewport from "../utils/useViewport";
 
 export default function ProjectLayout({
@@ -10,7 +10,7 @@ export default function ProjectLayout({
 }) {
   const mainRef = useRef<HTMLDivElement>(null);
 
-  const [viewport] = useViewport();
+  const viewport = useViewport();
   // Boolean for whether viewport is under small breakpoint (640px)
   const breakpoint = useMemo(
     () => (viewport.w ? viewport.w < 640 : false),

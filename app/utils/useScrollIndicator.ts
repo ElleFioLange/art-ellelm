@@ -46,5 +46,5 @@ export default function useScrollIndicator() {
     };
   }, [showScroll[0]]);
 
-  return [showScroll[0]];
+  return showScroll[0];
 }

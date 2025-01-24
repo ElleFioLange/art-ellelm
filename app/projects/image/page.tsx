@@ -3,7 +3,7 @@
 import Image from "next/image";
 import useScrollIndicator from "../../utils/useScrollIndicator";
 import { useGSAP } from "@gsap/react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import TextPlugin from "gsap/TextPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -89,9 +89,10 @@ const content: {
 // Underscore so as not to overlap with next/image
 export default function _Image() {
   // Tracked to recalculate GSAP if layout changes from vertical to horizontal
-  const [viewport] = useViewport();
+  const viewport = useViewport();
+  console.log(viewport);
   // Whether or not to show the scroll indication animation
-  const [showScroll] = useScrollIndicator();
+  const showScroll = useScrollIndicator();
 
   // GSAP scope
   const picturesRef = useRef<HTMLDivElement>(null);
@@ -119,6 +120,7 @@ export default function _Image() {
   useGSAP(
     () => {
       if (!viewport.w) return;
+      console.log("hi");
       const horizontal = viewport.w < 1024;
       const { keyframes } = content;
 
@@ -162,7 +164,7 @@ export default function _Image() {
         }
       }
     },
-    { scope: picturesRef }
+    { scope: picturesRef, dependencies: [viewport] }
   );
 
   return (
@@ -201,60 +203,6 @@ export default function _Image() {
             height={height}
           />
         ))}
-        {/* <Image
-          className={`object-contain w-full sm:h-full max-sm:max-h-full max-sm:px-4 ${
-            showScroll
-              ? "sm:animate-indicate-scroll-y max-sm:animate-indicate-scroll-x"
-              : ""
-          }`}
-          src="/IMG_1444.png"
-          alt="test"
-          width={1000}
-          height={1000}
-        />
-        <Image
-          ref={test}
-          className="w-full sm:h-full max-sm:max-h-full max-sm:px-4 object-contain image-1"
-          src="/platter.png"
-          alt="test"
-          width={1000}
-          height={1000}
-        />
-        <Image
-          className="w-full sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
-          src="/platter.png"
-          alt="test"
-          width={1000}
-          height={1000}
-        />
-        <Image
-          className="w-full sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
-          src="/platter.png"
-          alt="test"
-          width={1000}
-          height={1000}
-        />
-        <Image
-          className="w-full sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
-          src="/platter.png"
-          alt="test"
-          width={1000}
-          height={1000}
-        />
-        <Image
-          className="w-full sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
-          src="/platter.png"
-          alt="test"
-          width={1000}
-          height={1000}
-        />
-        <Image
-          className="w-full sm:h-full max-sm:max-h-full max-sm:px-4 object-contain"
-          src="/platter.png"
-          alt="test"
-          width={1000}
-          height={1000}
-        /> */}
       </section>
     </>
   );
