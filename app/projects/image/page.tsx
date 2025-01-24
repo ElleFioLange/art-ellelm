@@ -3,10 +3,11 @@
 import Image from "next/image";
 import useScrollIndicator from "../../utils/useScrollIndicator";
 import { useGSAP } from "@gsap/react";
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import TextPlugin from "gsap/TextPlugin";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import useViewport from "@/app/utils/useViewport";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(TextPlugin);
@@ -87,13 +88,13 @@ const content: {
 
 // Underscore so as not to overlap with next/image
 export default function _Image() {
-  // Recalculate GSAP if layout changes from vertical to horizontal
-  const reset = useState<boolean>();
+  // Tracked to recalculate GSAP if layout changes from vertical to horizontal
+  const [viewport] = useViewport();
+  // Whether or not to show the scroll indication animation
   const [showScroll] = useScrollIndicator();
 
   // GSAP scope
   const picturesRef = useRef<HTMLDivElement>(null);
-  const test = useRef<HTMLImageElement>(null);
 
   // Targets for GSAP
   const text = useRef<HTMLDivElement>(null);
@@ -117,9 +118,8 @@ export default function _Image() {
 
   useGSAP(
     () => {
-      const width = window.innerWidth;
-      const horizontal = width < 640;
-      if (reset[0] !== horizontal) reset[1](horizontal);
+      if (!viewport.w) return;
+      const horizontal = viewport.w < 1024;
       const { keyframes } = content;
 
       for (let i = 0; i < keyframes.length; i++) {
@@ -161,50 +161,8 @@ export default function _Image() {
           );
         }
       }
-
-      // tl1.current = gsap.timeline({
-      //   scrollTrigger: {
-      //     trigger: test.current,
-      //     scroller: picturesRef.current,
-      //     start: "center bottom",
-      //     end: "center center",
-      //     markers: true,
-      //     scrub: true,
-      //     snap: {
-      //       snapTo: [0, 1],
-      //       duration: { min: 0.2, max: 3 },
-      //       delay: 0.2,
-      //       ease: "none",
-      //     },
-      //   },
-      // });
-
-      // tl1.current
-      //   .to(
-      //     title.current,
-      //     {
-      //       text: {
-      //         value: "new aklsjdfla title 2 asdfjlk ",
-      //         // speed: 0.5,
-      //       },
-      //       duration: 2,
-      //     },
-      //     0
-      //   )
-      //   .to(
-      //     paragraph.current,
-      //     {
-      //       text: {
-      //         value:
-      //           "magna enim adminim veniam, quis nostrud exercitation ullamco laboris nisi ut Lorem ipsum dolor sit amet, consectetur adipiscing elit, aliqua. Ut sed do eiusmod tempor incididunt ut labore et dolore",
-      //         // speed: 0.5,
-      //       },
-      //       duration: 2,
-      //     },
-      //     0
-      //   );
     },
-    { scope: picturesRef, dependencies: [reset[0]] }
+    { scope: picturesRef }
   );
 
   return (

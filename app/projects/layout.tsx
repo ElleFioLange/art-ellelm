@@ -1,33 +1,35 @@
 "use client";
 
-import { Children, useEffect, useRef, useState } from "react";
+import { Children, useEffect, useMemo, useRef, useState } from "react";
+import useViewport from "../utils/useViewport";
 
 export default function ProjectLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // This retriggers useEffect on resize
-  const reset = useState(false);
-
   const mainRef = useRef<HTMLDivElement>(null);
+
+  const [viewport] = useViewport();
+  // Boolean for whether viewport is under small breakpoint (640px)
+  const breakpoint = useMemo(
+    () => (viewport.w ? viewport.w < 640 : false),
+    [viewport]
+  );
 
   // Convert scroll to horizontal
   // Uses pictures classname to target breakpoint with tailwind
   useEffect(() => {
+    if (!viewport.w) return;
     // useRef is preferred but passing ref to generic children is a headache with Typescript
     const pictures = document.getElementById("pictures");
 
     const shownScroll = localStorage.getItem("shown-scroll");
 
-    const breakpoint = 640;
-    const width = window.innerWidth;
-    const invert = width < breakpoint;
-
     const scrollHandler = (e: WheelEvent) => {
       if (e.deltaY && pictures) {
         // Apply to horizontal scroll if past breakpoint
-        if (invert) pictures.scrollLeft += e.deltaY + e.deltaX;
+        if (breakpoint) pictures.scrollLeft += e.deltaY + e.deltaX;
         else pictures.scrollTop += e.deltaY;
 
         if (!shownScroll) localStorage.setItem("shown-scroll", "true");
@@ -36,14 +38,10 @@ export default function ProjectLayout({
 
     window.addEventListener("wheel", scrollHandler);
 
-    const resizeHandler = () => reset[1](!reset[0]);
-    window.addEventListener("resize", resizeHandler);
-
     return () => {
       window.removeEventListener("wheel", scrollHandler);
-      window.removeEventListener("resize", resizeHandler);
     };
-  }, [reset[0]]);
+  }, [breakpoint]);
 
   return (
     <main
