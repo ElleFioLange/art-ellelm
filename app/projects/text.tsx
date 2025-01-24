@@ -33,23 +33,23 @@ export default function Text({
   type Timeline = ReturnType<typeof gsap.timeline>;
 
   const timelines = useRef<RefObject<Timeline>[]>(
-    Array(keyframes.length - 1).fill(createRef<Timeline>())
+    Array(keyframes.length).fill(createRef<Timeline>())
   );
 
   useGSAP(
     () => {
       if (!viewport.w) return;
-      const horizontal = viewport.w < 1024;
+      const horizontal = viewport.w < 640;
 
-      for (let i = 0; i < timelines.current.length; i++) {
+      for (let i = 0; i < keyframes.length; i++) {
         const tl = timelines.current[i];
-        const keyframe = keyframes[i + 1];
+        const keyframe = keyframes[i];
 
         tl.current = gsap.timeline({
           scrollTrigger: {
             trigger: `#image-${keyframe.step}`,
             scroller: picturesRef.current,
-            start: horizontal ? "center right" : "center bottom",
+            start: horizontal ? "left right" : "top bottom",
             horizontal,
             end: "center center",
             scrub: 0.25,
@@ -62,18 +62,18 @@ export default function Text({
           },
         });
 
-        for (const [section, value] of Object.entries(keyframe)) {
+        for (const [section, text] of Object.entries(keyframe)) {
           if (section === "step") continue;
+          console.log(i, section, text);
 
-          tl.current = tl.current.to(
-            // Disgusting type casting here sorry
-            contentElements[section as keyof typeof contentElements].current,
+          // Disgusting type casting here sorry
+          const element =
+            contentElements[section as keyof typeof contentElements].current;
+
+          tl.current.to(
+            element,
             {
-              text: {
-                // Asserting because the step key-value has been combed out above
-                value: value as string,
-                // speed: 0.5,
-              },
+              text: text as string,
               duration: 2,
             },
             0
