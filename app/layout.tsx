@@ -16,6 +16,7 @@ const cormorant = Cormorant({
 const cormorant_unicase = Cormorant_Unicase({
   weight: ["300", "700"],
   subsets: ["latin"],
+  variable: "--cormorant-unicase",
 });
 
 // Mute logs in PROD
@@ -34,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant_unicase.className} ${cormorant.variable}`}
+      className={`${cormorant_unicase.className} ${cormorant_unicase.variable} ${cormorant.variable}`}
     >
       {/* dvh = dynamic view height, accomodates url bar for mobile */}
       <body id="body">
