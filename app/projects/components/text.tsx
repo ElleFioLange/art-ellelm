@@ -35,11 +35,30 @@ export default function Text({
   const timelines = useRef<RefObject<Timeline>[]>(
     Array(keyframes.length).fill(createRef<Timeline>())
   );
+  const snapTl = useRef<Timeline>(null);
 
   useGSAP(
     () => {
       if (!viewport.w) return;
       const horizontal = viewport.w < 640;
+
+      snapTl.current = gsap.timeline({
+        scrollTrigger: {
+          trigger: `#image-${keyframes.length - 1}`,
+          scroller: picturesRef.current,
+          start: horizontal
+            ? -(viewport.w || 0) * (keyframes.length - 1)
+            : -(viewport.h || 0) * (keyframes.length - 1),
+          horizontal,
+          end: "center center",
+          snap: {
+            snapTo: 0.5 / (keyframes.length - 1),
+            duration: 1.5,
+            delay: 0.25,
+            ease: "elastic.inOut(0.85, 1.5)",
+          },
+        },
+      });
 
       for (let i = 0; i < keyframes.length; i++) {
         const tl = timelines.current[i];
@@ -53,12 +72,6 @@ export default function Text({
             horizontal,
             end: "center center",
             scrub: 0.25,
-            snap: {
-              snapTo: [0, 1],
-              duration: 1.5,
-              delay: 0.25,
-              ease: "elastic.inOut(0.85, 1.5)",
-            },
           },
         });
 
