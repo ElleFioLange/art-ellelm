@@ -1,5 +1,5 @@
 import { createRef, RefObject, useRef } from "react";
-import useViewport from "../../utils/useViewport";
+import useViewport from "@/utils/useViewport";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";

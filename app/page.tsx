@@ -3,12 +3,14 @@
 import React, { MouseEvent, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "./icons/logo";
+import Logo from "@/icons/logo";
 import dynamic from "next/dynamic";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
-const MobileView = dynamic(() => import("./utils/mobile-view"), { ssr: false });
+const MobileView = dynamic(() => import("../utils/mobile-view"), {
+  ssr: false,
+});
 
 const Links = () => {
   return (

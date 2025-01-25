@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef } from "react";
-import useViewport from "../utils/useViewport";
+import useViewport from "@/utils/useViewport";
 
 export type Keyframes = {
   title?: string;

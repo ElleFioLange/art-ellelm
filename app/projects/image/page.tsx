@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import useScrollIndicator from "../../utils/useScrollIndicator";
+import useScrollIndicator from "@/utils/useScrollIndicator";
 import { useRef } from "react";
 import Text from "../components/text";
 import { Content } from "../layout";

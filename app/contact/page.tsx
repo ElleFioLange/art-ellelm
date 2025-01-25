@@ -6,8 +6,8 @@ import {
   ReactSketchCanvasRef,
 } from "react-sketch-canvas";
 
-import useViewport from "../utils/useViewport";
-import useTheme from "../utils/useTheme";
+import useViewport from "@/utils/useViewport";
+import useTheme from "@/utils/useTheme";
 import { useRef, useState } from "react";
 
 export default function Contact() {

@@ -25,7 +25,7 @@ export default function Nav() {
           : "[&_a]:opacity-0 bg-opacity-0 pointer-events-none"
       } transition-all duration-200 ease-in-out [&_a]:transition-all [&_a]:duration-200 [&_a]:ease-in-out`}
       onMouseLeave={() => open[1](false)}
-      onClick={() => (isMobile ? open[1](false) : null)}
+      // onClick={() => (isMobile ? open[1](false) : null)}
     >
       <Link href="/featured">Featured</Link>
       <Link href="/about">About</Link>

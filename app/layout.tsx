@@ -3,7 +3,7 @@ import { Cormorant_Unicase, Cormorant } from "next/font/google";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "./css.css";
-import Nav from "./components/nav";
+import Nav from "@/components/nav";
 
 gsap.registerPlugin(useGSAP);
 
