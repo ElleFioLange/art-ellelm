@@ -3,6 +3,7 @@ import { Cormorant_Unicase, Cormorant } from "next/font/google";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "./css.css";
+import Nav from "./components/nav";
 
 gsap.registerPlugin(useGSAP);
 
@@ -36,7 +37,10 @@ export default function RootLayout({
       className={`${cormorant_unicase.className} ${cormorant.variable}`}
     >
       {/* dvh = dynamic view height, accomodates url bar for mobile */}
-      <body id="body">{children}</body>
+      <body id="body">
+        <Nav />
+        {children}
+      </body>
     </html>
   );
 }
