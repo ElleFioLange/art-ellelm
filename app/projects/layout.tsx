@@ -4,7 +4,6 @@ import { useEffect, useMemo, useRef } from "react";
 import useViewport from "../utils/useViewport";
 
 export type Keyframes = {
-  step: number;
   title?: string;
   subtitle?: string;
   paragraph?: string;

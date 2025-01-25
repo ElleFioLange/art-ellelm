@@ -7,25 +7,27 @@ import Text from "../text";
 import { Content } from "../layout";
 
 const content: Content = {
+  // Keyframes needs to have the same amount of objects as pictures for scroll snapping to work properly
   keyframes: [
     {
-      step: 0,
       title: "Image",
       subtitle: "Mixed-media 2024",
       paragraph:
         'Image is about building an object, a sculpture. Something that can be held in one\'s hands and thrown into the sun. Where am I going? Where did I go? Where did I come from? Cotton Eye Joe. A wise man once said to me. Hark! Look yonder, there angels sing. And I said, "Shut the fuck up you tired old man and let me go to bed."',
     },
-    { step: 1, title: "Images are about telling old men to shut up" },
+    { title: "Images are about telling old men to shut up" },
+    {},
     {
-      step: 3,
       subtitle: "You have no clue if you're going to be okay until you try",
     },
+    {},
+    {},
     {
-      step: 4,
       title: "Now THIS is a capitalized word",
       paragraph:
         "Oh, capitalized words. The Capitol of my heart. I sure do wish that I could find a better way to transition this text, something smoother. I suspect that there would be something amazing if I were to use the TextSplit plugin, something nice and smooth and buttery and sleek. Alas, I do not want to pay $99.",
     },
+    {},
   ],
   pictures: [
     {
@@ -90,7 +92,7 @@ export default function _Image() {
         ref={picturesRef}
         // Using ID is necessary for managing scroll indication behavior
         id="pictures"
-        className="relative min-h-0 max-h-full sm:overflow-y-auto sm:no-scrollbar sm:h-full sm:snap-y max-sm:overflow-x-auto max-sm:overflow-y-hidden max-sm:flex max-sm:gap-8 max-sm:snap-x"
+        className="relative min-h-0 max-h-full sm:overflow-y-auto sm:no-scrollbar sm:h-full max-sm:overflow-x-auto max-sm:overflow-y-hidden max-sm:flex"
       >
         {content.pictures.map(({ src, alt, width, height }, index) => (
           <Image

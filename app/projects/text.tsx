@@ -47,7 +47,7 @@ export default function Text({
 
         tl.current = gsap.timeline({
           scrollTrigger: {
-            trigger: `#image-${keyframe.step}`,
+            trigger: `#image-${i}`,
             scroller: picturesRef.current,
             start: horizontal ? "left right" : "top bottom",
             horizontal,
@@ -55,9 +55,9 @@ export default function Text({
             scrub: 0.25,
             snap: {
               snapTo: [0, 1],
-              duration: { min: 0.2, max: 3 },
-              delay: 0.2,
-              ease: "none",
+              duration: 1.5,
+              delay: 0.25,
+              ease: "elastic.inOut(0.85, 1.5)",
             },
           },
         });
@@ -89,8 +89,15 @@ export default function Text({
 
   return (
     <section className="max-sm:mx-4">
-      <h1 ref={titleRef}>{title}</h1>
-      <h2 ref={subtitleRef}>{subtitle}</h2>
+      <h1 ref={titleRef} className="leading-none">
+        {title}
+      </h1>
+      <h2 ref={subtitleRef} className="leading-none">
+        {subtitle}
+      </h2>
+      {/* Spacer */}
+      <div className="w-full h-2" />
+
       <p className="font-cormorant" ref={paragraphRef}>
         {paragraph}
       </p>
