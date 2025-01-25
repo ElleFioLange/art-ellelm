@@ -3,8 +3,9 @@
 import Image from "next/image";
 import useScrollIndicator from "../../utils/useScrollIndicator";
 import { useRef } from "react";
-import Text from "../text";
+import Text from "../components/text";
 import { Content } from "../layout";
+import Pictures from "../components/pictures";
 
 const content: Content = {
   // Keyframes needs to have the same amount of objects as pictures for scroll snapping to work properly
@@ -27,7 +28,6 @@ const content: Content = {
       paragraph:
         "Oh, capitalized words. The Capitol of my heart. I sure do wish that I could find a better way to transition this text, something smoother. I suspect that there would be something amazing if I were to use the TextSplit plugin, something nice and smooth and buttery and sleek. Alas, I do not want to pay $99.",
     },
-    {},
   ],
   pictures: [
     {
@@ -83,33 +83,75 @@ export default function _Image() {
   // Whether or not to show the scroll indication animation
   const showScroll = useScrollIndicator();
 
+  const className =
+    "object-contain w-full sm:h-full max-sm:max-h-full max-sm:px-4";
+
   return (
     <>
       <Text keyframes={content.keyframes} picturesRef={picturesRef} />
-
-      <div className="bg-fg sm:h-1/3 sm:w-px max-sm:w-2/3 max-sm:h-px place-self-center" />
-      <section
-        ref={picturesRef}
-        // Using ID is necessary for managing scroll indication behavior
-        id="pictures"
-        className="relative min-h-0 max-h-full sm:overflow-y-auto sm:no-scrollbar sm:h-full max-sm:overflow-x-auto max-sm:overflow-y-hidden max-sm:flex"
-      >
-        {content.pictures.map(({ src, alt, width, height }, index) => (
-          <Image
-            id={`image-${index}`}
-            className={`object-contain w-full sm:h-full max-sm:max-h-full max-sm:px-4 ${
-              showScroll && index === 0
-                ? "sm:animate-indicate-scroll-y max-sm:animate-indicate-scroll-x"
-                : ""
-            }`}
-            key={index}
-            src={src}
-            alt={alt}
-            width={width}
-            height={height}
-          />
-        ))}
-      </section>
+      <Pictures ref={picturesRef}>
+        <Image
+          id="image-0"
+          src="/IMG_1444.png"
+          alt="test"
+          width={1000}
+          height={1000}
+          className={
+            className +
+            (showScroll
+              ? " sm:animate-indicate-scroll-y max-sm:animate-indicate-scroll-x"
+              : "")
+          }
+        />
+        <Image
+          id="image-1"
+          src="/platter.png"
+          alt="test"
+          width={1000}
+          height={1000}
+          className={className}
+        />
+        <Image
+          id="image-2"
+          src="/platter.png"
+          alt="test"
+          width={1000}
+          height={1000}
+          className={className}
+        />
+        <Image
+          id="image-3"
+          src="/platter.png"
+          alt="test"
+          width={1000}
+          height={1000}
+          className={className}
+        />
+        <Image
+          id="image-4"
+          src="/platter.png"
+          alt="test"
+          width={1000}
+          height={1000}
+          className={className}
+        />
+        <Image
+          id="image-5"
+          src="/platter.png"
+          alt="test"
+          width={1000}
+          height={1000}
+          className={className}
+        />
+        <Image
+          id="image-6"
+          src="/platter.png"
+          alt="test"
+          width={1000}
+          height={1000}
+          className={className}
+        />
+      </Pictures>
     </>
   );
 }

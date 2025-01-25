@@ -26,8 +26,6 @@ export default function ProjectLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const mainRef = useRef<HTMLDivElement>(null);
-
   const viewport = useViewport();
   // Boolean for whether viewport is under small breakpoint (640px)
   const breakpoint = useMemo(
@@ -64,8 +62,7 @@ export default function ProjectLayout({
   return (
     <main
       id="main"
-      ref={mainRef}
-      className="min-h-0 min-w-0 w-full h-full overflow-visible mx-auto max-w-5xl grid gap-4 items-center lg:w-3/4 sm:grid-cols-[1fr_1px_1fr] sm:px-8 max-sm:grid-rows-[1fr_1px_1fr]] max-sm:py-4"
+      className="min-h-0 min-w-0 w-full h-full overflow-hidden mx-auto max-w-5xl grid gap-4 items-center lg:w-3/4 sm:grid-cols-[1fr_1px_1fr] sm:px-8 max-sm:grid-rows-[1fr_1px_1fr]] max-sm:py-4"
     >
       {children}
     </main>
