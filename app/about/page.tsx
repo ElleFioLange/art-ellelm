@@ -1,11 +1,14 @@
 export default function About() {
   return (
-    <main className="sm:flex sm:max-w-md sm:h-full sm:items-center max-sm:px-4 max-sm:pt-12">
-      <h1 className="max-sm:text-4xl">Elle Fiorentino-Lange</h1>
-      <p className="font-cormorant max-w-md">
-        is an artist based in Boston, Massachusetts. Her work is centered on
-        data, transformation, and metaphysics.
-      </p>
+    <main className="h-full w-full flex sm:items-center justify-center p-4">
+      <section className="max-w-xl max-h-min">
+        <h1 className="max-sm:text-4xl">Elle Fiorentino-Lange</h1>
+        <h2 className="">is an artist based in Boston, MA.</h2>
+        <div className="w-full h-px bg-fg my-2" />
+        <p className="font-cormorant">
+          Her work is centered on data, transformation, and metaphysics.
+        </p>
+      </section>
     </main>
   );
 }
