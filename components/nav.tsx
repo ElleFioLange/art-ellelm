@@ -25,8 +25,11 @@ export default function Nav() {
           : "[&_a]:opacity-0 bg-opacity-0 pointer-events-none"
       } transition-all duration-200 ease-in-out [&_a]:transition-all [&_a]:duration-200 [&_a]:ease-in-out`}
       onMouseLeave={() => open[1](false)}
-      // onClick={() => (isMobile ? open[1](false) : null)}
+      onClick={() => {
+        if (isMobile) open[1](false);
+      }}
     >
+      <Link href="/">Home</Link>
       <Link href="/featured">Featured</Link>
       <Link href="/about">About</Link>
       <Link href="/contact">Contact</Link>
@@ -35,7 +38,6 @@ export default function Nav() {
       <Link href="/sculpture">Sculpture</Link>
       <Link href="/photography">Photography</Link>
       <Link href="/painting">Painting</Link>
-      <Link href="/">Home</Link>
       <Image
         className={`cursor-pointer pointer-events-auto object-contain w-16 h-16 transition-all duration-200 ease-in-out ${
           open[0] ? "rotate-12 scale-110 drop-shadow-md" : "rotate-0"
@@ -44,7 +46,9 @@ export default function Nav() {
         width={1000}
         height={1000}
         alt="Hard drive platter"
-        onMouseOver={() => open[1](true)}
+        onMouseOver={() => {
+          if (!isMobile) open[1](true);
+        }}
         onClick={(e) => {
           e.stopPropagation();
           open[1](!open[0]);
