@@ -9,18 +9,6 @@ export type Keyframes = {
   paragraph?: string;
 }[];
 
-export type Pictures = {
-  src: string;
-  alt: string;
-  width: number;
-  height: number;
-}[];
-
-export type Content = {
-  keyframes: Keyframes;
-  pictures: Pictures;
-};
-
 export default function ProjectLayout({
   children,
 }: {
@@ -62,7 +50,7 @@ export default function ProjectLayout({
   return (
     <main
       id="main"
-      className="min-h-0 min-w-0 w-full h-full overflow-hidden mx-auto max-w-5xl grid gap-4 items-center lg:w-3/4 sm:grid-cols-[1fr_1px_1fr] sm:px-8 max-sm:grid-rows-[1fr_1px_1fr]] max-sm:py-4"
+      className="min-h-0 min-w-0 w-full h-full max-h-dvh overflow-hidden mx-auto max-w-5xl grid gap-4 items-center lg:w-3/4 sm:grid-cols-2 sm:px-8 max-sm:grid-rows-[minmax(auto,40%),1fr] max-sm:py-4"
     >
       {children}
     </main>

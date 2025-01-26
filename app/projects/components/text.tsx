@@ -53,9 +53,10 @@ export default function Text({
           end: "center center",
           snap: {
             snapTo: 0.5 / (keyframes.length - 1),
-            duration: 1.5,
-            delay: 0.25,
+            duration: 1,
+            delay: 0.05,
             ease: "elastic.inOut(0.85, 1.5)",
+            directional: false,
           },
         },
       });
@@ -77,7 +78,6 @@ export default function Text({
 
         for (const [section, text] of Object.entries(keyframe)) {
           if (section === "step") continue;
-          console.log(i, section, text);
 
           // Disgusting type casting here sorry
           const element =
@@ -101,7 +101,7 @@ export default function Text({
   const { title, subtitle, paragraph } = keyframes[0];
 
   return (
-    <section className="max-sm:mx-4">
+    <section className="max-sm:mx-4 overflow-auto max-h-full">
       <h1 ref={titleRef} className="leading-none">
         {title}
       </h1>
