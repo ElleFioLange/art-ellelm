@@ -41,9 +41,7 @@
 
   html,
   body {
-    height: 100dvh;
-
-    @apply w-full bg-bg;
+    @apply h-dvh w-full bg-bg;
   }
 
   h1 {
