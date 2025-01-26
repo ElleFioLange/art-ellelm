@@ -58,7 +58,7 @@ const Platter = () => {
           <div
             className="w-full h-full absolute bg-fg bg-opacity-5 rounded-lg transform-3d"
             style={{
-              transform: "translateZ(max(-20vw, -25dvh)) scale(1.08)",
+              transform: "translateZ(max(-20vw, -25dvh)) scale(1.1)",
             }}
           />
           {/* Shadow */}
@@ -117,18 +117,31 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
   const handleMouseMove = contextSafe((e: MouseEvent) => {
     if (engine !== "mouse" || !ref.current) return;
 
-    const { width, height, left, top } = ref.current.getBoundingClientRect();
+    const {
+      offsetWidth: width,
+      offsetHeight: height,
+      offsetLeft: left,
+      offsetTop: top,
+    } = ref.current;
+    // console.log(width, height, left, top);
+    // console.log(e.clientX);
 
-    const mouseX = (e.clientX - left) * ROTATION_RANGE;
-    const mouseY = (e.clientY - top) * ROTATION_RANGE;
+    const mouseX = (e.clientX - left) / width;
+    const mouseY = (e.clientY - top) / height;
 
-    const rotationX = (mouseY / height - ROTATION_RANGE / 2) * -1;
-    const rotationY = mouseX / width - ROTATION_RANGE / 2;
+    // handleMouseMove seems to be triggering when the mouse isn't actually over the element?
+    // Not sure why, but this should fix it
+    if (0 > mouseX || 0 > mouseY || mouseX > 1 || mouseY > 1) return;
+    // handleMouseLeave();
+
+    const rotationX = (mouseY * ROTATION_RANGE - ROTATION_RANGE / 2) * -1;
+    // console.log(rotationX);
+    const rotationY = mouseX * ROTATION_RANGE - ROTATION_RANGE / 2;
 
     gsap.to(ref.current, {
       rotationX,
       rotationY,
-      duration: 1.5,
+      duration: 3,
       ease: "elastic.out(1.2, 0.5)",
     });
   });
@@ -138,7 +151,7 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
     gsap.to(ref.current, {
       rotationX: 0,
       rotationY: 0,
-      duration: 1.5,
+      duration: 3,
       ease: "elastic.out(1.2, 0.5)",
     });
   });
@@ -171,7 +184,7 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
       gsap.to(ref.current, {
         rotationX,
         rotationY,
-        duration: 1.5,
+        duration: 3,
         ease: "elastic.out(1.2, 0.5)",
       });
     };
@@ -188,7 +201,7 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
       ref={ref}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="w-3/4 max-w-[60dvh] relative transform-3d"
+      className="w-3/4 max-w-[60dvh] relative transform-3d will-change-transform"
     >
       <Logo
         className="w-1/12 absolute text-fg opacity-5 fill-current top-1/2 left-1/2 transform-3d"
