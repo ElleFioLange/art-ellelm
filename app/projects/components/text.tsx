@@ -101,7 +101,7 @@ export default function Text({
   const { title, subtitle, paragraph } = keyframes[0];
 
   return (
-    <section className="max-sm:mx-4 overflow-auto max-h-full">
+    <section className="sm:py-8 max-sm:mx-4 overflow-auto max-h-full">
       <h1 ref={titleRef} className="leading-none">
         {title}
       </h1>
