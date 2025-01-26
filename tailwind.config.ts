@@ -35,8 +35,8 @@ export default {
       animation: {
         "fade-in": "fade-in 1s ease-in-out",
         "fade-out": "fade-out 1s ease-in-out",
-        "indicate-scroll-x": "indicate-scroll-x 3s ease-in-out 2s 3",
-        "indicate-scroll-y": "indicate-scroll-y 3s ease-in-out 2s 3",
+        "indicate-scroll-x": "indicate-scroll-x 3s ease-in-out 2s infinite",
+        "indicate-scroll-y": "indicate-scroll-y 3s ease-in-out 2s infinite",
         flash: "flash 1.5s ease-in-out",
       },
       keyframes: {
