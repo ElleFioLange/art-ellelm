@@ -132,10 +132,8 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
     // handleMouseMove seems to be triggering when the mouse isn't actually over the element?
     // Not sure why, but this should fix it
     if (0 > mouseX || 0 > mouseY || mouseX > 1 || mouseY > 1) return;
-    // handleMouseLeave();
 
     const rotationX = (mouseY * ROTATION_RANGE - ROTATION_RANGE / 2) * -1;
-    // console.log(rotationX);
     const rotationY = mouseX * ROTATION_RANGE - ROTATION_RANGE / 2;
 
     gsap.to(ref.current, {
