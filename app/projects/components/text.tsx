@@ -5,6 +5,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import TextPlugin from "gsap/TextPlugin";
 import { Keyframes } from "../layout";
+import { Timeline } from "@/utils/types";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(TextPlugin);
@@ -30,11 +31,14 @@ export default function Text({
     paragraph: paragraphRef,
   };
 
-  type Timeline = ReturnType<typeof gsap.timeline>;
+  // This might be simplifiable? Look into later
+  // https://gsap.com/community/forums/topic/25972-scrolltrigger-target-multiple-elements-with-same-action-but-not-at-the-same-time/
 
   const timelines = useRef<RefObject<Timeline>[]>(
     Array(keyframes.length).fill(createRef<Timeline>())
   );
+  // snapTL is separate so that scroll will snap to each item
+  // instead of just items with keyframes
   const snapTl = useRef<Timeline>(null);
 
   useGSAP(
@@ -44,15 +48,14 @@ export default function Text({
 
       snapTl.current = gsap.timeline({
         scrollTrigger: {
-          trigger: `#image-${keyframes.length - 1}`,
-          scroller: picturesRef.current,
-          start: horizontal
-            ? -(viewport.w || 0) * (keyframes.length - 1)
-            : -(viewport.h || 0) * (keyframes.length - 1),
-          horizontal,
+          trigger: "#image-0",
+          start: "center center",
+          endTrigger: `#image-${keyframes.length - 1}`,
           end: "center center",
+          scroller: picturesRef.current,
+          horizontal,
           snap: {
-            snapTo: 0.5 / (keyframes.length - 1),
+            snapTo: 1 / (keyframes.length - 1),
             duration: 1,
             delay: 0.05,
             ease: "elastic.inOut(0.85, 1.5)",
