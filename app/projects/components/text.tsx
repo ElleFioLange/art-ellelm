@@ -46,6 +46,7 @@ export default function Text({
       if (!viewport.w) return;
       const horizontal = viewport.w < 640;
 
+      // onSnapComplete add a little animation or sound? Nintendo Switch sound / something satisfying?
       snapTl.current = gsap.timeline({
         scrollTrigger: {
           trigger: "#image-0",
@@ -64,6 +65,7 @@ export default function Text({
         },
       });
 
+      // This can probably be simplified to a single timeline
       for (let i = 0; i < keyframes.length; i++) {
         const tl = timelines.current[i];
         const keyframe = keyframes[i];
