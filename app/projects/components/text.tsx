@@ -104,19 +104,22 @@ export default function Text({
   const { title, subtitle, paragraph } = keyframes[0];
 
   return (
-    <section className="sm:py-8 max-sm:mx-4 overflow-auto max-h-full">
-      <h1 ref={titleRef} className="leading-none">
-        {title}
-      </h1>
-      <h2 ref={subtitleRef} className="leading-none">
-        {subtitle}
-      </h2>
-      {/* Spacer */}
-      <div className="w-full h-2" />
+    <>
+      <section className="sm:py-8 max-sm:mx-4 overflow-auto max-h-full">
+        <h1 ref={titleRef} className="leading-none">
+          {title}
+        </h1>
+        <h2 ref={subtitleRef} className="leading-none">
+          {subtitle}
+        </h2>
+        {/* Spacer */}
+        <div className="w-full h-2" />
 
-      <p className="font-cormorant" ref={paragraphRef}>
-        {paragraph}
-      </p>
-    </section>
+        <p className="font-cormorant" ref={paragraphRef}>
+          {paragraph}
+        </p>
+      </section>
+      <div className="sm:w-px sm:h-3/4 sm:max-h-[40rem] max-sm:w-3/4 max-sm:h-px bg-fg opacity-20 place-self-center" />
+    </>
   );
 }
