@@ -123,8 +123,6 @@ const Motion = ({ engine }: { engine: "mouse" | "gyro" | null }) => {
       offsetLeft: left,
       offsetTop: top,
     } = ref.current;
-    // console.log(width, height, left, top);
-    // console.log(e.clientX);
 
     const mouseX = (e.clientX - left) / width;
     const mouseY = (e.clientY - top) / height;

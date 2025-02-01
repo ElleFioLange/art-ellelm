@@ -99,16 +99,12 @@ export default function Gallery({ children }: { children: ReactNode }) {
   });
 
   const onMouseOver = contextSafe((id: number) => {
-    console.log("over", id);
-
     timelines.current[id].current?.play();
   });
 
-  const onMouseLeave = contextSafe((id: number) => {
-    console.log("leave", id);
-
-    timelines.current[id].current?.reverse();
-  });
+  const onMouseLeave = contextSafe((id: number) =>
+    timelines.current[id].current?.reverse()
+  );
 
   // The onMouse callbacks are only called in desktop mode
   const renderChildren = () => {
@@ -116,8 +112,8 @@ export default function Gallery({ children }: { children: ReactNode }) {
     return Children.map(children, (child, i) =>
       cloneElement(
         child as ReactElement<{
-          onMouseOver: (e: MouseEvent) => void;
-          onMouseLeave: (e: MouseEvent) => void;
+          onMouseOver: () => void;
+          onMouseLeave: () => void;
         }>,
         {
           onMouseOver: () => onMouseOver(i),
