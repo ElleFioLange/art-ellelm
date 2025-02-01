@@ -30,7 +30,7 @@ const keyframes: Keyframes = [
 ];
 
 // Underscore so as not to overlap with next/image
-export default function _Image() {
+export default function Image_() {
   // GSAP scope
   const picturesRef = useRef<HTMLDivElement>(null);
 
