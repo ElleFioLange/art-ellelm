@@ -1,63 +1,105 @@
 "use client";
 
+import { Timeline } from "@/utils/types";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Children,
   cloneElement,
-  MouseEventHandler,
+  createRef,
   ReactElement,
   ReactNode,
+  RefObject,
+  useMemo,
   useRef,
 } from "react";
+import { isMobile } from "react-device-detect";
 
 gsap.registerPlugin(useGSAP);
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Gallery({ children }: { children: ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const mainRef = useRef<HTMLDivElement>(null);
 
-  const { contextSafe } = useGSAP();
+  const { contextSafe } = useGSAP({ scope: mainRef });
 
-  // This is a poorly structured function that makes a lot of
-  // potentially breaking assumptions, but as long as those
-  // assumptions are followed it will work fine
-  const getTarget = (e: MouseEvent) => {
-    // Disgusting type casting sorry
-    const target = e.target as unknown as { children: ReactElement[] };
+  const numChildren = useMemo(
+    () => Children.toArray(children).length,
+    [children]
+  );
 
-    // If the target has a child it is the container, otherwise it is the image
-    return target.children.length ? target.children[0] : target;
-  };
+  const timelines = useRef<RefObject<Timeline | null>[]>(
+    // Using this clunky array creation because Children.toMap causes type issues
+    Array(numChildren).fill(null)
+  );
 
-  const onMouseOver = contextSafe((e: MouseEvent) => {
-    const target = getTarget(e);
-    // console.log("hi");
+  useGSAP(() => {
+    for (let i = 0; i < numChildren; i++) {
+      timelines.current[i] = createRef<Timeline>();
+      const tl = timelines.current[i];
 
-    gsap.to(target, {
-      scale: 1,
-      duration: 0.5,
-    });
+      tl.current = gsap
+        .timeline({
+          paused: true,
+          // Scroll trigger handles mobile case
+          scrollTrigger: isMobile
+            ? {
+                trigger: `#container-${i}`,
+                toggleActions: "play reverse play reverse",
+                // markers: true,
+                // Need to figure out the container scroller structure, should it be main or section?
+                scroller: mainRef.current,
+                start: "center 75%",
+                end: "center 25%",
+                snap: {
+                  snapTo: [0.5],
+                  duration: 1,
+                  delay: 0.05,
+                  ease: "elastic.inOut(0.85, 1.5)",
+                  directional: false,
+                },
+              }
+            : undefined,
+        })
+        .fromTo(
+          `#image-${i}`,
+          {
+            scale: 1 / 20,
+          },
+          {
+            scale: 1,
+            duration: 1,
+            ease: "elastic.inOut(1, 0.6)",
+          }
+        );
+    }
   });
 
-  const onMouseLeave = contextSafe((e: MouseEvent) => {
-    const target = getTarget(e);
+  const onMouseOver = contextSafe((id: number) => {
+    console.log("over", id);
 
-    gsap.to(target, {
-      scale: 0.05,
-      duration: 0.5,
-    });
+    timelines.current[id].current?.play();
   });
 
+  const onMouseLeave = contextSafe((id: number) => {
+    console.log("leave", id);
+
+    timelines.current[id].current?.reverse();
+  });
+
+  // The onMouse callbacks are only called in desktop mode
   const renderChildren = () => {
-    return Children.map(children, (child) =>
+    // Can probably add index based IDs here :thinking-emoji:
+    return Children.map(children, (child, i) =>
       cloneElement(
         child as ReactElement<{
           onMouseOver: (e: MouseEvent) => void;
           onMouseLeave: (e: MouseEvent) => void;
         }>,
         {
-          onMouseOver,
-          onMouseLeave,
+          onMouseOver: () => onMouseOver(i),
+          onMouseLeave: () => onMouseLeave(i),
         }
       )
     );
@@ -65,17 +107,15 @@ export default function Gallery({ children }: { children: ReactNode }) {
 
   return (
     <main
-      className="w-full h-dvh flex flex-col justify-center items-center sm:p-16 max-sm:p-8 max-sm:overflow-auto"
+      className="w-full sm:h-screen sm:p-16 sm:pb-0 sm:mb-16 max-sm:px-8 max-sm:overflow-auto max-sm:h-dvh"
+      ref={mainRef}
       suppressHydrationWarning
     >
-      <div className="sm:hidden h-dvh w-full grid place-items-center flex-shrink-0">
-        V
-      </div>
       <section
-        ref={ref}
-        className="max-h-full sm:w-[90vw] sm:max-w-screen-xl flex sm:flex-wrap max-sm:flex-col max-sm:w-full justify-center items-center gap-4 overflow-auto [&_div>*]:scale-[0.05] flex-shrink-0"
+        // Because the interaction mouse/scroll is based on isMobile detection, layout needs to be as well
+        className="flex sm:max-w-screen-xl sm:pb-16 sm:flex-wrap max-sm:flex-col max-sm:w-full justify-center [&>div]:*:scale-[0.05] items-center gap-4 flex-shrink-0"
       >
-        {renderChildren()}
+        {isMobile ? children : renderChildren()}
       </section>
     </main>
   );
