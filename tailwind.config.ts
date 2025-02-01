@@ -37,7 +37,7 @@ export default {
         "fade-out": "fade-out 1s ease-in-out",
         "indicate-scroll-x": "indicate-scroll-x 3s ease-in-out 2s infinite",
         "indicate-scroll-y": "indicate-scroll-y 3s ease-in-out 2s infinite",
-        flash: "flash 1.5s ease-in-out",
+        flash: "flash 1.5s ease-in",
       },
       keyframes: {
         "fade-in": {
@@ -61,14 +61,14 @@ export default {
         flash: {
           "0%": {
             "background-image":
-              "radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,0.3) 90%, rgba(255,255,255,0) 100%)",
+              "radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,0.55) 80%, rgba(255,255,255,0) 100%)",
             "background-size": "0.1%",
             "background-position": "center",
             "background-repeat": "no-repeat",
           },
           "100%": {
             "background-image":
-              "radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,0.3) 90%, rgba(255,255,255,0) 100%)",
+              "radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(255,255,255,0) 5%, rgba(255,255,255,0.55) 80%, rgba(255,255,255,0) 100%)",
             "background-size": "2000%",
             "background-position": "center",
             "background-repeat": "no-repeat",
