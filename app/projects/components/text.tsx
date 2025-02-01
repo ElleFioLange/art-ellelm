@@ -31,14 +31,13 @@ export default function Text({
     paragraph: paragraphRef,
   };
 
-  // This might be simplifiable? Look into later
-  // https://gsap.com/community/forums/topic/25972-scrolltrigger-target-multiple-elements-with-same-action-but-not-at-the-same-time/
-
   const timelines = useRef<RefObject<Timeline>[]>(
     Array(keyframes.length).fill(createRef<Timeline>())
   );
-  // snapTL is separate so that scroll will snap to each item
-  // instead of just items with keyframes
+
+  console.log(timelines);
+  // snapTL is separate so that scroll will snap to every
+  // item instead of just items with keyframes
   const snapTl = useRef<Timeline>(null);
 
   useGSAP(
