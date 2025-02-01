@@ -14,7 +14,17 @@ export default function Contact() {
 
   const canvasRef = useRef<ReactSketchCanvasRef>(null);
 
-  const handleSend = () => {
+  const handleSend = async () => {
+    // The png string is prepended with
+    // data:image/png;base64,
+    // so slice at 22
+    const png = ((await canvasRef.current?.exportImage("png")) || "").slice(22);
+
+    const response = await fetch("/api/contact", {
+      method: "POST",
+      body: JSON.stringify({ png }),
+    });
+
     open[1](false);
     setTimeout(() => sent[1](true), 1000);
   };
