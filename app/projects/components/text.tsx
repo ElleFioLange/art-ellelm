@@ -35,7 +35,6 @@ export default function Text({
     Array(keyframes.length).fill(createRef<Timeline>())
   );
 
-  console.log(timelines);
   // snapTL is separate so that scroll will snap to every
   // item instead of just items with keyframes
   const snapTl = useRef<Timeline>(null);

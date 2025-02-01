@@ -34,7 +34,29 @@ export default function Gallery({ children }: { children: ReactNode }) {
     Array(numChildren).fill(null)
   );
 
+  // snapTL is separate so that scroll snap will be applied
+  // throughout the entire scroll, not just within the
+  // animation start and end triggers
+  const snapTl = useRef<Timeline>(null);
+
   useGSAP(() => {
+    snapTl.current = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#image-0",
+        start: "center center",
+        endTrigger: `#container-${numChildren - 1}`,
+        end: "center center",
+        scroller: mainRef.current,
+        snap: {
+          snapTo: 1 / (numChildren - 1),
+          duration: 1,
+          // delay: 0.05,
+          ease: "elastic.inOut(0.85, 1.5)",
+          directional: false,
+        },
+      },
+    });
+
     for (let i = 0; i < numChildren; i++) {
       timelines.current[i] = createRef<Timeline>();
       const tl = timelines.current[i];
@@ -50,8 +72,8 @@ export default function Gallery({ children }: { children: ReactNode }) {
                 // markers: true,
                 // Need to figure out the container scroller structure, should it be main or section?
                 scroller: mainRef.current,
-                start: "center 75%",
-                end: "center 25%",
+                start: "center 60%",
+                end: "center 40%",
                 snap: {
                   snapTo: [0.5],
                   duration: 1,
