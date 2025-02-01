@@ -19,6 +19,10 @@ import { isMobile } from "react-device-detect";
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 
+export const containerClass =
+  "flex justify-center items-center item w-full min-h-max h-dvh sm:w-48 sm:h-96 flex-grow";
+export const imageClass = "object-contain image";
+
 export default function Gallery({ children }: { children: ReactNode }) {
   const mainRef = useRef<HTMLDivElement>(null);
 
