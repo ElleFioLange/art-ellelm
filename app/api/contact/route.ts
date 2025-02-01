@@ -8,18 +8,15 @@ const mailjet = Mailjet.apiConnect(
 );
 
 export type Req = {
-  svg: string;
   png: string;
+  email: string;
 };
 
 export async function POST(req: Request) {
   try {
-    const { png } = (await req.json()) as Req;
-    const ip = (req.headers.get("x-forwarded-for") ?? "127.0.0.1").split(
-      ","
-    )[0];
+    const { png, email } = (await req.json()) as Req;
 
-    const resp = await mailjet.post("send", { version: "v3.1" }).request({
+    await mailjet.post("send", { version: "v3.1" }).request({
       Messages: [
         {
           From: {
@@ -31,7 +28,7 @@ export async function POST(req: Request) {
             },
           ],
           Subject: "New contact from art website",
-          TextPart: `IP Address: ${ip}`,
+          TextPart: `Email: ${email}`,
           InlinedAttachments: [
             {
               ContentType: "image/png",
@@ -44,9 +41,9 @@ export async function POST(req: Request) {
       ],
     });
 
-    return Response.json(resp, { status: 200 });
+    return Response.json("success", { status: 200 });
   } catch (err) {
-    console.error(err);
-    return Response.json(err, { status: 500 });
+    // Add error logging later
+    return Response.json("error", { status: 500 });
   }
 }
