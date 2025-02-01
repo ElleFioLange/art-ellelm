@@ -52,16 +52,6 @@
     @apply text-2xl;
   }
 
-  nav {
-    @apply gap-12 text-lg;
-  }
-
-  @media (max-width: 768px) {
-    nav {
-      @apply gap-4;
-    }
-  }
-
   a {
     cursor: pointer;
 
@@ -70,8 +60,12 @@
     }
   }
 
-  button:disabled {
-    @apply cursor-default;
+  button {
+    @apply select-none;
+
+    &:disabled {
+      @apply cursor-default;
+    }
   }
 }
 
