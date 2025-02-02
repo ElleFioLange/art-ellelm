@@ -1,137 +1,124 @@
-import Gallery, { containerClass, imageClass } from "@/components/gallery";
 import Image from "next/image";
+import Gallery from "../gallery";
 
 export default function Paintings() {
   return (
     <Gallery>
-      <div id="container-0" className={containerClass}>
+      <div className="sm:w-48 sm:h-96">
         <Image
           src="/platter.png"
           width={1000}
           height={1000}
           id="image-0"
           alt=""
-          className={imageClass}
         />
       </div>
-      <div id="container-1" className={containerClass}>
+      <div className="sm:w-48 sm:h-16">
         <Image
           src="/painting.jpeg"
           width={768}
           height={1024}
           id="image-1"
           alt=""
-          className={imageClass}
         />
       </div>
-      <div id="container-2" className={containerClass}>
+      <div className="sm:w-32 sm:h-48">
         <Image
           src="/platter.png"
           width={1000}
           height={1000}
           id="image-2"
           alt=""
-          className={imageClass}
         />
       </div>
-      <div id="container-3" className={containerClass}>
+      <div className="sm:w-56 sm:h-24">
         <Image
           src="/platter.png"
           width={1000}
           height={1000}
           id="image-3"
           alt=""
-          className={imageClass}
         />
       </div>
-      <div id="container-4" className={containerClass}>
+      <div className="sm:w-48 sm:h-16">
         <Image
           src="/platter.png"
           width={1000}
           height={1000}
           id="image-4"
           alt=""
-          className={imageClass}
         />
       </div>
-      <div id="container-5" className={containerClass}>
+      <div className="sm:w-32 sm:h-48">
         <Image
           src="/platter.png"
           width={1000}
           height={1000}
           id="image-5"
           alt=""
-          className={imageClass}
         />
       </div>
-      <div id="container-6" className={containerClass}>
+      <div className="sm:w-56 sm:h-24">
         <Image
           src="/platter.png"
           width={1000}
           height={1000}
           id="image-6"
           alt=""
-          className={imageClass}
         />
       </div>
-      <div id="container-7" className={containerClass}>
+      <div className="sm:w-48 sm:h-16">
         <Image
           src="/platter.png"
           width={1000}
           height={1000}
           id="image-7"
           alt=""
-          className={imageClass}
         />
       </div>
-      <div id="container-8" className={containerClass}>
+      <div className="sm:w-32 sm:h-48">
         <Image
           src="/platter.png"
           width={1000}
           height={1000}
           id="image-8"
           alt=""
-          className={imageClass}
         />
       </div>
-      <div id="container-9" className={containerClass}>
+      <div className="sm:w-56 sm:h-24">
         <Image
           src="/platter.png"
           width={1000}
           height={1000}
           id="image-9"
           alt=""
-          className={imageClass}
         />
       </div>
-      <div id="container-10" className={containerClass}>
+      <div className="sm:w-12 sm:h-52">
         <Image
           src="/platter.png"
           width={1000}
           height={1000}
           id="image-10"
           alt=""
-          className={imageClass}
         />
       </div>
-      <div id="container-11" className={containerClass}>
+      <div className="sm:w-64 sm:h-48">
         <Image
           src="/platter.png"
           width={1000}
           height={1000}
           id="image-11"
           alt=""
-          className={imageClass}
         />
       </div>
-      <div id="container-12" className={containerClass}>
+      <div className="sm:w-48 sm:h-16">
         <Image
           src="/platter.png"
           width={1000}
           height={1000}
           id="image-12"
           alt=""
-          className={imageClass}
         />
       </div>
     </Gallery>

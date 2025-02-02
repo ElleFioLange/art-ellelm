@@ -11,10 +11,12 @@ import {
   ReactElement,
   ReactNode,
   RefObject,
+  Suspense,
   useMemo,
   useRef,
 } from "react";
 import { isMobile } from "react-device-detect";
+import { twMerge } from "tailwind-merge";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
@@ -65,13 +67,16 @@ export default function Gallery({ children }: { children: ReactNode }) {
       timelines.current[i] = createRef<Timeline>();
       const tl = timelines.current[i];
 
+      const container = document.getElementById(`container-${i}`);
+      const image = container?.children[0];
+
       tl.current = gsap
         .timeline({
           paused: true,
           // Scroll trigger handles mobile case
           scrollTrigger: isMobile
             ? {
-                trigger: `#container-${i}`,
+                trigger: container,
                 toggleActions: "play reverse play reverse",
                 // markers: true,
                 // Need to figure out the container scroller structure, should it be main or section?
@@ -89,7 +94,8 @@ export default function Gallery({ children }: { children: ReactNode }) {
             : undefined,
         })
         .fromTo(
-          `#image-${i}`,
+          // This is easily broken, but safe as long as structure is followed
+          image || "",
           {
             scale: 1 / 20,
           },
@@ -110,21 +116,25 @@ export default function Gallery({ children }: { children: ReactNode }) {
     timelines.current[id].current?.reverse()
   );
 
-  // The onMouse callbacks are only called in desktop mode
   const renderChildren = () => {
-    // Can probably add index based IDs here :thinking-emoji:
-    return Children.map(children, (child, i) =>
-      cloneElement(
-        child as ReactElement<{
-          onMouseOver: () => void;
-          onMouseLeave: () => void;
-        }>,
-        {
-          onMouseOver: () => onMouseOver(i),
-          onMouseLeave: () => onMouseLeave(i),
-        }
-      )
-    );
+    return Children.map(children, (_child, i) => {
+      const child = _child as ReactElement<{
+        onMouseOver: () => void;
+        onMouseLeave: () => void;
+        className: string;
+        id: string;
+      }>;
+
+      return cloneElement(child, {
+        onMouseOver: isMobile ? undefined : () => onMouseOver(i),
+        onMouseLeave: isMobile ? undefined : () => onMouseLeave(i),
+        className: twMerge(
+          child.props.className,
+          "flex justify-center items-center flex-grow w-full h-dvh min-h-max [&>img]:scale-[0.05]"
+        ),
+        id: `container-${i}`,
+      });
+    });
   };
 
   return (
@@ -134,10 +144,11 @@ export default function Gallery({ children }: { children: ReactNode }) {
       suppressHydrationWarning
     >
       <section
-        // Because the interaction mouse/scroll is based on isMobile detection, layout needs to be as well
-        className="flex sm:max-w-screen-xl sm:pb-16 sm:flex-wrap max-sm:flex-col max-sm:w-full justify-center [&>div]:*:scale-[0.05] items-center gap-4 flex-shrink-0"
+        className={`flex justify-center items-center flex-shrink-0 gap-4 ${
+          isMobile ? "flex-col w-full" : "flex-wrap max-w-screen-xl pb-16"
+        }`}
       >
-        {isMobile ? children : renderChildren()}
+        {renderChildren()}
       </section>
     </main>
   );

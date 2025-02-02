@@ -26,7 +26,9 @@
     "autoprefixer": "^10.4.20",
     "postcss": "^8",
     "prettier-plugin-tailwindcss": "^0.6.10",
+    "tailwind-merge": "2.6.0",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
-  }
+  },
+  "//": "tailwind merge 2.6 is latest that supports tailwindcss 3"
 }
