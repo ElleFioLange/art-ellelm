@@ -78,6 +78,17 @@
 }
 
 @layer components {
+  .gallery-container {
+    @apply relative cursor-pointer flex justify-center items-center w-full min-h-max max-sm:h-dvh;
+
+    & > img {
+      scale: 0.05;
+    }
+
+    & > div {
+      @apply flex flex-col p-4 overflow-auto absolute w-full h-full bg-bg/80 transition-opacity duration-150;
+    }
+  }
 }
 
 @layer utilities {

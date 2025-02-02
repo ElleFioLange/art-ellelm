@@ -1,6 +1,7 @@
 "use client";
 
 import { Timeline } from "@/utils/types";
+import useViewport from "@/utils/useViewport";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -13,21 +14,22 @@ import {
   RefObject,
   useMemo,
   useRef,
+  useState,
 } from "react";
-import { isMobile } from "react-device-detect";
 import { twMerge } from "tailwind-merge";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 
-export const containerClass =
-  "flex justify-center items-center item w-full min-h-max h-dvh sm:w-48 sm:h-96 flex-grow";
-export const imageClass = "object-contain image";
-
 export default function Gallery({ children }: { children: ReactNode }) {
+  // Controls showing and hiding the info when an item is clicked
+  const info = useState<number | null>(null);
+
   const mainRef = useRef<HTMLDivElement>(null);
 
   const { contextSafe } = useGSAP({ scope: mainRef });
+
+  const { breakpoint } = useViewport();
 
   const numChildren = useMemo(
     () => Children.toArray(children).length,
@@ -44,76 +46,92 @@ export default function Gallery({ children }: { children: ReactNode }) {
   // animation start and end triggers
   const snapTl = useRef<Timeline>(null);
 
-  useGSAP(() => {
-    snapTl.current = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#image-0",
-        start: "center center",
-        endTrigger: `#container-${numChildren - 1}`,
-        end: "center center",
-        scroller: mainRef.current,
-        snap: {
-          snapTo: 1 / (numChildren - 1),
-          duration: 1,
-          // delay: 0.05,
-          ease: "elastic.inOut(0.85, 1.5)",
-          directional: false,
-        },
-      },
-    });
+  // There's probably a way to do everything in a single timeline
+  useGSAP(
+    () => {
+      // Gives some odd issues when resizing across sm breakpoint
+      snapTl.current = breakpoint
+        ? gsap.timeline({
+            scrollTrigger: {
+              trigger: "#image-0",
+              start: "center center",
+              markers: true,
+              endTrigger: `#container-${numChildren - 1}`,
+              end: "center center",
+              scroller: mainRef.current,
+              snap: {
+                snapTo: 1 / (numChildren - 1),
+                duration: 1,
+                // delay: 0.05,
+                ease: "elastic.inOut(0.85, 1.5)",
+                directional: false,
+              },
+            },
+          })
+        : null;
 
-    for (let i = 0; i < numChildren; i++) {
-      timelines.current[i] = createRef<Timeline>();
-      const tl = timelines.current[i];
+      for (let i = 0; i < numChildren; i++) {
+        timelines.current[i] = createRef<Timeline>();
+        const tl = timelines.current[i];
 
-      const container = document.getElementById(`container-${i}`);
-      const image = container?.children[0];
+        const container = document.getElementById(`container-${i}`);
+        const image = container?.children[0];
 
-      tl.current = gsap
-        .timeline({
-          paused: true,
-          // Scroll trigger handles mobile case
-          scrollTrigger: isMobile
-            ? {
-                trigger: container,
-                toggleActions: "play reverse play reverse",
-                // markers: true,
-                // Need to figure out the container scroller structure, should it be main or section?
-                scroller: mainRef.current,
-                start: "center 60%",
-                end: "center 40%",
-                snap: {
-                  snapTo: [0.5],
-                  duration: 1,
-                  delay: 0.05,
-                  ease: "elastic.inOut(0.85, 1.5)",
-                  directional: false,
-                },
-              }
-            : undefined,
-        })
-        .fromTo(
-          // This is easily broken, but safe as long as structure is followed
-          image || "",
-          {
-            scale: 1 / 20,
-          },
-          {
-            scale: 1,
-            duration: 1,
-            ease: "elastic.inOut(1, 0.6)",
-          }
-        );
-    }
-  });
+        tl.current = gsap
+          .timeline({
+            paused: true,
+            // Scroll trigger handles mobile case
+            scrollTrigger: breakpoint
+              ? {
+                  trigger: container,
+                  toggleActions: "play reverse play reverse",
+                  // markers: true,
+                  scroller: mainRef.current,
+                  start: "center 60%",
+                  end: "center 40%",
+                  snap: {
+                    snapTo: [0.5],
+                    duration: 1,
+                    delay: 0.05,
+                    ease: "elastic.inOut(0.85, 1.5)",
+                    directional: false,
+                  },
+                }
+              : undefined,
+          })
+          .fromTo(
+            image || "",
+            {
+              scale: 1 / 20,
+            },
+            {
+              scale: 1,
+              duration: 1,
+              ease: "elastic.inOut(1, 0.6)",
+            }
+          );
+      }
+    },
+    { revertOnUpdate: true, dependencies: [breakpoint] }
+  );
 
   const onMouseOver = contextSafe((id: number) => {
     timelines.current[id].current?.play();
   });
 
-  const onMouseLeave = contextSafe((id: number) =>
-    timelines.current[id].current?.reverse()
-  );
+  const onMouseLeave = contextSafe((id: number) => {
+    timelines.current[id].current?.reverse();
+    if (info[0] === id) info[1](null);
+  });
+
+  const onClick = (id: number) => {
+    const tl = timelines.current[id];
+    console.log(tl.current?.progress());
+    console.log(tl.current?.isActive());
+    const show =
+      info[0] !== id && !tl.current?.isActive() && tl.current?.progress() !== 0;
+    info[1](show ? id : null);
+  };
 
   const renderChildren = () => {
     const numChildren = Children.toArray(children).length;
@@ -121,17 +139,21 @@ export default function Gallery({ children }: { children: ReactNode }) {
       const child = _child as ReactElement<{
         onMouseOver: () => void;
         onMouseLeave: () => void;
+        onClick: () => void;
         className: string;
         id: string;
       }>;
 
       return cloneElement(child, {
-        onMouseOver: isMobile ? undefined : () => onMouseOver(i),
-        onMouseLeave: isMobile ? undefined : () => onMouseLeave(i),
+        onMouseOver: () => onMouseOver(i),
+        onMouseLeave: () => onMouseLeave(i),
+        onClick: () => onClick(i),
         className: twMerge(
           child.props.className,
-          "flex justify-center items-center w-full h-dvh min-h-max [&>img]:scale-[0.05]",
-          i === numChildren - 1 ? "" : "flex-grow"
+          // Abstracted this to its own class in css.css because it contains a lot of
+          // secondary styling for child elements
+          "gallery-container",
+          info[0] === i ? "[&>div]:opacity-100" : "[&>div]:opacity-0"
         ),
         id: `container-${i}`,
       });
@@ -140,15 +162,10 @@ export default function Gallery({ children }: { children: ReactNode }) {
 
   return (
     <main
-      className="w-full sm:h-screen sm:p-16 sm:pb-0 sm:mb-16 max-sm:px-8 max-sm:overflow-auto max-sm:h-dvh"
+      className="w-full overflow-auto h-dvh sm:p-16 max-sm:px-8"
       ref={mainRef}
-      suppressHydrationWarning
     >
-      <section
-        className={`flex justify-center items-center flex-shrink-0 gap-4 ${
-          isMobile ? "flex-col w-full" : "flex-wrap max-w-screen-xl pb-16"
-        }`}
-      >
+      <section className="flex justify-center items-center flex-shrink-0 gap-4 sm:flex-wrap sm:max-w-screen-xl max-sm:flex-col max-sm:w-full">
         {renderChildren()}
       </section>
     </main>
