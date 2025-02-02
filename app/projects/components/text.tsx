@@ -31,8 +31,8 @@ export default function Text({
     paragraph: paragraphRef,
   };
 
-  const timelines = useRef<RefObject<Timeline>[]>(
-    Array(keyframes.length).fill(createRef<Timeline>())
+  const timelines = useRef<RefObject<Timeline | null>[]>(
+    Array(keyframes.length).fill(null)
   );
 
   // snapTL is separate so that scroll will snap to every
@@ -65,6 +65,7 @@ export default function Text({
 
       // This can probably be simplified to a single timeline
       for (let i = 0; i < keyframes.length; i++) {
+        timelines.current[i] = createRef<Timeline>();
         const tl = timelines.current[i];
         const keyframe = keyframes[i];
 
