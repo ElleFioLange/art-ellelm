@@ -23,6 +23,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Gallery({ children }: { children: ReactNode }) {
   // Controls showing and hiding the info when an item is clicked
+  // Set to the index of the item to show info or null to not show any info
   const info = useState<number | null>(null);
 
   const mainRef = useRef<HTMLDivElement>(null);
@@ -153,7 +154,9 @@ export default function Gallery({ children }: { children: ReactNode }) {
           // Abstracted this to its own class in css.css because it contains a lot of
           // secondary styling for child elements
           "gallery-container",
-          info[0] === i ? "[&>div]:opacity-100" : "[&>div]:opacity-0"
+          info[0] === i
+            ? "[&>div]:opacity-100 cursor-auto"
+            : "[&>div]:opacity-0"
         ),
         id: `container-${i}`,
       });
