@@ -4,10 +4,10 @@ import Image from "next/image";
 
 export default function Featured() {
   return (
-    <main className="max-sm:flex max-sm:flex-col p-8 gap-8 overflow-auto h-full w-full sm:grid max-xl:md:grid-cols-2 xl:grid-cols-4 sm:items-center">
+    <main className="max-sm:flex max-sm:flex-col p-8 gap-8 h-dvh w-full sm:grid max-xl:md:grid-cols-2 xl:grid-cols-4 auto-rows-min sm:items-center">
       <a
         href="/projects/image"
-        className="border-fg border-2 text-raisin-black bg-baby-powder flex flex-col justify-center items-center rounded-md overflow-clip flex-shrink-0"
+        className="border-fg border-2 text-raisin-black bg-baby-powder flex flex-col justify-center items-center rounded-md"
       >
         <Image
           src="/test.jpeg"

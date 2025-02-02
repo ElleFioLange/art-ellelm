@@ -37,7 +37,7 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant_unicase.className} ${cormorant_unicase.variable} ${cormorant.variable}`}
     >
-      <body id="body">
+      <body>
         <Nav />
         {children}
       </body>
