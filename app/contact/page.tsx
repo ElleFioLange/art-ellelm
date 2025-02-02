@@ -29,9 +29,7 @@ export default function Contact() {
       sendState[1]("sending");
       open[1](false);
 
-      // The png string is prepended with
-      // data:image/png;base64,
-      // so slice at 22
+      // The png string is prepended with data:image/png;base64, so slice at 22
       const png = ((await canvasRef.current?.exportImage("png")) || "").slice(
         22
       );

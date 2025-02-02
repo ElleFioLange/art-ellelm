@@ -39,7 +39,7 @@ export default function Nav() {
       <Link href="/photography">Photography</Link>
       <Link href="/painting">Painting</Link>
       <Image
-        className={`cursor-pointer pointer-events-auto object-contain w-16 h-16 transition-all duration-200 ease-in-out ${
+        className={`cursor-pointer pointer-events-auto w-16 h-16 transition-all duration-200 ease-in-out ${
           open[0] ? "rotate-12 scale-110 drop-shadow-md" : "rotate-0"
         }`}
         src="/platter.png"

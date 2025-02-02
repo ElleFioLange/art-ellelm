@@ -67,6 +67,10 @@
       @apply cursor-default;
     }
   }
+
+  img {
+    @apply object-contain;
+  }
 }
 
 @layer components {

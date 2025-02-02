@@ -14,7 +14,7 @@ export default function Featured() {
           alt=""
           width={1280}
           height={1280}
-          className="object-contain p-2 pb-0"
+          className="p-2 pb-0"
         />
         <h2 className="py-2">Image</h2>
       </a>
@@ -27,7 +27,7 @@ export default function Featured() {
           alt=""
           width={768}
           height={1024}
-          className="object-contain p-2 pb-0"
+          className="p-2 pb-0"
         />
         <h2 className="py-2">Paintings</h2>
       </a>
@@ -40,7 +40,7 @@ export default function Featured() {
           alt=""
           width={1000}
           height={880}
-          className="object-contain p-2 pb-0"
+          className="p-2 pb-0"
         />
         <h2 className="py-2">Cloudwatching</h2>
       </a>
@@ -53,7 +53,7 @@ export default function Featured() {
           alt=""
           width={1550}
           height={1035}
-          className="object-contain p-2 pb-0"
+          className="p-2 pb-0"
         />
         <h2 className="py-2">Time-Space</h2>
       </a>
