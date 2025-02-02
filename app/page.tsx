@@ -41,8 +41,8 @@ const Links = () => {
       <Link href="/photography" className="top-[61%] left-[20%]">
         Photography
       </Link>
-      <Link href="/painting" className="top-[39%] left-[20%]">
-        Painting
+      <Link href="/paintings" className="top-[39%] left-[20%]">
+        Paintings
       </Link>
     </div>
   );
