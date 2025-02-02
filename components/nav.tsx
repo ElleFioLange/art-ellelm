@@ -19,7 +19,7 @@ export default function Nav() {
 
   return (
     <nav
-      className={`z-50 flex flex-col gap-4 items-end rounded-tl-lg bg-fg text-bg fixed bottom-0 right-0 overflow-hidden p-4 w-min ${
+      className={`z-50 flex flex-col gap-4 items-end rounded-tl-lg bg-fg text-bg fixed bottom-0 right-0 overflow-hidden p-4 w-min *:no-underline hover:*:underline ${
         open[0]
           ? "[&_a]:opacity-100 bg-opacity-100 pointer-events-auto"
           : "[&_a]:opacity-0 bg-opacity-0 pointer-events-none"

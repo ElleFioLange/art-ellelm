@@ -57,11 +57,7 @@
   }
 
   a {
-    cursor: pointer;
-
-    &:hover {
-      @apply underline;
-    }
+    @apply cursor-pointer underline;
   }
 
   button {

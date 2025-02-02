@@ -57,9 +57,7 @@ export default function Contact() {
   return (
     <main className="font-cormorant w-full h-full flex justify-center gap-2 items-center flex-col p-4">
       To get in contact, please email me at
-      <a className="underline" href="mailto:elle.fio.lange@gmail.com">
-        elle.fio.lange@gmail.com
-      </a>
+      <a href="mailto:elle.fio.lange@gmail.com">elle.fio.lange@gmail.com</a>
       or you can send me a message below:
       <div
         className={`w-full h-px bg-fg max-w-xl ease-in-out transition-all duration-1000 ${

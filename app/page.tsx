@@ -15,7 +15,7 @@ const MobileView = dynamic(() => import("../utils/mobile-view"), {
 const Links = () => {
   return (
     <div
-      className="absolute top-0 left-0 w-full h-full xl:text-2xl lg:text-xl md:text-lg *:-translate-x-1/2 *:-translate-y-1/2 *:absolute transform-3d"
+      className="absolute top-0 left-0 w-full h-full xl:text-2xl lg:text-xl md:text-lg *:no-underline hover:*:underline *:-translate-x-1/2 *:-translate-y-1/2 *:absolute transform-3d"
       style={{
         transform: "translateZ(15px)",
       }}
