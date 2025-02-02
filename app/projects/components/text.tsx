@@ -19,7 +19,7 @@ export default function Text({
   picturesRef: RefObject<HTMLDivElement | null>;
 }) {
   // Tracked to recalculate GSAP if layout changes from vertical to horizontal
-  const viewport = useViewport();
+  const { viewport } = useViewport();
 
   // Targets for GSAP
   const titleRef = useRef<HTMLHeadingElement>(null);
