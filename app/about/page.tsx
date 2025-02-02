@@ -5,9 +5,7 @@ export default function About() {
         <h1 className="max-sm:text-4xl">Elle Fiorentino-Lange</h1>
         <h2 className="">is an artist based in Boston, MA.</h2>
         <div className="w-full h-px bg-fg my-2" />
-        <p className="font-cormorant">
-          Her work is centered on data, transformation, and metaphysics.
-        </p>
+        <p>Her work is centered on data, transformation, and metaphysics.</p>
       </section>
     </main>
   );

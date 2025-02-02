@@ -99,7 +99,7 @@ export default function Contact() {
           }`}
       >
         <form
-          className={`h-full font-cormorant ${
+          className={`h-full ${
             sendState[0] === "pending"
               ? "opacity-100 pointer-events-auto w-full"
               : "opacity-0 pointer-events-none w-0"
@@ -107,7 +107,7 @@ export default function Contact() {
           onSubmit={handleSend}
         >
           <input
-            className={`bg-accent-bg rounded-sm w-full transition-all
+            className={`font-cormorant bg-accent-bg rounded-sm w-full transition-all
               ${sendState[0] === "pending" ? "px-1 mr-1" : "px-0 mr-0"}`}
             ref={inputRef}
             type="email"
