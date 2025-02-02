@@ -15,12 +15,7 @@ export default function ProjectLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const viewport = useViewport();
-  // Boolean for whether viewport is under small breakpoint (640px)
-  const breakpoint = useMemo(
-    () => (viewport.w ? viewport.w < 640 : false),
-    [viewport]
-  );
+  const { viewport, breakpoint } = useViewport();
 
   // Convert scroll to horizontal
   // Uses pictures classname to target breakpoint with tailwind
