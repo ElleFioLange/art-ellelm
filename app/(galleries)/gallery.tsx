@@ -56,7 +56,7 @@ export default function Gallery({ children }: { children: ReactNode }) {
             scrollTrigger: {
               trigger: "#image-0",
               start: "center center",
-              markers: true,
+              // markers: true,
               endTrigger: `#container-${numChildren - 1}`,
               end: "center center",
               scroller: mainRef.current,
