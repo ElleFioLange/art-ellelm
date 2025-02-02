@@ -11,7 +11,6 @@ import {
   ReactElement,
   ReactNode,
   RefObject,
-  Suspense,
   useMemo,
   useRef,
 } from "react";
@@ -117,6 +116,7 @@ export default function Gallery({ children }: { children: ReactNode }) {
   );
 
   const renderChildren = () => {
+    const numChildren = Children.toArray(children).length;
     return Children.map(children, (_child, i) => {
       const child = _child as ReactElement<{
         onMouseOver: () => void;
@@ -130,7 +130,8 @@ export default function Gallery({ children }: { children: ReactNode }) {
         onMouseLeave: isMobile ? undefined : () => onMouseLeave(i),
         className: twMerge(
           child.props.className,
-          "flex justify-center items-center flex-grow w-full h-dvh min-h-max [&>img]:scale-[0.05]"
+          "flex justify-center items-center w-full h-dvh min-h-max [&>img]:scale-[0.05]",
+          i === numChildren - 1 ? "" : "flex-grow"
         ),
         id: `container-${i}`,
       });
