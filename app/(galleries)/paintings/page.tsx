@@ -5,190 +5,105 @@ import Link from "next/link";
 export default function Paintings() {
   return (
     <Gallery>
-      <div className="sm:w-48 sm:h-96">
+      <div className="sm:w-60 sm:h-48">
         <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-0"
-          alt=""
+          src="/paintings/birth-sun-leaves.jpg"
+          width={1080}
+          height={864}
+          alt="Birth by Means of Sun Shone Through Leaves"
         />
         <div>
-          <h1>Title</h1>
-          <h2>Subtitle</h2>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat.
-            <Link href="/projects/image">Image</Link> Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum
-          </p>
+          <h1>Birth by Means of Sun Shone Through Leaves</h1>
+          <h2>2024 - 5' x 4'</h2>
+          <h3>Acrylic on canvas</h3>
         </div>
       </div>
-      <div className="sm:w-48 sm:h-16">
+      <div className="sm:w-60 sm:h-48">
         <Image
-          src="/painting.jpeg"
-          width={768}
-          height={1024}
-          id="image-1"
-          alt=""
+          src="/paintings/forest-broad.jpg"
+          width={1080}
+          height={864}
+          alt="Kissing the Forest in Broad Strokes"
         />
+        <div>
+          <h1>Kissing the Forest in Broad Strokes</h1>
+          <h2>2024 - 5' x 4'</h2>
+          <h3>Acrylic on canvas</h3>
+        </div>
       </div>
-      <div className="sm:w-32 sm:h-48">
+      <div className="sm:w-40 sm:h-64">
         <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-2"
-          alt=""
+          src="/paintings/thoughts-actions-matte.jpg"
+          width={675}
+          height={1080}
+          alt="Thoughts and Actions Conserved and Matte Black"
         />
+        <div>
+          <h1>Thoughts and Actions Conserved and Matte Black</h1>
+          <h2>2024 - 30" x 48"</h2>
+          <h3>Acrylic on canvas</h3>
+        </div>
       </div>
-      <div className="sm:w-56 sm:h-24">
+      <div className="sm:w-64 sm:h-40">
         <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-3"
-          alt=""
+          src="/paintings/watch-rainbow.jpg"
+          width={1080}
+          height={675}
+          alt="Who Will Watch The Rainbow the Flames Provide?"
         />
+        <div>
+          <h1>Who Will Watch The Rainbow the Flames Provide?</h1>
+          <h2>2024 - 48" x 30"</h2>
+          <h3>Acrylic on canvas</h3>
+        </div>
       </div>
-      <div className="sm:w-48 sm:h-16">
+      <div className="sm:w-60 sm:h-48">
         <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-4"
-          alt=""
+          src="/paintings/straight-lines.jpg"
+          width={1080}
+          height={864}
+          alt="There Sure Are a Lot of Similarities Between the Singularity and the Rapture"
         />
+        <div>
+          <h1>
+            There Sure Are a Lot of Similarities Between the Singularity and the
+            Rapture
+          </h1>
+          <h2>2024 - 5' x 4'</h2>
+          <h3>Acrylic on canvas</h3>
+        </div>
       </div>
-      <div className="sm:w-32 sm:h-48">
+      <div className="sm:w-48 sm:h-96">
         <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-5"
-          alt=""
+          src="/paintings/birth-sun-leaves.jpg"
+          width={1080}
+          height={864}
+          alt="Birth by means of sun shone through leaves"
         />
+        <div>
+          <h1>Birth by Means of Sun Shone Through Leaves</h1>
+          <h2>2024 - 5' x 4'</h2>
+          <h3>Acrylic on canvas</h3>
+        </div>
       </div>
-      <div className="sm:w-56 sm:h-24">
+      <div className="sm:w-48 sm:h-96">
         <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-6"
-          alt=""
+          src="/paintings/continously-pregnant.jpg"
+          width={1080}
+          height={864}
+          alt="I Want To Be Continuously Pregnant With Your Babies"
         />
-      </div>
-      <div className="sm:w-48 sm:h-16">
-        <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-7"
-          alt=""
-        />
-      </div>
-      <div className="sm:w-32 sm:h-48">
-        <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-8"
-          alt=""
-        />
-      </div>
-      <div className="sm:w-64 sm:h-48">
-        <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-11"
-          alt=""
-        />
-      </div>
-      <div className="sm:w-48 sm:h-16">
-        <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-12"
-          alt=""
-        />
-      </div>
-      <div className="sm:w-48 sm:h-16">
-        <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-7"
-          alt=""
-        />
-      </div>
-      <div className="sm:w-32 sm:h-48">
-        <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-8"
-          alt=""
-        />
-      </div>
-      <div className="sm:w-64 sm:h-48">
-        <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-11"
-          alt=""
-        />
-      </div>
-      <div className="sm:w-48 sm:h-16">
-        <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-12"
-          alt=""
-        />
-      </div>
-      <div className="sm:w-48 sm:h-16">
-        <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-7"
-          alt=""
-        />
-      </div>
-      <div className="sm:w-32 sm:h-48">
-        <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-8"
-          alt=""
-        />
-      </div>
-      <div className="sm:w-64 sm:h-48">
-        <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-11"
-          alt=""
-        />
-      </div>
-      <div className="sm:w-48 sm:h-48">
-        <Image
-          src="/platter.png"
-          width={1000}
-          height={1000}
-          id="image-12"
-          alt=""
-        />
+        <div>
+          <h1>I Want To Be Continuously Pregnant With Your Babies</h1>
+          <h2>2024 - 5' x 4'</h2>
+          <h3>Acrylic on canvas</h3>
+          <p>
+            The title of this painting is a reference to the{" "}
+            <Link href="https://youtu.be/H-vGzW2-0IU?si=ln7qeYxMkMGJHxfo">
+              abuse of Sewell Setzer by an AI chatbot.
+            </Link>
+          </p>
+        </div>
       </div>
     </Gallery>
   );
