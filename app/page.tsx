@@ -260,7 +260,7 @@ const GyroPermission = ({
             show[1](false);
           }}
         >
-          No thanks
+          Decline
         </button>
         <button onClick={onClick} className="text-green">
           Accept
