@@ -75,14 +75,14 @@
 
 @layer components {
   .gallery-container {
-    @apply sm:bg-fg p-4 relative cursor-pointer flex justify-center items-center w-full min-h-max max-sm:h-dvh;
+    @apply relative cursor-pointer flex justify-center items-center w-full min-h-max max-sm:h-dvh;
 
     & > img {
-      scale: 0.025;
+      @apply opacity-5 bg-fg;
     }
 
     & > div {
-      @apply flex flex-col gap-2 p-4 overflow-auto absolute w-full h-full bg-bg/80 transition-opacity duration-300;
+      @apply flex flex-col gap-2 p-4 overflow-auto absolute w-full h-full bg-bg/90 transition-opacity duration-700;
     }
   }
 }

@@ -95,12 +95,12 @@ export default function Gallery({ children }: { children: ReactNode }) {
           .fromTo(
             image || "",
             {
-              scale: 1 / 40,
+              opacity: 0.05,
             },
             {
-              scale: 1,
-              duration: 1.1,
-              ease: "elastic.out(1.15, 0.6)",
+              opacity: 1,
+              duration: 0.7,
+              ease: "power2.inOut",
             }
           );
       }
@@ -156,6 +156,7 @@ export default function Gallery({ children }: { children: ReactNode }) {
     <main
       className="w-full overflow-y-auto overflow-x-hidden h-dvh sm:p-16 max-sm:px-8"
       ref={mainRef}
+      onScroll={() => info[1](null)}
     >
       <section className="flex justify-center items-center flex-shrink-0 mx-auto lg:gap-8 gap-4 sm:flex-wrap sm:max-w-screen-xl max-sm:flex-col max-sm:w-full">
         {renderChildren()}
