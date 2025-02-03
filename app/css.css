@@ -82,7 +82,7 @@
     }
 
     & > div {
-      @apply flex flex-col gap-2 p-4 overflow-auto absolute w-full h-full bg-bg/80 transition-opacity duration-150;
+      @apply flex flex-col gap-2 p-4 overflow-auto absolute w-full h-full bg-bg/80 transition-opacity duration-300;
     }
   }
 }

@@ -50,6 +50,7 @@ export default function Gallery({ children }: { children: ReactNode }) {
   // There's probably a way to do everything in a single timeline
   useGSAP(
     () => {
+      // Scroll trigger handles mobile case
       snapTl.current = breakpoint
         ? gsap.timeline({
             scrollTrigger: {
@@ -80,7 +81,6 @@ export default function Gallery({ children }: { children: ReactNode }) {
         tl.current = gsap
           .timeline({
             paused: true,
-            // Scroll trigger handles mobile case
             scrollTrigger: breakpoint
               ? {
                   trigger: container,
@@ -89,13 +89,6 @@ export default function Gallery({ children }: { children: ReactNode }) {
                   scroller: mainRef.current,
                   start: "center 60%",
                   end: "center 40%",
-                  snap: {
-                    snapTo: [0.5],
-                    duration: 1,
-                    delay: 0.1,
-                    ease: "elastic.out(0.85, 1.5)",
-                    directional: false,
-                  },
                 }
               : undefined,
           })
@@ -126,7 +119,8 @@ export default function Gallery({ children }: { children: ReactNode }) {
 
   const onClick = (id: number) => {
     const tl = timelines.current[id];
-    const show = info[0] !== id && tl.current?.progress() !== 0;
+    const show =
+      info[0] !== id && !tl.current?.isActive() && tl.current?.progress() !== 0;
     info[1](show ? id : null);
   };
 
@@ -151,7 +145,7 @@ export default function Gallery({ children }: { children: ReactNode }) {
           "gallery-container",
           info[0] === i
             ? "[&>div]:opacity-100 cursor-auto"
-            : "[&>div]:opacity-0"
+            : "[&>div]:opacity-0 [&>div]:pointer-events-none"
         ),
         id: `container-${i}`,
       });

@@ -82,10 +82,10 @@ export default function Paintings() {
           src="/paintings/watch-rainbow.jpg"
           width={1080}
           height={675}
-          alt="Who Will Watch The Rainbow the Flames Provide?"
+          alt="Who Will Watch the Rainbows of the Light the Flames Provide?"
         />
         <div>
-          <h1>Who Will Watch The Rainbow the Flames Provide?</h1>
+          <h1>Who Will Watch the Rainbows of the Light the Flames Provide?</h1>
           <h2>2024 - 48" x 30"</h2>
           <h3>Acrylic on canvas</h3>
         </div>
