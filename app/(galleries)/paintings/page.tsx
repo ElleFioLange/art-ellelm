@@ -5,7 +5,52 @@ import Link from "next/link";
 export default function Paintings() {
   return (
     <Gallery>
-      <div className="sm:w-60 sm:h-48">
+      <div className="sm:w-[36vw] sm:h-[48vw]">
+        <Image
+          src="/paintings/straight-lines.jpg"
+          width={1080}
+          height={864}
+          alt="Every Straight Line on a Sphere is a Circle"
+        />
+        <div>
+          <h1>Every Straight Line on a Sphere is a Circle</h1>
+          <h2>2025 - 3' x 4'</h2>
+          <h3>Acrylic on canvas</h3>
+        </div>
+      </div>
+      <div className="sm:w-[60vw] sm:h-[48vw]">
+        <Image
+          src="/paintings/continously-pregnant.jpg"
+          width={1080}
+          height={864}
+          alt="I Want To Be Continuously Pregnant With Your Words"
+        />
+        <div>
+          <h1>I Want To Be Continuously Pregnant With Your Words</h1>
+          <h2>2024 - 5' x 4'</h2>
+          <h3>Acrylic on canvas</h3>
+          <p>
+            The title of this painting is a reference to the{" "}
+            <Link href="https://youtu.be/H-vGzW2-0IU?si=ln7qeYxMkMGJHxfo">
+              abuse of Sewell Setzer by an AI chatbot.
+            </Link>
+          </p>
+        </div>
+      </div>
+      <div className="sm:w-[30vw] sm:h-[48vw]">
+        <Image
+          src="/paintings/thoughts-action-matte.jpg"
+          width={675}
+          height={1080}
+          alt="Thoughts and Action Conserved in Matte Black"
+        />
+        <div>
+          <h1>Thoughts and Action Conserved in Matte Black</h1>
+          <h2>2024 - 30" x 48"</h2>
+          <h3>Acrylic on canvas</h3>
+        </div>
+      </div>
+      <div className="sm:w-[60vw] sm:h-[48vw]">
         <Image
           src="/paintings/birth-sun-leaves.jpg"
           width={1080}
@@ -18,7 +63,7 @@ export default function Paintings() {
           <h3>Acrylic on canvas</h3>
         </div>
       </div>
-      <div className="sm:w-60 sm:h-48">
+      <div className="sm:w-[60vw] sm:h-[48vw]">
         <Image
           src="/paintings/forest-broad.jpg"
           width={1080}
@@ -31,20 +76,8 @@ export default function Paintings() {
           <h3>Acrylic on canvas</h3>
         </div>
       </div>
-      <div className="sm:w-40 sm:h-64">
-        <Image
-          src="/paintings/thoughts-actions-matte.jpg"
-          width={675}
-          height={1080}
-          alt="Thoughts and Actions Conserved and Matte Black"
-        />
-        <div>
-          <h1>Thoughts and Actions Conserved and Matte Black</h1>
-          <h2>2024 - 30" x 48"</h2>
-          <h3>Acrylic on canvas</h3>
-        </div>
-      </div>
-      <div className="sm:w-64 sm:h-40">
+
+      <div className="sm:w-[48vw] sm:h-[30vw]">
         <Image
           src="/paintings/watch-rainbow.jpg"
           width={1080}
@@ -57,52 +90,33 @@ export default function Paintings() {
           <h3>Acrylic on canvas</h3>
         </div>
       </div>
-      <div className="sm:w-60 sm:h-48">
+      <div className="sm:w-[60vw] sm:h-[48vw]">
         <Image
-          src="/paintings/straight-lines.jpg"
+          src="/paintings/singularity-rapture.jpg"
           width={1080}
           height={864}
-          alt="There Sure Are a Lot of Similarities Between the Singularity and the Rapture"
+          alt="There Sure Are a Lot of Similarities Between the Singularity and Rapture"
         />
         <div>
           <h1>
-            There Sure Are a Lot of Similarities Between the Singularity and the
+            There Sure Are a Lot of Similarities Between the Singularity and
             Rapture
           </h1>
           <h2>2024 - 5' x 4'</h2>
           <h3>Acrylic on canvas</h3>
         </div>
       </div>
-      <div className="sm:w-48 sm:h-96">
+      <div className="sm:w-[60vw] sm:h-[48vw]">
         <Image
-          src="/paintings/birth-sun-leaves.jpg"
+          src="/paintings/ghillie-suit.jpg"
           width={1080}
           height={864}
-          alt="Birth by means of sun shone through leaves"
+          alt="What a Ghillie Suit Means Will Be Our End"
         />
         <div>
-          <h1>Birth by Means of Sun Shone Through Leaves</h1>
+          <h1>What a Ghillie Suit Means Will Be Our End</h1>
           <h2>2024 - 5' x 4'</h2>
           <h3>Acrylic on canvas</h3>
-        </div>
-      </div>
-      <div className="sm:w-48 sm:h-96">
-        <Image
-          src="/paintings/continously-pregnant.jpg"
-          width={1080}
-          height={864}
-          alt="I Want To Be Continuously Pregnant With Your Babies"
-        />
-        <div>
-          <h1>I Want To Be Continuously Pregnant With Your Babies</h1>
-          <h2>2024 - 5' x 4'</h2>
-          <h3>Acrylic on canvas</h3>
-          <p>
-            The title of this painting is a reference to the{" "}
-            <Link href="https://youtu.be/H-vGzW2-0IU?si=ln7qeYxMkMGJHxfo">
-              abuse of Sewell Setzer by an AI chatbot.
-            </Link>
-          </p>
         </div>
       </div>
     </Gallery>

@@ -44,19 +44,6 @@ export default function Featured() {
         />
         <h2 className="py-2">Cloudwatching</h2>
       </a>
-      <a
-        href="/projects/time-space"
-        className="border-fg border-2 text-raisin-black bg-baby-powder flex flex-col justify-center items-center rounded-md overflow-clip flex-shrink-0"
-      >
-        <Image
-          src="/time-space.png"
-          alt=""
-          width={1550}
-          height={1035}
-          className="p-2 pb-0"
-        />
-        <h2 className="py-2">Time-Space</h2>
-      </a>
     </main>
   );
 }

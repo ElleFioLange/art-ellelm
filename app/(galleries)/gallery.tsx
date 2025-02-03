@@ -50,7 +50,6 @@ export default function Gallery({ children }: { children: ReactNode }) {
   // There's probably a way to do everything in a single timeline
   useGSAP(
     () => {
-      // Gives some odd issues when resizing across sm breakpoint
       snapTl.current = breakpoint
         ? gsap.timeline({
             scrollTrigger: {
@@ -93,8 +92,8 @@ export default function Gallery({ children }: { children: ReactNode }) {
                   snap: {
                     snapTo: [0.5],
                     duration: 1,
-                    delay: 0.05,
-                    ease: "elastic.inOut(0.85, 1.5)",
+                    delay: 0.1,
+                    ease: "elastic.out(0.85, 1.5)",
                     directional: false,
                   },
                 }
@@ -103,12 +102,12 @@ export default function Gallery({ children }: { children: ReactNode }) {
           .fromTo(
             image || "",
             {
-              scale: 1 / 20,
+              scale: 1 / 40,
             },
             {
               scale: 1,
-              duration: 1,
-              ease: "elastic.inOut(1, 0.6)",
+              duration: 1.1,
+              ease: "elastic.out(1.15, 0.6)",
             }
           );
       }
@@ -127,15 +126,11 @@ export default function Gallery({ children }: { children: ReactNode }) {
 
   const onClick = (id: number) => {
     const tl = timelines.current[id];
-    console.log(tl.current?.progress());
-    console.log(tl.current?.isActive());
-    const show =
-      info[0] !== id && !tl.current?.isActive() && tl.current?.progress() !== 0;
+    const show = info[0] !== id && tl.current?.progress() !== 0;
     info[1](show ? id : null);
   };
 
   const renderChildren = () => {
-    const numChildren = Children.toArray(children).length;
     return Children.map(children, (_child, i) => {
       const child = _child as ReactElement<{
         onMouseOver: () => void;
@@ -151,8 +146,8 @@ export default function Gallery({ children }: { children: ReactNode }) {
         onClick: () => onClick(i),
         className: twMerge(
           child.props.className,
-          // Abstracted this to its own class in css.css because it contains a lot of
-          // secondary styling for child elements
+          // Abstracted this to its own class in css.css because it
+          // contains a lot of secondary styling for child elements
           "gallery-container",
           info[0] === i
             ? "[&>div]:opacity-100 cursor-auto"
@@ -165,10 +160,10 @@ export default function Gallery({ children }: { children: ReactNode }) {
 
   return (
     <main
-      className="w-full overflow-auto h-dvh sm:p-16 max-sm:px-8"
+      className="w-full overflow-y-auto overflow-x-hidden h-dvh sm:p-16 max-sm:px-8"
       ref={mainRef}
     >
-      <section className="flex justify-center items-center flex-shrink-0 gap-4 sm:flex-wrap sm:max-w-screen-xl max-sm:flex-col max-sm:w-full">
+      <section className="flex justify-center items-center flex-shrink-0 mx-auto lg:gap-8 gap-4 sm:flex-wrap sm:max-w-screen-xl max-sm:flex-col max-sm:w-full">
         {renderChildren()}
       </section>
     </main>
