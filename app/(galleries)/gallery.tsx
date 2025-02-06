@@ -54,7 +54,7 @@ export default function Gallery({ children }: { children: ReactNode }) {
       snapTl.current = breakpoint
         ? gsap.timeline({
             scrollTrigger: {
-              trigger: "#image-0",
+              trigger: "#container-0",
               start: "center center",
               // markers: true,
               endTrigger: `#container-${numChildren - 1}`,
@@ -87,8 +87,8 @@ export default function Gallery({ children }: { children: ReactNode }) {
                   toggleActions: "play reverse play reverse",
                   // markers: true,
                   scroller: mainRef.current,
-                  start: "center 60%",
-                  end: "center 40%",
+                  start: "center 80%",
+                  end: "center 20%",
                 }
               : undefined,
           })
@@ -119,6 +119,11 @@ export default function Gallery({ children }: { children: ReactNode }) {
 
   const onClick = (id: number) => {
     const tl = timelines.current[id];
+
+    // If the mouse is over an item when the page loads, it won't trigger mouseOver
+    // So this is a work-around for the item to fade in when the user clicks
+    if (!breakpoint && tl.current?.progress() === 0) tl.current?.play();
+
     const show =
       info[0] !== id && !tl.current?.isActive() && tl.current?.progress() !== 0;
     info[1](show ? id : null);
