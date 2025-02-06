@@ -7,7 +7,7 @@ export default function Archive() {
       <Link href="/painting">
         <Image
           src="/paintings/straight-lines.jpg"
-          alt="Every Straight Line on a Sphere Is a Circle"
+          alt="A painting titled: Every Straight Line on a Sphere Is a Circle. The painting is abstract and has a washed out blue and orange background. It has abstract drawings in black marker across the canvas, and is adorned with reflective disk hard drive platters."
           width={810}
           height={1080}
         />
@@ -15,73 +15,55 @@ export default function Archive() {
       </Link>
       <Link href="/photography">
         <Image
-          src="/paintings/straight-lines.jpg"
-          alt="Every Straight Line on a Sphere Is a Circle"
-          width={810}
-          height={1080}
+          src="/photo/angel.jpg"
+          alt="A photograph titled: Angels Glow by Floating Clouds. The photo is of clouds at sunset. The warm peach red of the sunset is very vivid. There is a tree with birds in the bottom right corner."
+          width={1080}
+          height={810}
         />
         <h2>Photography</h2>
       </Link>
       <Link href="/generative">
         <Image
-          src="/paintings/straight-lines.jpg"
-          alt="Every Straight Line on a Sphere Is a Circle"
-          width={810}
-          height={1080}
+          src="/generative/love-hate-faith.png"
+          alt="An image titled: The Religious Texts of the Abrahamic Faiths Along the Continuum From Love to Hate From the Perspective of Faith. It is a cloud of multi-colored circles on a white background."
+          width={1200}
+          height={1056}
         />
         <h2>Generative</h2>
       </Link>
       <Link href="/performance">
         <Image
-          src="/paintings/straight-lines.jpg"
-          alt="Every Straight Line on a Sphere Is a Circle"
-          width={810}
-          height={1080}
+          src="/performance/white-feather.jpg"
+          alt="An image titled: The White Feather. It has a dark gray/brown background and the text The White Feather on the left. The text is glowing white, and it has a blurry trail up to the top of the image."
+          width={1080}
+          height={606}
         />
         <h2>Performance</h2>
       </Link>
       <Link href="/design">
         <Image
-          src="/paintings/straight-lines.jpg"
-          alt="Every Straight Line on a Sphere Is a Circle"
+          src="/design/glasses.jpg"
+          alt="An image titled: Glasses. It is a digital illustration that has 4 shapes. 2 at the top look like different styles of glasses from the top-down. 2 at the bottom look like a wine glass and a beer glass. In juxtaposition with each other, it is clear that the top 2 look like male pectoral muscles and female breasts, and the bottom 2 look like male and female genitalia."
           width={810}
           height={1080}
         />
         <h2>Design</h2>
       </Link>
-      <Link href="/poetry">
-        <Image
-          src="/paintings/straight-lines.jpg"
-          alt="Every Straight Line on a Sphere Is a Circle"
-          width={810}
-          height={1080}
-        />
-        <h2>Poetry</h2>
-      </Link>
       <Link href="/sculpture">
         <Image
-          src="/paintings/straight-lines.jpg"
-          alt="Every Straight Line on a Sphere Is a Circle"
-          width={810}
-          height={1080}
+          src="/sculpture/image/1.jpg"
+          alt="A sculpture titled: Image. The sculpture is a mirror with reflective disc hard drive platters affixed to it."
+          width={1080}
+          height={884}
         />
         <h2>Sculpture</h2>
       </Link>
-      <Link href="/instructional">
-        <Image
-          src="/paintings/straight-lines.jpg"
-          alt="Every Straight Line on a Sphere Is a Circle"
-          width={810}
-          height={1080}
-        />
-        <h2>Instructional</h2>
-      </Link>
       <Link href="/video">
         <Image
-          src="/paintings/straight-lines.jpg"
-          alt="Every Straight Line on a Sphere Is a Circle"
-          width={810}
-          height={1080}
+          src="/video/time-space/globe-light-glass.jpg"
+          alt="An image from a video titled: Time-Space Globe Light Glass. The image is of glowing, multi-colored waves warped across the stretch of the image."
+          width={1280}
+          height={720}
         />
         <h2>Video</h2>
       </Link>
