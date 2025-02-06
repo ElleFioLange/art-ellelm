@@ -20,29 +20,17 @@ const Links = () => {
         transform: "translateZ(15px)",
       }}
     >
-      <Link href="/featured" className="top-[20%] left-[36%]">
+      <Link href="/featured" className="top-[25%] left-[25%]">
         Featured
       </Link>
-      <Link href="/about" className="top-[20%] left-[64%]">
-        About
+      <Link href="/archive" className="top-[25%] left-[75%]">
+        Archive
       </Link>
-      <Link href="/contact" className="top-[39%] left-[80%]">
+      <Link href="/contact" className="top-[75%] left-[25%]">
         Contact
       </Link>
-      <Link href="/performance" className="top-[61%] left-[80%]">
-        Performance
-      </Link>
-      <Link href="/design" className="top-[80%] left-[64%]">
-        Design
-      </Link>
-      <Link href="/sculpture" className="top-[80%] left-[36%]">
-        Sculpture
-      </Link>
-      <Link href="/photography" className="top-[61%] left-[20%]">
-        Photography
-      </Link>
-      <Link href="/paintings" className="top-[39%] left-[20%]">
-        Paintings
+      <Link href="/about" className="top-[75%] left-[75%]">
+        About
       </Link>
     </div>
   );

@@ -31,13 +31,9 @@ export default function Nav() {
     >
       <Link href="/">Home</Link>
       <Link href="/featured">Featured</Link>
+      <Link href="/archive">Archive</Link>
       <Link href="/about">About</Link>
       <Link href="/contact">Contact</Link>
-      <Link href="/performance">Performance</Link>
-      <Link href="/design">Design</Link>
-      <Link href="/sculpture">Sculpture</Link>
-      <Link href="/photography">Photography</Link>
-      <Link href="/paintings">Paintings</Link>
       <Image
         className={`cursor-pointer pointer-events-auto w-16 h-16 transition-all duration-200 ease-in-out ${
           open[0] ? "rotate-12 scale-110 drop-shadow-md" : "rotate-0"

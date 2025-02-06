@@ -8,8 +8,8 @@
 
 @layer base {
   html {
-    --baby-powder: 251 249 244;
-    --raisin-black: 32 34 46;
+    --baby-powder: 251 249 244; /* #fbf9f4 */
+    --raisin-black: 32 34 46; /* #20222e */
     --hookers-green: 93 119 101;
     --tea-green: 202 227 200;
     --celadon: 100 180 105;
@@ -74,6 +74,22 @@
 }
 
 @layer components {
+  .hub-container {
+    @apply max-sm:flex max-sm:flex-col p-8 gap-8 w-full sm:grid max-xl:md:grid-cols-2 xl:grid-cols-4 auto-rows-min sm:items-center;
+
+    & > a {
+      @apply border-fg border-2 text-raisin-black bg-baby-powder flex flex-col justify-center items-center rounded-md;
+
+      & > img {
+        @apply p-2;
+      }
+
+      & > h2 {
+        @apply pb-2;
+      }
+    }
+  }
+
   .gallery-container {
     @apply relative cursor-pointer flex justify-center items-center w-full min-h-max max-sm:h-dvh;
 
