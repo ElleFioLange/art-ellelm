@@ -21,8 +21,8 @@ export default function Performance() {
       <div className="sm:w-[60vw] sm:h-[32vw]">
         <Image
           src="/performance/white-feather.jpg"
-          width={606}
-          height={1080}
+          width={1080}
+          height={606}
           alt="The White Feather"
         />
         <div>
