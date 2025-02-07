@@ -42,8 +42,6 @@ export default function Contact() {
       });
       const end = Date.now();
 
-      console.log(await response.json());
-
       // Make sure there's at least a 1.5 second delay so the animations feel natural
       if (end - start < 1000) {
         setTimeout(() => {
