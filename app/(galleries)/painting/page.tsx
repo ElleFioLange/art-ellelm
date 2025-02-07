@@ -140,6 +140,20 @@ export default function Paintings() {
         </div>
       </div>
 
+      <div className="sm:w-[48vw] sm:h-[24vw]">
+        <Image
+          src="/paintings/heart-sinew.jpg"
+          width={1080}
+          height={864}
+          alt="Heart & Sinew; Blood & Bone;"
+        />
+        <div>
+          <h1>Heart & Sinew; Blood & Bone;</h1>
+          <h2>2024</h2>
+          <h3>Acrylic on Canvas - 4' x 2'</h3>
+        </div>
+      </div>
+
       <div className="sm:w-[16vw] sm:h-[48vw]">
         <Image
           src="/paintings/learning-name/learning-name.jpg"
