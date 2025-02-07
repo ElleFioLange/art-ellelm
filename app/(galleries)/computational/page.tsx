@@ -58,7 +58,7 @@ export default function Computational() {
 
       <div className="sm:w-[64vw] sm:h-[36vw]">
         <Image
-          src="/computational/time-space/globe-light-glass.png"
+          src="/computational/time-space/globe-light-glass.jpg"
           width={1280}
           height={720}
           alt="Time-Space: Globe, Light, Glass"
