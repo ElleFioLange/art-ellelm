@@ -46,7 +46,7 @@ export default function Pictures({
         // because the array is static, so key is unnecessary (and I find it abhorrent
         // to add another DOM element just to add a key that is unnecessary)
         return cloneElement(picture, {
-          className: `object-contain w-full sm:h-full max-sm:max-h-full max-sm:px-4 ${
+          className: `object-contain min-w-full sm:h-full sm:py-4 max-sm:max-h-full max-sm:px-4 ${
             i === 0 && showScroll
               ? "sm:animate-indicate-scroll-y max-sm:animate-indicate-scroll-x"
               : ""
