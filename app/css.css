@@ -75,7 +75,7 @@
 
 @layer components {
   .hub-container {
-    @apply max-sm:flex max-sm:flex-col p-8 gap-8 w-full sm:grid max-xl:md:grid-cols-2 xl:grid-cols-4 auto-rows-min sm:items-center;
+    @apply max-sm:flex max-sm:flex-col p-8 gap-8 w-full sm:h-full sm:grid max-xl:md:grid-cols-2 xl:grid-cols-4 sm:items-center;
 
     & > a {
       @apply border-fg border-2 text-raisin-black bg-baby-powder flex flex-col justify-center items-center rounded-md no-underline hover:underline;
