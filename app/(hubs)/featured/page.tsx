@@ -6,7 +6,7 @@ export default function Featured() {
   return (
     <>
       <a href="/image">
-        <Image src="/test.jpeg" alt="" width={1280} height={1280} />
+        <Image src="/sculpture/image/1.jpg" alt="" width={1080} height={884} />
         <h2>Image</h2>
       </a>
     </>
