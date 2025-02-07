@@ -96,7 +96,7 @@ export default function Gallery({ children }: { children: ReactNode }) {
           .fromTo(
             image || "",
             {
-              opacity: 0.05,
+              opacity: 0.1,
             },
             {
               opacity: 1,

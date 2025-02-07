@@ -93,8 +93,9 @@
   .gallery-container {
     @apply relative cursor-pointer flex justify-center items-center w-full min-h-max max-sm:h-dvh;
 
-    & > img {
-      @apply opacity-5 max-h-dvh;
+    & > img,
+    video {
+      @apply opacity-10 max-h-dvh;
     }
 
     & > div {
