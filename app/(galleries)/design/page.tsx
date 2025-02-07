@@ -66,10 +66,10 @@ export default function Design() {
           src="/design/borbles/1.jpg"
           width={1080}
           height={1080}
-          alt="Borbles 1"
+          alt="Borbles II"
         />
         <div>
-          <h1>Borbles 1</h1>
+          <h1>Borbles I</h1>
           <h2>2023</h2>
           <h3>Digital</h3>
         </div>
@@ -80,10 +80,10 @@ export default function Design() {
           src="/design/borbles/2.jpg"
           width={1080}
           height={1080}
-          alt="Borbles 2"
+          alt="Borbles II"
         />
         <div>
-          <h1>Borbles 2</h1>
+          <h1>Borbles II</h1>
           <h2>2023</h2>
           <h3>Digital</h3>
         </div>
