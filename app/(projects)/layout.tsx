@@ -15,22 +15,19 @@ export default function ProjectLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const { viewport, breakpoint } = useViewport();
+  const { breakpoint } = useViewport();
 
-  // Convert scroll to horizontal
-  // Uses pictures classname to target breakpoint with tailwind
+  // Allows scrolling from anywhere on the page instead of just the narrow grid column
   useEffect(() => {
-    if (!viewport.w) return;
-    // useRef is preferred but passing ref to generic children is a headache with Typescript
+    if (breakpoint !== true) return;
+    // useRef is preferred but passing ref to generic children is not possible
     const pictures = document.getElementById("pictures");
 
     const shownScroll = localStorage.getItem("shown-scroll");
 
     const scrollHandler = (e: WheelEvent) => {
       if (e.deltaY && pictures) {
-        // Apply to horizontal scroll if past breakpoint
-        if (breakpoint && !isMobile) pictures.scrollLeft += e.deltaY + e.deltaX;
-        else pictures.scrollTop += e.deltaY;
+        pictures.scrollTop += e.deltaY;
 
         if (!shownScroll) localStorage.setItem("shown-scroll", "true");
       }
