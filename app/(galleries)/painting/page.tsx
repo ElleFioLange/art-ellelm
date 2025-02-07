@@ -55,7 +55,7 @@ export default function Paintings() {
 
       <div className="sm:w-[60vw] sm:h-[48vw]">
         <Image
-          src="/paintings/singularity-rapture.jpg"
+          src="/paintings/singularity-rapture/singularity-rapture.jpg"
           width={1080}
           height={864}
           alt="There Sure Are a Lot of Similarities Between the Singularity and Rapture"
