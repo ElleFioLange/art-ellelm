@@ -39,7 +39,7 @@ export default function Sculptures() {
 
       <div className="sm:w-[70vw] sm:h-[15vw]">
         <Image
-          src="/sculpture/image/2.png"
+          src="/sculpture/image/2-h.png"
           width={1080}
           height={229}
           alt="Image II"
