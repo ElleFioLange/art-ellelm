@@ -1,20 +1,9 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
+import { ReactNode, useEffect } from "react";
 import useViewport from "@/utils/useViewport";
-import { isMobile } from "react-device-detect";
 
-export type Keyframes = {
-  title?: string;
-  subtitle?: string;
-  paragraph?: string;
-}[];
-
-export default function ProjectLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function ProjectLayout({ children }: { children: ReactNode }) {
   const { breakpoint } = useViewport();
 
   // Allows scrolling from anywhere on the page instead of just the narrow grid column

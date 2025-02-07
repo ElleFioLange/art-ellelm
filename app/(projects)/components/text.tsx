@@ -1,10 +1,16 @@
-import { createRef, RefObject, useRef } from "react";
+import {
+  Children,
+  createRef,
+  ReactNode,
+  RefObject,
+  useMemo,
+  useRef,
+} from "react";
 import useViewport from "@/utils/useViewport";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import TextPlugin from "gsap/TextPlugin";
-import { Keyframes } from "../layout";
 import { Timeline } from "@/utils/types";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -12,10 +18,10 @@ gsap.registerPlugin(TextPlugin);
 gsap.registerPlugin(useGSAP);
 
 export default function Text({
-  keyframes,
+  children,
   picturesRef,
 }: {
-  keyframes: Keyframes;
+  children: ReactNode;
   picturesRef: RefObject<HTMLDivElement | null>;
 }) {
   // Tracked to recalculate GSAP if layout changes from vertical to horizontal
@@ -30,6 +36,56 @@ export default function Text({
     subtitle: subtitleRef,
     paragraph: paragraphRef,
   };
+
+  const keyframes = useMemo(() => {
+    const keyframes: {
+      title?: string;
+      subtitle?: string;
+      paragraph?: string;
+    }[] = [{}];
+    var imgIndex = 0;
+
+    // Iterates through children
+    // If child is h1, h2, or p, add the content to the current keyframe
+    // Else add a new keyframe
+    Children.forEach(children, (child) => {
+      if (
+        !child ||
+        typeof child !== "object" ||
+        Symbol.iterator in child ||
+        "then" in child
+      )
+        return;
+
+      // This ends up being undefined if the child is an image
+      // but it is only used if it is not an image
+      const { children: content } = child.props as { children: string };
+
+      switch (child.type) {
+        case "h1": {
+          keyframes[imgIndex].title = content;
+          break;
+        }
+        case "h2": {
+          keyframes[imgIndex].subtitle = content;
+          break;
+        }
+        case "p": {
+          keyframes[imgIndex].paragraph = content;
+          break;
+        }
+        default: {
+          keyframes.push({});
+          imgIndex += 1;
+        }
+      }
+    });
+
+    // There will be an extra object at the end, so pop it off
+    keyframes.pop();
+
+    return keyframes;
+  }, [children]);
 
   const timelines = useRef<RefObject<Timeline | null>[]>(
     Array(keyframes.length).fill(null)
@@ -101,21 +157,24 @@ export default function Text({
     { scope: picturesRef, dependencies: [viewport] }
   );
 
-  // Initial content to load in at 0 scroll
   const { title, subtitle, paragraph } = keyframes[0];
 
   return (
     <>
-      <section className="sm:py-8 max-sm:mx-4 overflow-auto max-h-full">
+      <section
+        // Added this to get rid of a react "key missing" error
+        // I have no idea why this is necessary?
+        // React is going to send me to the psych ward
+        key="text"
+        className="sm:py-8 max-sm:mx-4 overflow-auto max-h-full"
+      >
         <h1 ref={titleRef} className="leading-none">
           {title}
         </h1>
         <h2 ref={subtitleRef} className="leading-none">
           {subtitle}
         </h2>
-        {/* Spacer */}
         <div className="w-full h-2" />
-
         <p ref={paragraphRef}>{paragraph}</p>
       </section>
       <div className="sm:w-px sm:h-3/4 sm:max-h-[40rem] max-sm:w-3/4 max-sm:h-px bg-fg opacity-20 place-self-center" />
