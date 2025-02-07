@@ -191,7 +191,7 @@ export default function Paintings() {
         />
         <div>
           <h1>Unfolding is the Movement By Which Edges Dissolve</h1>
-          <h2>202 - 12" x 12"</h2>
+          <h2>2023 - 12" x 12"</h2>
           <h3>Mixed Media on Canvas</h3>
         </div>
       </div>
