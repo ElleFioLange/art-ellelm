@@ -1,33 +1,26 @@
-"use client";
-
 import Image from "next/image";
-import { Children, useRef } from "react";
-import Text from "../components/text";
-import Pictures from "../components/pictures";
+import Project from "../components/project";
 
 // Underscore so as not to overlap with next/image
 export default function Image_() {
-  // GSAP scope
-  const picturesRef = useRef<HTMLDivElement>(null);
-
   const content = [
     <h1>Image</h1>,
     <h2>Image I - 2021 - Hard Drive Platters & Mirror</h2>,
     <p>
-      This is the first piece I did in the Image series, which consists of hard
-      drive platters structured to create a mirror. The first two pieces use an
-      existing mirror as the base, but I am working on a new piece that does not
-      feature a pre-existing mirror. The series is titled Image in order to
-      connect the separate but deeply linked concepts of "image" in both a
-      visual-related and data-related sense. The raw data (i.e. ones and zeros)
-      encoded in a hard drive is referred to as the hard drive's "image." To
-      instantiate a hard drive with a specific set of data is called "imaging
-      it." We all as human beings have images that correspond to us, in
-      pictures, in the minds of those who interact with us, in our reflections,
-      and relatively recently in the encoded data that relates to us. These
-      pieces are about prompting the viewer to consider this new form of image
-      our species has created, and to communicate more viscerally the sense of
-      self that is latent in these data structures.
+      This is the first piece I did in the Image series, the pieces of which
+      consist of hard drive platters structured to create a mirror. The first
+      two pieces use an existing mirror as the base, but I am working on a new
+      piece that does not feature a pre-existing mirror. The series is titled
+      Image in order to connect the separate but deeply linked concepts of
+      "image" in both a visual-related and data-related sense. The raw data
+      (i.e. ones and zeros) encoded in a hard drive is referred to as the hard
+      drive's "image." To instantiate a hard drive with a specific set of data
+      is called "imaging it." We all as human beings have images that correspond
+      to us, in pictures, in the minds of those who interact with us, in our
+      reflections, and relatively recently in the encoded data that relates to
+      us. These pieces are about prompting the viewer to consider this new form
+      of image our species has created, and to communicate more viscerally the
+      sense of self that is latent in these data structures.
     </p>,
     <Image
       src="/sculpture/image/1.jpg"
@@ -55,11 +48,5 @@ export default function Image_() {
     />,
   ];
 
-  // Using Children.map prevents key errors
-  return (
-    <>
-      <Text picturesRef={picturesRef}>{Children.map(content, (c) => c)}</Text>
-      <Pictures ref={picturesRef}>{Children.map(content, (c) => c)}</Pictures>
-    </>
-  );
+  return <Project content={content} />;
 }
