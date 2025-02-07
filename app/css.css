@@ -98,7 +98,11 @@
     }
 
     & > div {
-      @apply flex flex-col gap-2 p-4 overflow-auto absolute w-full h-full bg-bg/90 transition-opacity duration-700;
+      @apply flex flex-col p-4 overflow-auto absolute w-full h-full bg-bg/90 transition-opacity duration-700;
+
+      & > p {
+        @apply mt-2;
+      }
     }
   }
 }
