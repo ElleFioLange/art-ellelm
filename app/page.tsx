@@ -58,7 +58,7 @@ const Platter = () => {
           />
           {/* Adds depth to outer edge */}
           <Image
-            src="/platter.png"
+            src="/assets/platter.png"
             className="absolute brightness-50 transform-3d"
             alt="Hard Drive Platter"
             width={2400}
@@ -69,7 +69,7 @@ const Platter = () => {
           />
           {/* Adds depth to inner edge */}
           <Image
-            src="/platter.png"
+            src="/assets/platter.png"
             className="absolute brightness-50 transform-3d"
             alt="Hard Drive Platter"
             width={2400}
@@ -83,7 +83,7 @@ const Platter = () => {
       {/* Main platter image */}
       <Image
         priority
-        src="/platter.png"
+        src="/assets/platter.png"
         className="transform-3d drop-shadow-lg"
         alt="Hard Drive Platter"
         width={2400}

@@ -6,7 +6,7 @@ export default function Archive() {
     <>
       <Link href="/painting">
         <Image
-          src="/paintings/straight-lines.jpg"
+          src="/painting/straight-lines.jpg"
           alt="A painting titled: Every Straight Line on a Sphere Is a Circle. The painting is abstract and has a washed out blue and orange background. It has abstract drawings in black marker across the canvas, and is adorned with reflective disk hard drive platters."
           width={810}
           height={1080}

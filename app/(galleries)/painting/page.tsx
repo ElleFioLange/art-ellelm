@@ -7,7 +7,7 @@ export default function Paintings() {
     <Gallery>
       <div className="sm:w-[36vw] sm:h-[48vw]">
         <Image
-          src="/paintings/straight-lines.jpg"
+          src="/painting/straight-lines.jpg"
           width={1080}
           height={864}
           alt="Every Straight Line on a Sphere Is a Circle"
@@ -21,7 +21,7 @@ export default function Paintings() {
 
       <div className="sm:w-[60vw] sm:h-[48vw]">
         <Image
-          src="/paintings/continously-pregnant.jpg"
+          src="/painting/continously-pregnant.jpg"
           width={1080}
           height={864}
           alt="I Want To Be Continuously Pregnant With Your Words"
@@ -41,7 +41,7 @@ export default function Paintings() {
 
       <div className="sm:w-[30vw] sm:h-[48vw]">
         <Image
-          src="/paintings/thoughts-action-matte.jpg"
+          src="/painting/thoughts-action-matte.jpg"
           width={675}
           height={1080}
           alt="Thoughts and Action Conserved in Matte Black"
@@ -55,7 +55,7 @@ export default function Paintings() {
 
       <div className="sm:w-[60vw] sm:h-[48vw]">
         <Image
-          src="/paintings/singularity-rapture/singularity-rapture.jpg"
+          src="/multiple/singularity-rapture/singularity-rapture.jpg"
           width={1080}
           height={864}
           alt="There Sure Are a Lot of Similarities Between the Singularity and Rapture"
@@ -72,7 +72,7 @@ export default function Paintings() {
 
       <div className="sm:w-[48vw] sm:h-[30vw]">
         <Image
-          src="/paintings/watch-rainbow.jpg"
+          src="/painting/watch-rainbow.jpg"
           width={1080}
           height={675}
           alt="Who Will Watch the Rainbows of the Light the Flames Provide?"
@@ -86,7 +86,7 @@ export default function Paintings() {
 
       <div className="sm:w-[16vw] sm:h-[20vw]">
         <Image
-          src="/paintings/worm.jpg"
+          src="/painting/worm.jpg"
           width={864}
           height={1080}
           alt="Worm Finding His Way in Winter"
@@ -100,7 +100,7 @@ export default function Paintings() {
 
       <div className="sm:w-[60vw] sm:h-[48vw]">
         <Image
-          src="/paintings/ghillie-suit.jpg"
+          src="/painting/ghillie-suit.jpg"
           width={1080}
           height={864}
           alt="What a Ghillie Suit Means Will Be Our End"
@@ -114,7 +114,7 @@ export default function Paintings() {
 
       <div className="sm:w-[60vw] sm:h-[48vw]">
         <Image
-          src="/paintings/forest-broad.jpg"
+          src="/painting/forest-broad.jpg"
           width={1080}
           height={864}
           alt="Kissing the Forest with Broad Lips"
@@ -128,7 +128,7 @@ export default function Paintings() {
 
       <div className="sm:w-[60vw] sm:h-[48vw]">
         <Image
-          src="/paintings/birth-sun-leaves.jpg"
+          src="/painting/birth-sun-leaves.jpg"
           width={1080}
           height={864}
           alt="Birth by Means of Sun Shone Through Leaves"
@@ -142,7 +142,7 @@ export default function Paintings() {
 
       <div className="sm:w-[48vw] sm:h-[24vw]">
         <Image
-          src="/paintings/heart-sinew.jpg"
+          src="/painting/heart-sinew.jpg"
           width={1080}
           height={864}
           alt="Heart & Sinew; Blood & Bone;"
@@ -156,7 +156,7 @@ export default function Paintings() {
 
       <div className="sm:w-[16vw] sm:h-[48vw]">
         <Image
-          src="/paintings/learning-name/learning-name.jpg"
+          src="/painting/learning-name/learning-name.jpg"
           width={360}
           height={1080}
           alt="Paper Is the Medium Through Which We Learn Our Names"
@@ -170,7 +170,7 @@ export default function Paintings() {
 
       <div className="sm:w-[28vw] sm:h-[36vw]">
         <Image
-          src="/paintings/oil-petal.jpg"
+          src="/painting/oil-petal.jpg"
           width={840}
           height={1080}
           alt="From Earth Bursts Forth Both Oil and Petal"
@@ -184,7 +184,7 @@ export default function Paintings() {
 
       <div className="sm:w-[36vw] sm:h-[36vw]">
         <Image
-          src="/paintings/unfolding/unfolding.jpg"
+          src="/painting/unfolding/unfolding.jpg"
           width={1080}
           height={1080}
           alt="Unfolding is the Movement By Which Edges Dissolve"
@@ -198,7 +198,7 @@ export default function Paintings() {
 
       <div className="sm:w-[35vw] sm:h-[45vw]">
         <Image
-          src="/paintings/grief.png"
+          src="/painting/grief.png"
           width={840}
           height={1080}
           alt="The Loss of a Loved One Is About Those Remaining"
@@ -211,12 +211,7 @@ export default function Paintings() {
       </div>
 
       <div className="sm:w-[48vw] sm:h-[48vw]">
-        <Image
-          src="/paintings/boat.jpg"
-          width={1080}
-          height={1080}
-          alt="Boat"
-        />
+        <Image src="/painting/boat.jpg" width={1080} height={1080} alt="Boat" />
         <div>
           <h1>BOAT</h1>
           <h2>2023</h2>
@@ -226,7 +221,7 @@ export default function Paintings() {
 
       <div className="sm:w-[45vw] sm:h-[35vw]">
         <Image
-          src="/paintings/sun-atom-bomb.jpg"
+          src="/painting/sun-atom-bomb.jpg"
           width={1080}
           height={802}
           alt="Sun as Atom Bomb Bursting Free Our Desires"
@@ -240,7 +235,7 @@ export default function Paintings() {
 
       <div className="sm:w-[48vw] sm:h-[24vw]">
         <Image
-          src="/paintings/flowers-flood.jpg"
+          src="/painting/flowers-flood.jpg"
           width={1080}
           height={536}
           alt="Flowers Lost in Flood Will Reincarnate as Waves"

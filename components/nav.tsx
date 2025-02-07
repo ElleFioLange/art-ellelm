@@ -38,7 +38,7 @@ export default function Nav() {
         className={`cursor-pointer pointer-events-auto w-16 h-16 transition-all duration-200 ease-in-out ${
           open[0] ? "rotate-12 scale-110 drop-shadow-md" : "rotate-0"
         }`}
-        src="/platter.png"
+        src="/assets/platter.png"
         width={1000}
         height={1000}
         alt="Hard drive platter"

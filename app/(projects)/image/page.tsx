@@ -59,7 +59,7 @@ export default function Image_() {
         />
         <Image
           id="image-1"
-          src="/platter.png"
+          src="/assets/platter.png"
           alt="test"
           width={1000}
           height={1000}
@@ -67,7 +67,7 @@ export default function Image_() {
         />
         <Image
           id="image-2"
-          src="/platter.png"
+          src="/assets/platter.png"
           alt="test"
           width={1000}
           height={1000}
@@ -75,7 +75,7 @@ export default function Image_() {
         />
         <Image
           id="image-3"
-          src="/platter.png"
+          src="/assets/platter.png"
           alt="test"
           width={1000}
           height={1000}
@@ -83,7 +83,7 @@ export default function Image_() {
         />
         <Image
           id="image-4"
-          src="/platter.png"
+          src="/assets/platter.png"
           alt="test"
           width={1000}
           height={1000}
@@ -91,7 +91,7 @@ export default function Image_() {
         />
         <Image
           id="image-5"
-          src="/platter.png"
+          src="/assets/platter.png"
           alt="test"
           width={1000}
           height={1000}
@@ -99,7 +99,7 @@ export default function Image_() {
         />
         <Image
           id="image-6"
-          src="/platter.png"
+          src="/assets/platter.png"
           alt="test"
           width={1000}
           height={1000}

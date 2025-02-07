@@ -9,7 +9,7 @@ export default function Featured() {
         <Image src="/test.jpeg" alt="" width={1280} height={1280} />
         <h2>Image</h2>
       </a>
-      <a href="/projects/paintings">
+      <a href="/projects/painting">
         <Image src="/painting.jpeg" alt="" width={768} height={1024} />
         <h2>Paintings</h2>
       </a>
