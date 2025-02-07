@@ -158,7 +158,7 @@ export default function Gallery({ children }: { children: ReactNode }) {
         id: `container-${i}`,
       });
     });
-  }, [breakpoint, info]);
+  }, [children, breakpoint, info]);
 
   return (
     <main
