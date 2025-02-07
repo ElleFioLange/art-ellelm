@@ -12,6 +12,7 @@ import {
   ReactElement,
   ReactNode,
   RefObject,
+  useCallback,
   useMemo,
   useRef,
   useState,
@@ -117,19 +118,21 @@ export default function Gallery({ children }: { children: ReactNode }) {
     if (info[0] === id) info[1](null);
   });
 
-  const onClick = (id: number) => {
-    const tl = timelines.current[id];
+  const onClick = useCallback(
+    (id: number) => {
+      const tl = timelines.current[id];
 
-    // If the mouse is over an item when the page loads, it won't trigger mouseOver
-    // So this is a work-around for the item to fade in when the user clicks
-    if (!breakpoint && tl.current?.progress() === 0) tl.current?.play();
+      // If the mouse is over an item when the page loads, it won't trigger mouseOver
+      // So this is a work-around for the item to fade in when the user clicks
+      if (!breakpoint && tl.current?.progress() === 0) tl.current?.play();
 
-    const show =
-      info[0] !== id && !tl.current?.isActive() && tl.current?.progress() !== 0;
-    info[1](show ? id : null);
-  };
+      const show = info[0] !== id && tl.current?.progress() !== 0;
+      info[1](show ? id : null);
+    },
+    [breakpoint, info]
+  );
 
-  const renderChildren = () => {
+  const renderChildren = useCallback(() => {
     return Children.map(children, (_child, i) => {
       const child = _child as ReactElement<{
         onMouseOver: () => void;
@@ -155,15 +158,14 @@ export default function Gallery({ children }: { children: ReactNode }) {
         id: `container-${i}`,
       });
     });
-  };
+  }, [breakpoint, info]);
 
   return (
     <main
-      className="w-full overflow-y-auto overflow-x-hidden h-dvh sm:p-16 max-sm:px-8"
+      className="w-full overflow-y-auto overflow-x-hidden h-dvh sm:p-8 max-sm:px-8"
       ref={mainRef}
-      onScroll={() => info[1](null)}
     >
-      <section className="flex justify-center items-center flex-shrink-0 mx-auto lg:gap-8 gap-4 sm:flex-wrap sm:max-w-screen-xl max-sm:flex-col max-sm:w-full">
+      <section className="flex items-center flex-shrink-0 mx-auto lg:gap-8 gap-4 sm:flex-wrap sm:max-w-screen-xxl max-sm:flex-col max-sm:w-full">
         {renderChildren()}
       </section>
     </main>
