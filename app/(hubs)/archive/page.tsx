@@ -15,7 +15,7 @@ export default function Archive() {
       </Link>
       <Link href="/photography">
         <Image
-          src="/photo/angel.jpg"
+          src="/photo/angels-glow-clouds.jpg"
           alt="A photograph titled: Angels Glow by Floating Clouds. The photo is of clouds at sunset. The warm peach red of the sunset is very vivid. There is a tree with birds in the bottom right corner."
           width={1080}
           height={810}
