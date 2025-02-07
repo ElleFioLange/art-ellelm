@@ -91,7 +91,7 @@
   }
 
   .gallery-container {
-    @apply relative cursor-pointer flex justify-center items-center w-full min-h-max max-sm:h-dvh sm:border-fg sm:border-2;
+    @apply relative cursor-pointer flex justify-center items-center w-full min-h-max max-sm:h-dvh;
 
     & > img {
       @apply opacity-5 max-h-dvh;
