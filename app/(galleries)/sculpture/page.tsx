@@ -21,7 +21,23 @@ export default function Sculptures() {
         </div>
       </div>
 
-      <div className="sm:w-[40vw] sm:h-[9vw]">
+      <div className="sm:w-[40vw] sm:h-[40vw]">
+        <video
+          src="/multiple/receipt.mp4"
+          width={720}
+          height={720}
+          muted
+          autoPlay
+          loop
+        />
+        <div>
+          <h1>Receipts as Raindrops</h1>
+          <h2>2024</h2>
+          <h3>Interactive Sculpture</h3>
+        </div>
+      </div>
+
+      <div className="sm:w-[70vw] sm:h-[15vw]">
         <Image
           src="/sculpture/image/2.png"
           width={1080}
