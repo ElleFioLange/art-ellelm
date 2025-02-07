@@ -195,7 +195,10 @@ export default function Text({
           {subtitle}
         </h2>
         <div className="w-full h-2" />
-        <p ref={paragraphRef}>{paragraph}</p>
+        <p
+          dangerouslySetInnerHTML={{ __html: paragraph! }}
+          ref={paragraphRef}
+        ></p>
       </section>
       <div className="sm:w-px sm:h-3/4 sm:max-h-[40rem] max-sm:w-3/4 max-sm:h-px bg-fg opacity-20 place-self-center" />
     </>
