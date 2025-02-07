@@ -80,7 +80,8 @@
     & > a {
       @apply border-fg border-2 text-raisin-black bg-baby-powder flex flex-col justify-center items-center rounded-md no-underline hover:underline;
 
-      & > img {
+      & > img,
+      video {
         @apply p-2;
       }
 
