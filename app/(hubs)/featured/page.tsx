@@ -5,22 +5,9 @@ import Image from "next/image";
 export default function Featured() {
   return (
     <>
-      <a href="/projects/image">
+      <a href="/image">
         <Image src="/test.jpeg" alt="" width={1280} height={1280} />
         <h2>Image</h2>
-      </a>
-      <a href="/projects/painting">
-        <Image src="/painting.jpeg" alt="" width={768} height={1024} />
-        <h2>Paintings</h2>
-      </a>
-      <a href="/projects/cloudwatching">
-        <Image
-          src="/love-hate-faith-transparent.png"
-          alt=""
-          width={1000}
-          height={880}
-        />
-        <h2>Cloudwatching</h2>
       </a>
     </>
   );
