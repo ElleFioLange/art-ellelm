@@ -5,27 +5,6 @@ import { useRef } from "react";
 import Text from "../components/text";
 import Pictures from "../components/pictures";
 
-// There is probably a smoother way of doing this where I can add
-// header and paragraph elements and they're automatically parsed
-// as keyframes based on where they are in relation to the images
-// (e.g.)
-// Image Title Subtitle Paragraph
-// Image
-// Image Paragraph
-// Image Subtitle
-// Image
-// Image
-// Image Title
-// Automatically parse the later text elements as keyframes and remove
-// the elements from the DOM and store their data in an object akin
-// to the keyframes object below
-
-// Oooh could squish everything into layout if the above system is used too ^
-// This is a lot of work for not much benefit though
-
-// I am insane and decided to implement the above system ^
-// (sadly can't get it to work with layout, but nevertheless it's more aesthetically pleasing)
-
 // Underscore so as not to overlap with next/image
 export default function Image_() {
   // GSAP scope
