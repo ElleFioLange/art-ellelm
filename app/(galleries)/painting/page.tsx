@@ -14,8 +14,8 @@ export default function Paintings() {
         />
         <div>
           <h1>Every Straight Line on a Sphere Is a Circle</h1>
-          <h2>2025 - 3' x 4'</h2>
-          <h3>Acrylic on Canvas</h3>
+          <h2>2025</h2>
+          <h3>Acrylic on Canvas - 3' x 4'</h3>
         </div>
       </div>
 
@@ -28,8 +28,8 @@ export default function Paintings() {
         />
         <div>
           <h1>I Want To Be Continuously Pregnant With Your Words</h1>
-          <h2>2024 - 5' x 4'</h2>
-          <h3>Acrylic on Canvas</h3>
+          <h2>2024</h2>
+          <h3>Acrylic on Canvas - 5' x 4'</h3>
           <p>
             The title of this painting is a reference to the{" "}
             <Link href="https://youtu.be/H-vGzW2-0IU?si=ln7qeYxMkMGJHxfo">
@@ -48,8 +48,8 @@ export default function Paintings() {
         />
         <div>
           <h1>Thoughts and Action Conserved in Matte Black</h1>
-          <h2>2024 - 30" x 48"</h2>
-          <h3>Acrylic on Canvas</h3>
+          <h2>2024</h2>
+          <h3>Acrylic on Canvas - 30" x 48"</h3>
         </div>
       </div>
 
@@ -65,8 +65,8 @@ export default function Paintings() {
             There Sure Are a Lot of Similarities Between the Singularity and
             Rapture
           </h1>
-          <h2>2024 - 5' x 4'</h2>
-          <h3>Acrylic on Canvas</h3>
+          <h2>2024</h2>
+          <h3>Acrylic on Canvas - 5' x 4'</h3>
         </div>
       </div>
 
@@ -79,8 +79,8 @@ export default function Paintings() {
         />
         <div>
           <h1>Who Will Watch the Rainbows of the Light the Flames Provide?</h1>
-          <h2>2024 - 48" x 30"</h2>
-          <h3>Acrylic on Canvas</h3>
+          <h2>2024</h2>
+          <h3>Acrylic on Canvas - 48" x 30"</h3>
         </div>
       </div>
 
@@ -93,8 +93,8 @@ export default function Paintings() {
         />
         <div>
           <h1>Worm Finding His Way in Winter</h1>
-          <h2>2024 - 8" x 10"</h2>
-          <h3>Acrylic on Canvas</h3>
+          <h2>2024</h2>
+          <h3>Acrylic on Canvas - 8" x 10"</h3>
         </div>
       </div>
 
@@ -107,8 +107,8 @@ export default function Paintings() {
         />
         <div>
           <h1>What a Ghillie Suit Means Will Be Our End</h1>
-          <h2>2024 - 5' x 4'</h2>
-          <h3>Acrylic on Canvas</h3>
+          <h2>2024</h2>
+          <h3>Acrylic on Canvas - 5' x 4'</h3>
         </div>
       </div>
 
@@ -121,8 +121,8 @@ export default function Paintings() {
         />
         <div>
           <h1>Kissing the Forest with Broad Lips</h1>
-          <h2>2024 - 5' x 4'</h2>
-          <h3>Acrylic on Canvas</h3>
+          <h2>2024</h2>
+          <h3>Acrylic on Canvas - 5' x 4'</h3>
         </div>
       </div>
 
@@ -135,8 +135,8 @@ export default function Paintings() {
         />
         <div>
           <h1>Birth by Means of Sun Shone Through Leaves</h1>
-          <h2>2024 - 5' x 4'</h2>
-          <h3>Acrylic on Canvas</h3>
+          <h2>2024</h2>
+          <h3>Acrylic on Canvas - 5' x 4'</h3>
         </div>
       </div>
 
@@ -149,8 +149,8 @@ export default function Paintings() {
         />
         <div>
           <h1>Paper is the Medium By Which We Learn Our Names</h1>
-          <h2>2024 - 12" x 36"</h2>
-          <h3>Acrylic on Canvas</h3>
+          <h2>2024</h2>
+          <h3>Acrylic on Canvas - 12" x 36"</h3>
         </div>
       </div>
 
@@ -163,8 +163,8 @@ export default function Paintings() {
         />
         <div>
           <h1>BOAT</h1>
-          <h2>2023 - 4' x 4'</h2>
-          <h3>Acrylic & Pastel on Canvas</h3>
+          <h2>2023</h2>
+          <h3>Acrylic & Pastel on Canvas - 4' x 4'</h3>
         </div>
       </div>
 
@@ -177,8 +177,8 @@ export default function Paintings() {
         />
         <div>
           <h1>From Earth Bursts Forth Both Oil and Petal</h1>
-          <h2>2023 - 14" x 18"</h2>
-          <h3>Mixed Media on Canvas</h3>
+          <h2>2023</h2>
+          <h3>Mixed Media on Canvas - 14" x 18"</h3>
         </div>
       </div>
 
@@ -191,8 +191,8 @@ export default function Paintings() {
         />
         <div>
           <h1>Unfolding is the Movement By Which Edges Dissolve</h1>
-          <h2>2023 - 12" x 12"</h2>
-          <h3>Mixed Media on Canvas</h3>
+          <h2>2023</h2>
+          <h3>Mixed Media on Canvas - 12" x 12"</h3>
         </div>
       </div>
 
@@ -205,8 +205,8 @@ export default function Paintings() {
         />
         <div>
           <h1>The Loss of a Loved One Is About Those Remaining</h1>
-          <h2>2023 - 14" x 18"</h2>
-          <h3>Acrylic & Pastel on Canvas</h3>
+          <h2>2023</h2>
+          <h3>Acrylic & Pastel on Canvas - 14" x 18"</h3>
         </div>
       </div>
 
@@ -215,12 +215,12 @@ export default function Paintings() {
           src="/paintings/sun-atom-bomb.jpg"
           width={1080}
           height={802}
-          alt="Sun as Atom Bomb Hurtling Towards Our Desires"
+          alt="Sun as Atom Bomb Bursting Free Our Desires"
         />
         <div>
-          <h1>Sun as Atom Bomb Hurtling Towards Our Desires</h1>
-          <h2>2021 - 14" x 18"</h2>
-          <h3>Acrylic on Canvas</h3>
+          <h1>Sun as Atom Bomb Bursting Free Our Desires</h1>
+          <h2>2021</h2>
+          <h3>Acrylic on Canvas - 14" x 18"</h3>
         </div>
       </div>
 
@@ -233,8 +233,8 @@ export default function Paintings() {
         />
         <div>
           <h1>Flowers Lost in Flood Will Reincarnate as Waves</h1>
-          <h2>2021 - 12" x 24"</h2>
-          <h3>Acrylic on Canvas</h3>
+          <h2>2021</h2>
+          <h3>Acrylic on Canvas - 12" x 24"</h3>
         </div>
       </div>
     </Gallery>
