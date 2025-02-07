@@ -168,20 +168,6 @@ export default function Paintings() {
         </div>
       </div>
 
-      <div className="sm:w-[48vw] sm:h-[48vw]">
-        <Image
-          src="/paintings/boat.jpg"
-          width={1080}
-          height={1080}
-          alt="Boat"
-        />
-        <div>
-          <h1>BOAT</h1>
-          <h2>2023</h2>
-          <h3>Acrylic & Pastel on Canvas - 4' x 4'</h3>
-        </div>
-      </div>
-
       <div className="sm:w-[28vw] sm:h-[36vw]">
         <Image
           src="/paintings/oil-petal.jpg"
@@ -191,7 +177,7 @@ export default function Paintings() {
         />
         <div>
           <h1>From Earth Bursts Forth Both Oil and Petal</h1>
-          <h2>2023</h2>
+          <h2>2024</h2>
           <h3>Mixed Media on Canvas - 14" x 18"</h3>
         </div>
       </div>
@@ -205,7 +191,7 @@ export default function Paintings() {
         />
         <div>
           <h1>Unfolding is the Movement By Which Edges Dissolve</h1>
-          <h2>2023</h2>
+          <h2>2024</h2>
           <h3>Mixed Media on Canvas - 12" x 12"</h3>
         </div>
       </div>
@@ -219,8 +205,22 @@ export default function Paintings() {
         />
         <div>
           <h1>The Loss of a Loved One Is About Those Remaining</h1>
-          <h2>2023</h2>
+          <h2>2024</h2>
           <h3>Acrylic & Pastel on Canvas - 14" x 18"</h3>
+        </div>
+      </div>
+
+      <div className="sm:w-[48vw] sm:h-[48vw]">
+        <Image
+          src="/paintings/boat.jpg"
+          width={1080}
+          height={1080}
+          alt="Boat"
+        />
+        <div>
+          <h1>BOAT</h1>
+          <h2>2023</h2>
+          <h3>Acrylic & Pastel on Canvas - 4' x 4'</h3>
         </div>
       </div>
 
