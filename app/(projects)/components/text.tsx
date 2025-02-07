@@ -59,19 +59,39 @@ export default function Text({
 
       // This ends up being undefined if the child is an image
       // but it is only used if it is not an image
-      const { children: content } = child.props as { children: string };
+      const { children: content } = child.props as {
+        children:
+          | string
+          // <p> supports <a> and <br> tags
+          | (
+              | string
+              | { type: "a"; props: { href: string; children: string } }
+              | { type: "br" }
+            )[];
+      };
 
       switch (child.type) {
         case "h1": {
-          keyframes[imgIndex].title = content;
+          keyframes[imgIndex].title = content as string;
           break;
         }
         case "h2": {
-          keyframes[imgIndex].subtitle = content;
+          keyframes[imgIndex].subtitle = content as string;
           break;
         }
         case "p": {
-          keyframes[imgIndex].paragraph = content;
+          if (Array.isArray(content)) {
+            // Parses the different possible children and converts each to a string form
+            // then array reduces into one string
+            keyframes[imgIndex].paragraph = content
+              .map((item) => {
+                if (typeof item === "string") return item;
+                else if (item.type === "a")
+                  return `<a href=${item.props.href}>${item.props.children}</a>`;
+                else return "<br/>";
+              })
+              .reduce((a, b) => a + b);
+          } else keyframes[imgIndex].paragraph = content;
           break;
         }
         default: {
