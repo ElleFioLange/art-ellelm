@@ -58,15 +58,6 @@ export default function Archive() {
         />
         <h2>Sculpture</h2>
       </Link>
-      <Link href="/video">
-        <Image
-          src="/video/time-space/globe-light-glass.jpg"
-          alt="An image from a video titled: Time-Space Globe Light Glass. The image is of glowing, multi-colored waves warped across the stretch of the image."
-          width={1280}
-          height={720}
-        />
-        <h2>Video</h2>
-      </Link>
     </>
   );
 }
