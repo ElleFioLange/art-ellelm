@@ -22,14 +22,14 @@ export default function Archive() {
         />
         <h2>Photography</h2>
       </Link>
-      <Link href="/generative">
+      <Link href="/computational">
         <Image
-          src="/generative/love-hate-faith.png"
+          src="/computational/love-hate-faith.png"
           alt="An image titled: The Religious Texts of the Abrahamic Faiths Along the Continuum From Love to Hate From the Perspective of Faith. It is a cloud of multi-colored circles on a white background."
           width={1200}
           height={1056}
         />
-        <h2>Generative</h2>
+        <h2>Computational</h2>
       </Link>
       <Link href="/performance">
         <Image
