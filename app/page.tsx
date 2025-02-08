@@ -261,6 +261,11 @@ const GyroPermission = ({
 export default function Home() {
   const engine = useState<"mouse" | "gyro" | null>("mouse");
 
+  // useEffect(() => {
+  //   localStorage.setItem("shown-scroll-h", "");
+  //   localStorage.setItem("shown-scroll-v", "");
+  // });
+
   const gyroCallback = (access: PermissionState) => {
     if (access === "granted") engine[1]("gyro");
     else if (access === "denied") engine[1](null);

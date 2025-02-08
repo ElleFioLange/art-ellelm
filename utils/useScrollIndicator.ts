@@ -2,55 +2,56 @@ import { useEffect, useState } from "react";
 import useViewport from "./useViewport";
 
 export default function useScrollIndicator() {
-  const showScroll = useState(true);
+  const showScroll = useState({
+    v: true,
+    h: true,
+  });
+
   const { breakpoint } = useViewport();
+  const dir = breakpoint ? "h" : "v";
 
   useEffect(() => {
-    const shown = localStorage.getItem(
-      `shown-scroll-${breakpoint ? "horizontal" : "vertical"}`
-    );
+    if (breakpoint === undefined) return;
 
-    if (shown || !showScroll[0]) {
-      showScroll[1](false);
+    const previouslyShown = localStorage.getItem(`shown-scroll-${dir}`);
+    if (previouslyShown) {
+      showScroll[1]({ ...showScroll[0], [dir]: false });
       return;
     }
 
-    const pictures = document.getElementById("pictures");
-    if (!pictures) return;
+    var handler = () => {};
 
-    const scrollHandler = () => {
-      showScroll[1](false);
-      localStorage.setItem(
-        `shown-scroll-${breakpoint ? "horizontal" : "vertical"}`,
-        "true"
-      );
+    const _handler = (prevTop: number, prevLeft: number) => {
+      const pictures = document.getElementById("pictures");
+
+      if (!pictures) return;
+
+      if (
+        (breakpoint && pictures.scrollLeft !== prevLeft) ||
+        (!breakpoint && pictures.scrollTop !== prevTop)
+      ) {
+        showScroll[1]({ ...showScroll[0], [dir]: false });
+        localStorage.setItem(`shown-scroll-${dir}`, "true");
+        window.removeEventListener("wheel", handler);
+        window.removeEventListener("touchmove", handler);
+      }
     };
 
-    if (breakpoint) {
-      const _swipeHandler = (prevTop: number, prevLeft: number) => {
-        const pictures = document.getElementById("pictures");
+    const pictures = document.getElementById("pictures");
+    if (!pictures) return;
+    const prevTop = pictures.scrollTop;
+    const prevLeft = pictures.scrollLeft;
 
-        if (!pictures) return;
+    handler = () => _handler(prevTop, prevLeft);
 
-        if (pictures.scrollTop !== prevTop || pictures.scrollLeft !== prevLeft)
-          scrollHandler();
-      };
+    window.addEventListener("wheel", handler);
+    window.addEventListener("touchmove", handler);
 
-      const prevTop = pictures.scrollTop;
-      const prevLeft = pictures.scrollLeft;
+    return () => {
+      window.removeEventListener("wheel", handler);
+      window.removeEventListener("touchmove", handler);
+    };
+  }, [breakpoint]);
 
-      // Using a factory here to check against previous value
-      const swipeHandler = () => _swipeHandler(prevTop, prevLeft);
-
-      window.addEventListener("touchmove", swipeHandler);
-
-      return () => window.removeEventListener("touchmove", swipeHandler);
-    } else {
-      window.addEventListener("wheel", scrollHandler);
-
-      return () => window.removeEventListener("resize", scrollHandler);
-    }
-  }, [showScroll[0], breakpoint]);
-
-  return showScroll[0];
+  return showScroll[0][dir];
 }
