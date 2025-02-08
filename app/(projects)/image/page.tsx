@@ -6,7 +6,7 @@ export default function Image_() {
   return (
     <Project>
       <h1>Image</h1>
-      <h2>Image I - 2021 - Hard Drive Platters & Mirror</h2>
+      <h2>Image I - 2021 - Hard Drive Platters and Mirror</h2>
       <p>
         This is the first piece I did in the Image series, the pieces of which
         consist of hard drive platters structured to create a mirror. The first
