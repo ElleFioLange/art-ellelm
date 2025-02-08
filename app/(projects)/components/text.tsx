@@ -83,7 +83,7 @@ export default function Text({
             start: horizontal ? "left right" : "top bottom",
             horizontal,
             end: "center center",
-            scrub: 0.25,
+            scrub: 0,
           },
         });
 
