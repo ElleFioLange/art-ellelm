@@ -92,7 +92,7 @@ export default function Paintings() {
           alt="Worm Finding His Way in Winter"
         />
         <div>
-          <h1>Worm Finding His Way in Winter</h1>
+          <h1 className="text-3xl">Worm Finding His Way in Winter</h1>
           <h2>2024</h2>
           <h3>Acrylic on Canvas - 8" x 10"</h3>
         </div>
@@ -137,6 +137,20 @@ export default function Paintings() {
           <h1>Birth by Means of Sun Shone Through Leaves</h1>
           <h2>2024</h2>
           <h3>Acrylic on Canvas - 5' x 4'</h3>
+        </div>
+      </div>
+
+      <div className="sm:w-[60vw] sm:h-[48vw]">
+        <Image
+          src="/painting/chazy-river-eclipse.jpg"
+          width={1080}
+          height={864}
+          alt="West Chazy River Prior to Eclipse"
+        />
+        <div>
+          <h1>West Chazy River Prior to Eclipse</h1>
+          <h2>2024</h2>
+          <h3>Acrylic on Canvas - 12" x 12"</h3>
         </div>
       </div>
 
