@@ -66,7 +66,7 @@ export default function Computational() {
             Love to Hate From the Perspective of Faith
           </h1>
           <h2>2021</h2>
-          <h3>computational Image</h3>
+          <h3>Computational Image</h3>
         </div>
       </div>
     </Gallery>
