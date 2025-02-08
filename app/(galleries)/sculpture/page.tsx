@@ -6,7 +6,7 @@ export default function Sculptures() {
     <Gallery>
       <div className="sm:w-[40vw] sm:h-[40vw]">
         <Image
-          src="/multiple/point-cloud/point-cloud.png"
+          src="/multiple/perspectives-clouds/3d/resin-sculpture.png"
           width={1080}
           height={1051}
           alt="Human Activities Along the Planar Continuum of Man, Woman, and Human From the Perspective of Artificial Intelligence"

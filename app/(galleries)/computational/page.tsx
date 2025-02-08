@@ -20,7 +20,7 @@ export default function Computational() {
 
       <div className="sm:w-[60vw] sm:h-[60vw]">
         <video
-          src="/multiple/point-cloud/render.mp4"
+          src="/multiple/perspectives-clouds/3d/render.mp4"
           width={1080}
           height={1080}
           autoPlay
@@ -55,7 +55,7 @@ export default function Computational() {
 
       <div className="sm:w-[40vw] sm:h-[40vw]">
         <Image
-          src="/computational/love-hate-faith.png"
+          src="/multiple/perspectives-clouds/2d/love-hate-faith.png"
           width={1080}
           height={951}
           alt="The Religious Texts of the Abrahamic Faiths Along the Continuum From Love to Hate From the Perspective of Faith"

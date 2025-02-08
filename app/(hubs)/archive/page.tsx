@@ -24,7 +24,7 @@ export default function Archive() {
       </Link>
       <Link href="/computational">
         <Image
-          src="/computational/love-hate-faith.png"
+          src="/multiple/perspectives-clouds/2d/love-hate-faith.png"
           alt="An image titled: The Religious Texts of the Abrahamic Faiths Along the Continuum From Love to Hate From the Perspective of Faith. It is a cloud of multi-colored circles on a white background."
           width={1200}
           height={1056}
