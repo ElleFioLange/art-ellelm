@@ -12,17 +12,18 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import TextPlugin from "gsap/TextPlugin";
 import { Timeline } from "@/utils/types";
+import { TextKeyframe } from "./project";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(TextPlugin);
 gsap.registerPlugin(useGSAP);
 
 export default function Text({
-  children,
   picturesRef,
+  text,
 }: {
-  children: ReactNode;
   picturesRef: RefObject<HTMLDivElement | null>;
+  text: TextKeyframe[];
 }) {
   // Tracked to recalculate GSAP if layout changes from vertical to horizontal
   const { viewport } = useViewport();
@@ -37,82 +38,12 @@ export default function Text({
     paragraph: paragraphRef,
   };
 
-  const keyframes = useMemo(() => {
-    const keyframes: {
-      title?: string;
-      subtitle?: string;
-      paragraph?: string;
-    }[] = [{}];
-    var imgIndex = 0;
-
-    // Iterates through children
-    // If child is h1, h2, or p, add the content to the current keyframe
-    // Else add a new keyframe
-    Children.forEach(children, (child) => {
-      if (
-        !child ||
-        typeof child !== "object" ||
-        Symbol.iterator in child ||
-        "then" in child
-      )
-        return;
-
-      // This ends up being undefined if the child is an image
-      // but it is only used if it is not an image
-      const { children: content } = child.props as {
-        children:
-          | string
-          // <p> supports <a> and <br> tags
-          | (
-              | string
-              | { type: "a"; props: { href: string; children: string } }
-              | { type: "br" }
-            )[];
-      };
-
-      switch (child.type) {
-        case "h1": {
-          keyframes[imgIndex].title = content as string;
-          break;
-        }
-        case "h2": {
-          keyframes[imgIndex].subtitle = content as string;
-          break;
-        }
-        case "p": {
-          if (Array.isArray(content)) {
-            // Parses the different possible children and converts each to a string form
-            // then array reduces into one string
-            keyframes[imgIndex].paragraph = content
-              .map((item) => {
-                if (typeof item === "string") return item;
-                else if (item.type === "a")
-                  return `<a href=${item.props.href}>${item.props.children}</a>`;
-                else return "<br/>";
-              })
-              .reduce((a, b) => a + b);
-          } else keyframes[imgIndex].paragraph = content;
-          break;
-        }
-        default: {
-          keyframes.push({});
-          imgIndex += 1;
-        }
-      }
-    });
-
-    // There will be an extra object at the end, so pop it off
-    keyframes.pop();
-
-    return keyframes;
-  }, [children]);
-
   const timelines = useRef<RefObject<Timeline | null>[]>(
-    Array(keyframes.length).fill(null)
+    Array(text.length).fill(null)
   );
 
   // snapTL is separate so that scroll will snap to every
-  // item instead of just items with keyframes
+  // item instead of just items with text
   const snapTl = useRef<Timeline>(null);
 
   useGSAP(
@@ -125,12 +56,12 @@ export default function Text({
         scrollTrigger: {
           trigger: "#image-0",
           start: "center center",
-          endTrigger: `#image-${keyframes.length - 1}`,
+          endTrigger: `#image-${text.length - 1}`,
           end: "center center",
           scroller: picturesRef.current,
           horizontal,
           snap: {
-            snapTo: 1 / (keyframes.length - 1),
+            snapTo: 1 / (text.length - 1),
             duration: 1,
             delay: 0.05,
             ease: "elastic.inOut(0.85, 1.5)",
@@ -140,10 +71,10 @@ export default function Text({
       });
 
       // This can probably be simplified to a single timeline
-      for (let i = 0; i < keyframes.length; i++) {
+      for (let i = 0; i < text.length; i++) {
         timelines.current[i] = createRef<Timeline>();
         const tl = timelines.current[i];
-        const keyframe = keyframes[i];
+        const keyframe = text[i];
 
         tl.current = gsap.timeline({
           scrollTrigger: {
@@ -177,7 +108,7 @@ export default function Text({
     { scope: picturesRef, dependencies: [viewport] }
   );
 
-  const { title, subtitle, paragraph } = keyframes[0];
+  const { title, subtitle, paragraph } = text[0];
 
   return (
     <>

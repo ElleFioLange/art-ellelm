@@ -8,13 +8,13 @@ import Nav from "@/components/nav";
 gsap.registerPlugin(useGSAP);
 
 const cormorant = Cormorant({
-  weight: "300",
+  weight: ["300", "600"],
   subsets: ["latin"],
   variable: "--cormorant",
 });
 
 const cormorant_unicase = Cormorant_Unicase({
-  weight: ["300", "700"],
+  weight: ["300", "600"],
   subsets: ["latin"],
   variable: "--cormorant-unicase",
 });
