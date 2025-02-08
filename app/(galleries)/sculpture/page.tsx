@@ -12,7 +12,7 @@ export default function Sculptures() {
           alt="Human Activities Along the Planar Continuum of Man, Woman, and Human From the Perspective of Artificial Intelligence"
         />
         <div>
-          <h1>
+          <h1 className="max-sm:text-4xl">
             Human Activities Along the Planar Continuum of Man, Woman, and Human
             From the Perspective of Artificial Intelligence
           </h1>
