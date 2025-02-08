@@ -16,7 +16,7 @@ export default function Sculptures() {
             Human Activities Along the Planar Continuum of Man, Woman, and Human
             From the Perspective of Artificial Intelligence
           </h1>
-          <h2>In Progress</h2>
+          <h2>2024-In Progress</h2>
           <h3>3D Printed Resin Sculpture</h3>
         </div>
       </div>
