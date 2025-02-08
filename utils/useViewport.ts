@@ -17,8 +17,12 @@ export default function useViewport() {
     handleResize();
 
     window.addEventListener("resize", handleResize);
+    window.addEventListener("deviceorientation", handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("deviceorientation", handleResize);
+    };
   }, []);
 
   return { viewport: viewport[0], breakpoint: breakpoint[0] };
