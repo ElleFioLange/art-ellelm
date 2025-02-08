@@ -3,6 +3,7 @@
 import { Children, ReactElement, ReactNode, useRef } from "react";
 import Text from "../components/text";
 import Pictures from "../components/pictures";
+import { renderToString } from "react-dom/server";
 
 export type TextKeyframe = {
   title?: string;
@@ -30,53 +31,21 @@ export default function Project({ children }: { children: ReactNode }) {
     )
       return;
 
-    // This ends up being undefined if the child is an image
-    // but it is only used if it is not an image
     const { children: content } = child.props as {
-      children:
-        | string
-        // <p> supports <a> <br> <b> <i> tags
-        | (
-            | string
-            | { type: "br" }
-            | { type: "a"; props: { href: string; children: string } }
-            | { type: "b"; props: { children: string } }
-            | { type: "i"; props: { children: string } }
-          )[];
+      children: string | ReactElement;
     };
+    const rendered = renderToString(content);
 
     switch (child.type) {
-      case "h1": {
-        text[picIndex].title = content as string;
+      case "h1":
+        text[picIndex].title = rendered;
         break;
-      }
-      case "h2": {
-        text[picIndex].subtitle = content as string;
+      case "h2":
+        text[picIndex].subtitle = rendered;
         break;
-      }
-      case "p": {
-        if (Array.isArray(content)) {
-          // Parses the different possible children and converts each to a string form
-          // then array reduces into one string
-          text[picIndex].paragraph = content
-            .map((item) => {
-              if (typeof item === "string") return item;
-
-              switch (item.type) {
-                case "a":
-                  return `<a href=${item.props.href}>${item.props.children}</a>`;
-                case "b":
-                  return `<b>${item.props.children}</b>`;
-                case "i":
-                  return `<i>${item.props.children}</i>`;
-                case "br":
-                  return "<br/>";
-              }
-            })
-            .reduce((a, b) => a + b);
-        } else text[picIndex].paragraph = content;
+      case "p":
+        text[picIndex].paragraph = rendered;
         break;
-      }
       default: {
         text.push({});
         picIndex += 1;
