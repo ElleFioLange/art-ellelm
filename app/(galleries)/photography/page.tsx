@@ -7,7 +7,7 @@ export default function Photography() {
     <Gallery>
       <div className="sm:w-[40vw] sm:h-[30vw]">
         <Image
-          src="/photography/light-painting/1.jpg"
+          src="/photography/light-painting-1.jpg"
           width={1080}
           height={810}
           alt="Untitled"
@@ -21,7 +21,7 @@ export default function Photography() {
 
       <div className="sm:w-[40vw] sm:h-[30vw]">
         <Image
-          src="/photography/light-painting/2.jpg"
+          src="/photography/light-painting-2.jpg"
           width={1080}
           height={810}
           alt="Untitled"
@@ -365,7 +365,7 @@ export default function Photography() {
 
       <div className="sm:w-[32vw] sm:h-[32vw]">
         <Image
-          src="/photography/self-portraits/1.jpg"
+          src="/photography/self-portrait-1.jpg"
           width={1080}
           height={1080}
           alt="Self-Portrait I"
@@ -379,7 +379,7 @@ export default function Photography() {
 
       <div className="sm:w-[32vw] sm:h-[32vw]">
         <Image
-          src="/photography/self-portraits/2.jpg"
+          src="/photography/self-portrait-2.jpg"
           width={1080}
           height={1080}
           alt="Self-Portrait II"
@@ -421,7 +421,7 @@ export default function Photography() {
 
       <div className="sm:w-[40vw] sm:h-[30vw]">
         <Image
-          src="/photography/four-corners.jpg"
+          src="/photography/four-corners-1.jpg"
           width={1080}
           height={810}
           alt="Untitled"
@@ -443,6 +443,34 @@ export default function Photography() {
         <div>
           <h1>Untitled</h1>
           <h2>2020</h2>
+          <h3>Digital Photography</h3>
+        </div>
+      </div>
+
+      <div className="sm:w-[24vw] sm:h-[36vw]">
+        <Image
+          src="/photography/small-till.jpg"
+          width={720}
+          height={1080}
+          alt="I Will Be Small 'Till I Am Far From The Sprout"
+        />
+        <div>
+          <h1>I Will Be Small 'Till I Am Far From The Sprout</h1>
+          <h2>2018</h2>
+          <h3>Digital Photography</h3>
+        </div>
+      </div>
+
+      <div className="sm:w-[40vw] sm:h-[30vw]">
+        <Image
+          src="/photography/top-underneath.jpg"
+          width={1080}
+          height={810}
+          alt="That Laid on Top Reveals Underneath"
+        />
+        <div>
+          <h1>That Laid on Top Reveals Underneath</h1>
+          <h2>2018</h2>
           <h3>Digital Photography</h3>
         </div>
       </div>
