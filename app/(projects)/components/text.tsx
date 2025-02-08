@@ -80,9 +80,9 @@ export default function Text({
           scrollTrigger: {
             trigger: `#image-${i}`,
             scroller: picturesRef.current,
-            start: horizontal ? "left right" : "top bottom",
+            start: horizontal ? "left 90%" : "top 90%",
             horizontal,
-            end: "center center",
+            end: "center 60%",
             scrub: 0,
           },
         });
