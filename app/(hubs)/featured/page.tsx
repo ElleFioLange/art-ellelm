@@ -1,3 +1,4 @@
+import Video from "@/components/video";
 import Image from "next/image";
 
 // Using regular <a> tags instead of next/link due to rendering issues with the GSAP ScrollTrigger
@@ -6,13 +7,10 @@ export default function Featured() {
   return (
     <>
       <a href="/time-space">
-        <video
+        <Video
           src="/computational/time-space/globe-light-glass.mp4"
           width={1280}
           height={720}
-          autoPlay
-          muted
-          loop
         />
         <h2>Time-Space</h2>
       </a>

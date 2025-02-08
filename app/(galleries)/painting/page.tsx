@@ -2,7 +2,7 @@ import Image from "next/image";
 import Gallery from "../gallery";
 import Link from "next/link";
 
-export default function Paintings() {
+export default function Painting() {
   return (
     <Gallery>
       <div className="sm:w-[36vw] sm:h-[48vw]">
@@ -98,7 +98,7 @@ export default function Paintings() {
         </div>
       </div>
 
-      <div className="sm:w-[60vw] sm:h-[48vw]">
+      <div className="sm:w-[60vw] sm:h-[48vw]" id="ghillie-suit">
         <Image
           src="/painting/ghillie-suit.jpg"
           width={1080}

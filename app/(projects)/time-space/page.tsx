@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Project from "../components/project";
+import Video from "@/components/video";
 
 export default function TimeSpace() {
   return (
@@ -18,13 +19,10 @@ export default function TimeSpace() {
           here.
         </a>
       </p>
-      <video
+      <Video
         src="/computational/time-space/globe-light-glass.mp4"
         width={1280}
         height={720}
-        autoPlay
-        muted
-        loop
       />
       <h1>Explanation</h1>
       <h2>What the hell is temporal perpendicularization?</h2>
@@ -91,13 +89,10 @@ export default function TimeSpace() {
         masterpieces are revelations for some re-encoded xenosapien. Perhaps we
         can imagine it and make it true.
       </p>
-      <video
+      <Video
         src="/computational/time-space/globe-light-glass.mp4"
         width={1280}
         height={720}
-        autoPlay
-        muted
-        loop
       />
       <h1>Time-Space</h1>
       <h2>Piano Burning - 2024</h2>
@@ -175,13 +170,10 @@ export default function TimeSpace() {
         <br />
         Video available <a href="https://youtu.be/sHJSXn7lA9w">here.</a>
       </p>
-      <video
+      <Video
         src="/computational/time-space/globe-light-glass.mp4"
         width={1280}
         height={720}
-        autoPlay
-        muted
-        loop
       />
       <h2>Purple Smoke - 2024</h2>
       <p>

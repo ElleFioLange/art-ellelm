@@ -1,3 +1,4 @@
+import Video from "@/components/video";
 import Gallery from "../gallery";
 import Image from "next/image";
 
@@ -16,20 +17,13 @@ export default function Sculptures() {
             Human Activities Along the Planar Continuum of Man, Woman, and Human
             From the Perspective of Artificial Intelligence
           </h1>
-          <h2>2024-In Progress</h2>
+          <h2>2024-current</h2>
           <h3>3D Printed Resin Sculpture</h3>
         </div>
       </div>
 
       <div className="sm:w-[40vw] sm:h-[40vw]">
-        <video
-          src="/multiple/receipt.mp4"
-          width={720}
-          height={720}
-          muted
-          autoPlay
-          loop
-        />
+        <Video src="/multiple/receipt.mp4" width={720} height={720} />
         <div>
           <h1>Receipts as Raindrops</h1>
           <h2>2024</h2>

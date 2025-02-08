@@ -71,6 +71,10 @@
   img {
     @apply object-contain;
   }
+
+  video::-webkit-media-controls {
+    display: none;
+  }
 }
 
 @layer components {

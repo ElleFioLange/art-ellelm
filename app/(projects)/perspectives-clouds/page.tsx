@@ -1,4 +1,5 @@
 import Project from "../components/project";
+import Video from "@/components/video";
 
 export default function PerspectivesClouds() {
   return (
@@ -40,13 +41,10 @@ export default function PerspectivesClouds() {
           <em>Data</em> along <em>continuum</em> from <em>perspective</em>
         </i> */}
       </p>
-      <video
+      <Video
         src="/multiple/perspectives-clouds/3d/render.mp4"
         width={1080}
         height={1080}
-        autoPlay
-        muted
-        loop
       />
     </Project>
   );
