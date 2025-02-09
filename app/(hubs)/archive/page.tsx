@@ -4,15 +4,6 @@ import Link from "next/link";
 export default function Archive() {
   return (
     <>
-      <Link href="/painting">
-        <Image
-          src="/painting/straight-lines.jpg"
-          alt="A painting titled: Every Straight Line on a Sphere Is a Circle. The painting is abstract and has a washed out blue and orange background. It has abstract drawings in black marker across the canvas, and is adorned with reflective disk hard drive platters."
-          width={810}
-          height={1080}
-        />
-        <h2>Painting</h2>
-      </Link>
       <Link href="/photography">
         <Image
           src="/photography/angels-glow-clouds.jpg"
@@ -40,6 +31,16 @@ export default function Archive() {
         />
         <h2>Performance</h2>
       </Link>
+
+      <Link href="/sculpture">
+        <Image
+          src="/sculpture/image/1.jpg"
+          alt="A sculpture titled: Image. The sculpture is a mirror with reflective disc hard drive platters affixed to it."
+          width={1080}
+          height={884}
+        />
+        <h2>Sculpture</h2>
+      </Link>
       <Link href="/design">
         <Image
           src="/design/glasses.jpg"
@@ -49,14 +50,14 @@ export default function Archive() {
         />
         <h2>Design</h2>
       </Link>
-      <Link href="/sculpture">
+      <Link href="/painting">
         <Image
-          src="/sculpture/image/1.jpg"
-          alt="A sculpture titled: Image. The sculpture is a mirror with reflective disc hard drive platters affixed to it."
-          width={1080}
-          height={884}
+          src="/painting/straight-lines.jpg"
+          alt="A painting titled: Every Straight Line on a Sphere Is a Circle. The painting is abstract and has a washed out blue and orange background. It has abstract drawings in black marker across the canvas, and is adorned with reflective disk hard drive platters."
+          width={810}
+          height={1080}
         />
-        <h2>Sculpture</h2>
+        <h2>Painting</h2>
       </Link>
     </>
   );
