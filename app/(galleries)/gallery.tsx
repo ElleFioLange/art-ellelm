@@ -143,8 +143,8 @@ export default function Gallery({ children }: { children: ReactNode }) {
       }>;
 
       return cloneElement(child, {
-        onMouseOver: () => onMouseOver(i),
-        onMouseLeave: () => onMouseLeave(i),
+        onMouseOver: () => (breakpoint ? {} : onMouseOver(i)),
+        onMouseLeave: () => (breakpoint ? {} : onMouseLeave(i)),
         onClick: () => onClick(i),
         className: twMerge(
           child.props.className,
