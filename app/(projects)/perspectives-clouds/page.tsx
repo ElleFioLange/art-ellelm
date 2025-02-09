@@ -163,8 +163,8 @@ export default function PerspectivesClouds() {
         I am currently in the process of perfecting a physical sculpture. I have
         been working with a resin 3D printer to create cubes with hollow
         spheres/icosahedrons inside representing the data points. I intend to
-        sell these, as well as take commissions for sculptures that are sourced
-        from data that is significant to the commissioner. If you are interested
+        sell these, as well as take commissions for sculptures that are built
+        from text that is significant to the commissioner. If you are interested
         in being notified when these becomes available, please{" "}
         <a href="/contact">contact</a> me to let me know.
       </p>
