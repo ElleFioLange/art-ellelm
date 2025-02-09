@@ -6,6 +6,14 @@ import Image from "next/image";
 export default function Featured() {
   return (
     <>
+      <a href="/perspectives-clouds">
+        <Video
+          src="/multiple/perspectives-clouds/3d/render.mp4"
+          width={1080}
+          height={1080}
+        />
+        <h2>Perspectives on Clouds</h2>
+      </a>
       <a href="/time-space">
         <Video
           src="/computational/time-space/globe-light-glass.mp4"
