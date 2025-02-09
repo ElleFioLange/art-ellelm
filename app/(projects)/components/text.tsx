@@ -13,6 +13,7 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import TextPlugin from "gsap/TextPlugin";
 import { Timeline } from "@/utils/types";
 import { TextKeyframe } from "./project";
+import useTheme from "@/utils/useTheme";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(TextPlugin);
@@ -25,8 +26,9 @@ export default function Text({
   picturesRef: RefObject<HTMLDivElement | null>;
   text: TextKeyframe[];
 }) {
-  // Tracked to recalculate GSAP if layout changes from vertical to horizontal
-  const { viewport } = useViewport();
+  // The below are used to trigger GSAP refresh
+  const { breakpoint } = useViewport();
+  const theme = useTheme();
 
   // Targets for GSAP
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -48,9 +50,6 @@ export default function Text({
 
   useGSAP(
     () => {
-      if (!viewport.w) return;
-      const horizontal = viewport.w < 640;
-
       // onSnapComplete add a little animation or sound? Nintendo Switch sound / something satisfying?
       snapTl.current = gsap.timeline({
         scrollTrigger: {
@@ -59,7 +58,7 @@ export default function Text({
           endTrigger: `#image-${text.length - 1}`,
           end: "center center",
           scroller: picturesRef.current,
-          horizontal,
+          horizontal: breakpoint,
           snap: {
             snapTo: 1 / (text.length - 1),
             duration: 1,
@@ -69,6 +68,10 @@ export default function Text({
           },
         },
       });
+
+      const style = getComputedStyle(document.documentElement);
+      const fg = `rgb(${style.getPropertyValue("--fg")})`;
+      const accent = `rgb(${style.getPropertyValue("--accent-bg")})`;
 
       // This can probably be simplified to a single timeline
       for (let i = 0; i < text.length; i++) {
@@ -80,10 +83,11 @@ export default function Text({
           scrollTrigger: {
             trigger: `#image-${i}`,
             scroller: picturesRef.current,
-            start: horizontal ? "left 90%" : "top 90%",
-            horizontal,
+            start: breakpoint ? "left 90%" : "top 90%",
+            horizontal: breakpoint,
             end: "center 60%",
             scrub: 0,
+            // markers: true,
           },
         });
 
@@ -94,31 +98,26 @@ export default function Text({
           const element =
             contentElements[section as keyof typeof contentElements].current;
 
-          tl.current.to(
-            element,
-            {
+          tl.current
+            .from(element, {
+              color: fg,
+            })
+            .to(element, {
               text: text as string,
-              duration: 2,
-            },
-            0
-          );
+              color: accent,
+            })
+            .to(element, { color: fg });
         }
       }
     },
-    { scope: picturesRef, dependencies: [viewport] }
+    { scope: picturesRef, dependencies: [breakpoint, theme] }
   );
 
   const { title, subtitle, paragraph } = text[0];
 
   return (
     <>
-      <section
-        // Added this to get rid of a react "key missing" error
-        // I have no idea why this is necessary?
-        // React is going to send me to the psych ward
-        key="text"
-        className="sm:py-8 max-sm:mx-4 overflow-auto max-h-full"
-      >
+      <section className="sm:py-8 max-sm:mx-4 overflow-auto max-h-full">
         <h1 ref={titleRef} className="leading-none">
           {title}
         </h1>
