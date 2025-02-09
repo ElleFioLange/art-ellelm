@@ -102,6 +102,7 @@ export default function About() {
           <li>Andrea Fraser</li>
           <li>Daniel Keller</li>
           <li>Robert Rauschenberg</li>
+          <li>Grant Sanderson</li>
         </ul>
       </section>
     </main>
