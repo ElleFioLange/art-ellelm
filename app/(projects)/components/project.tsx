@@ -34,6 +34,9 @@ export default function Project({ children }: { children: ReactNode }) {
     const { children: content } = child.props as {
       children: string | ReactElement;
     };
+    // Should be careful here, sub tags like <a> <i> and <b>
+    // will animate as a single chunk instead of by character,
+    // so make sure not to make their content too long
     const rendered = renderToString(content);
 
     switch (child.type) {
