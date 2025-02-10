@@ -6,8 +6,10 @@ export default function About() {
         <h2>is an artist based in Boston, MA.</h2>
         <div className="w-full h-px bg-fg my-2" />
         <p>
-          Her work is centered on data, transformation, metaphor and
-          metaphysics.
+          Her work is centered on data, transformation, metaphor and metaphysics
+          and. Her current practice is focused on computational digital and
+          sculptural pieces, and beyond her focus she maintains regular painting
+          and photography practices.
         </p>
         <p>
           Here is a list, in no specific order, of art and artists who have
@@ -39,12 +41,12 @@ export default function About() {
           </li>
           <li>Trevor Paglen</li>
           <li>
-            <i>Eager</i> by Helen Fox{" "}
+            <i>Eager</i> by Helen Fox
           </li>
           <li>
             <i>Things Fall Apart</i> by Chinua Achebe
           </li>
-          <li>John Archibald Wheeler - “It from bit”</li>
+          <li>John Archibald Wheeler</li>
           <li>
             <i>Detransition Baby</i> by Torrey Peters
           </li>
