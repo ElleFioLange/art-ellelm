@@ -1,9 +1,6 @@
 export default function About() {
   return (
-    <main className="h-full w-full overflow-auto flex justify-center p-4">
-      <section className="max-w-xl sm:mt-[32dvh] sm:mb-[16dvh] max-sm:mt-[16dvh] max-sm:mb-[8dvh] h-min [&>p]:mb-1">
-        <h1 className="max-sm:text-4xl">Elle Fiorentino-Lange</h1>
-        <h2>is an artist based in Boston, MA.</h2>
+      <h1>Elle Fiorentino-Lange</h1>
         <div className="w-full h-px bg-fg my-2" />
         <p>
           Her work is centered on data, transformation, metaphor and metaphysics
