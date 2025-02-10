@@ -25,7 +25,7 @@ export default function TimeSpace() {
         height={720}
       />
       <h1>Explanation</h1>
-      <h2>What the hell is temporal perpendicularization?</h2>
+      <h2>What is temporal perpendicularization?</h2>
       <p>
         A video is composed of a set of 2-dimensional frames aligned along a
         temporal dimension.
