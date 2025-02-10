@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Gallery from "../gallery";
 import Video from "@/components/video";
+import Link from "next/link";
 
 export default function Computational() {
   return (
@@ -36,11 +37,19 @@ export default function Computational() {
       </div>
 
       <div className="sm:w-[40vw] sm:h-[40vw]">
-        <Video src="/multiple/receipt.mp4" width={720} height={720} />
+        <Video
+          src="/multiple/receipts-raindrops/receipts-raindrops.mp4"
+          width={720}
+          height={720}
+        />
         <div>
           <h1>Receipts as Raindrops</h1>
           <h2>2024</h2>
           <h3>Interactive Sculpture</h3>
+          <p>
+            You can read more about this project{" "}
+            <Link href="/receipts-raindrops">here.</Link>
+          </p>
         </div>
       </div>
 
