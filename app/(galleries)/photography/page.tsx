@@ -1,4 +1,4 @@
-import Link from "next/link";
+// import Link from "next/link";
 import Gallery from "../gallery";
 import Image from "next/image";
 
@@ -100,10 +100,10 @@ export default function Photography() {
           <h1>Assistive Vision 3</h1>
           <h2>2024</h2>
           <h3>Software Enhanced Photography</h3>
-          <p>
+          {/* <p>
             This piece is part of a{" "}
             <Link href="/assistive-vision">series.</Link>
-          </p>
+          </p> */}
         </div>
       </div>
 
@@ -118,10 +118,10 @@ export default function Photography() {
           <h1>Assistive Vision 4</h1>
           <h2>2024</h2>
           <h3>Software Enhanced Photography</h3>
-          <p>
+          {/* <p>
             This piece is part of a{" "}
             <Link href="/assistive-vision">series.</Link>
-          </p>
+          </p> */}
         </div>
       </div>
 

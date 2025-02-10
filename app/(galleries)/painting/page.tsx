@@ -140,11 +140,11 @@ export default function Painting() {
         </div>
       </div>
 
-      <div className="sm:w-[60vw] sm:h-[48vw]">
+      <div className="sm:w-[24vw] sm:h-[24vw]">
         <Image
           src="/painting/chazy-river-eclipse.jpg"
           width={1080}
-          height={864}
+          height={1080}
           alt="West Chazy River Prior to Eclipse"
         />
         <div>
@@ -212,13 +212,13 @@ export default function Painting() {
 
       <div className="sm:w-[35vw] sm:h-[45vw]">
         <Image
-          src="/painting/grief.png"
+          src="/painting/loss-remaining.png"
           width={840}
           height={1080}
-          alt="The Loss of a Loved One Is About Those Remaining"
+          alt="The Loss of a Loved One Is With Those Remaining"
         />
         <div>
-          <h1>The Loss of a Loved One Is About Those Remaining</h1>
+          <h1>The Loss of a Loved One Is With Those Remaining</h1>
           <h2>2024</h2>
           <h3>Acrylic & Pastel on Canvas - 14" x 18"</h3>
         </div>

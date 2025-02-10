@@ -10,8 +10,8 @@ export default function About() {
           metaphysics.
         </p>
         <p>
-          Here is a list she keeps of art and artists who have impacted or
-          inspired her. This list is in no specific order.
+          Here is a list, in no specific order, of art and artists who have
+          impacted or inspired her.
         </p>
         <ul className="font-cormorant list-disc ml-4">
           <li>Johan Ripjma</li>
