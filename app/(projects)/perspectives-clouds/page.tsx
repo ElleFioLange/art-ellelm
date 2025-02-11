@@ -141,7 +141,7 @@ export default function PerspectivesClouds() {
         <br />
         The data source for this piece began as a list of verbs I wrote down in
         an effort to understand men. These are present in my painting{" "}
-        <a href="#">
+        <a href="/painting/ghillie-suit.jpg">
           <i>What a Ghillie Suit Means Will Be Our End.</i>
         </a>{" "}
         I later expanded this list beyond verbs with connotations of masculinity
