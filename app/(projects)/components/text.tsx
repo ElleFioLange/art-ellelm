@@ -50,6 +50,7 @@ export default function Text({
 
   useGSAP(
     () => {
+      if (breakpoint === undefined) return;
       // onSnapComplete add a little animation or sound? Nintendo Switch sound / something satisfying?
       snapTl.current = gsap.timeline({
         scrollTrigger: {
@@ -57,6 +58,7 @@ export default function Text({
           start: "center center",
           endTrigger: `#image-${text.length - 1}`,
           end: "center center",
+          // markers: true,
           scroller: picturesRef.current,
           horizontal: breakpoint,
           snap: {
@@ -74,7 +76,7 @@ export default function Text({
       const accent = `rgb(${style.getPropertyValue("--accent-bg")})`;
 
       // This can probably be simplified to a single timeline
-      for (let i = 0; i < text.length; i++) {
+      for (let i = 1; i < text.length; i++) {
         timelines.current[i] = createRef<Timeline>();
         const tl = timelines.current[i];
         const keyframe = text[i];
@@ -83,9 +85,9 @@ export default function Text({
           scrollTrigger: {
             trigger: `#image-${i}`,
             scroller: picturesRef.current,
-            start: breakpoint ? "left 90%" : "top 90%",
+            start: breakpoint ? "left 95%" : "top 95%",
             horizontal: breakpoint,
-            end: "center 60%",
+            end: "center 55%",
             scrub: 0,
             // markers: true,
           },
@@ -99,14 +101,23 @@ export default function Text({
             contentElements[section as keyof typeof contentElements].current;
 
           tl.current
-            .from(element, {
-              color: fg,
-            })
-            .to(element, {
-              text: text as string,
-              color: accent,
-            })
-            .to(element, { color: fg });
+            .to(
+              element,
+              {
+                color: accent,
+                duration: 1,
+              },
+              0
+            )
+            .to(
+              element,
+              {
+                text,
+                duration: 2,
+              },
+              0
+            )
+            .to(element, { color: fg, duration: 1 }, 1);
         }
       }
     },
