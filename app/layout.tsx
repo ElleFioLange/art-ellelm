@@ -4,6 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import "./css.css";
 import Nav from "@/components/nav";
+import { Analytics } from "@vercel/analytics/next";
 
 gsap.registerPlugin(useGSAP);
 
@@ -40,6 +41,7 @@ export default function RootLayout({
       <body>
         <Nav />
         {children}
+        <Analytics />
       </body>
     </html>
   );
