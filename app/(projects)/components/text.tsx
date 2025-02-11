@@ -76,7 +76,7 @@ export default function Text({
       const accent = `rgb(${style.getPropertyValue("--accent-bg")})`;
 
       // This can probably be simplified to a single timeline
-      for (let i = 1; i < text.length; i++) {
+      for (let i = 0; i < text.length; i++) {
         timelines.current[i] = createRef<Timeline>();
         const tl = timelines.current[i];
         const keyframe = text[i];
@@ -124,22 +124,13 @@ export default function Text({
     { scope: picturesRef, dependencies: [breakpoint, theme] }
   );
 
-  const { title, subtitle, paragraph } = text[0];
-
   return (
     <>
       <section className="sm:py-8 max-sm:mx-4 overflow-auto max-h-full">
-        <h1 ref={titleRef} className="leading-none">
-          {title}
-        </h1>
-        <h2 ref={subtitleRef} className="leading-none">
-          {subtitle}
-        </h2>
+        <h1 ref={titleRef} className="leading-none" />
+        <h2 ref={subtitleRef} className="leading-none" />
         <div className="w-full h-2" />
-        <p
-          dangerouslySetInnerHTML={{ __html: paragraph! }}
-          ref={paragraphRef}
-        ></p>
+        <p ref={paragraphRef} />
       </section>
     </>
   );
