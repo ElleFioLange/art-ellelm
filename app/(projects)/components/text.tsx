@@ -44,33 +44,9 @@ export default function Text({
     Array(text.length).fill(null)
   );
 
-  // snapTL is separate so that scroll will snap to every
-  // item instead of just items with text
-  const snapTl = useRef<Timeline>(null);
-
   useGSAP(
     () => {
       if (breakpoint === undefined) return;
-      // onSnapComplete add a little animation or sound? Nintendo Switch sound / something satisfying?
-      snapTl.current = gsap.timeline({
-        scrollTrigger: {
-          trigger: "#image-0",
-          start: "center center",
-          endTrigger: `#image-${text.length - 1}`,
-          end: "center center",
-          // markers: true,
-          scroller: picturesRef.current,
-          horizontal: breakpoint,
-          snap: {
-            snapTo: 1 / (text.length - 1),
-            duration: 1,
-            delay: 0.05,
-            ease: "elastic.inOut(0.85, 1.5)",
-            directional: false,
-          },
-        },
-      });
-
       const style = getComputedStyle(document.documentElement);
       const fg = `rgb(${style.getPropertyValue("--fg")})`;
       const accent = `rgb(${style.getPropertyValue("--accent-bg")})`;
@@ -85,9 +61,9 @@ export default function Text({
           scrollTrigger: {
             trigger: `#image-${i}`,
             scroller: picturesRef.current,
-            start: breakpoint ? "left 95%" : "top 95%",
+            start: breakpoint ? "left right" : "top bottom",
             horizontal: breakpoint,
-            end: "center 55%",
+            end: "center center",
             scrub: 0,
             // markers: true,
           },
