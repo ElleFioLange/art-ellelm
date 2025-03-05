@@ -7,7 +7,30 @@ export default function About() {
       <h2>is a multi-media artist based in Boston, MA.</h2>
       <div className="w-full h-px bg-fg my-2" />
       <p>
-        Her work is centered on data, transformation, metaphor and metaphysics.
+        Her work is motivated by a desire to understand transness and its
+        relationship to spirituality and technology. It is centered on data,
+        transformation, metaphor and metaphysics.
+      </p>
+      <p className="ml-4 text-justify">
+        <i>
+          I am trying to understand these two sides of my transness. One is
+          deeply humanist, deeply connected to a romantic notion of our place in
+          this reality, to a sense for the divine. The other is so abstract, so
+          suspicious that humanness is temporary, insignificant, and is more
+          comfortable viewing us as the movement of numbers, as information.
+          These selves line up nicely with two very disparate stereotypes of
+          transwomen, the mystic and the programmer. As these identities exist
+          at large, beyond transness, they tend to be at tension and often in
+          conflict. I am perpetually feeling this deep conflict within myself,
+          and I create my art in order to mediate between these two halves. I
+          find they are both determined to speak on ideas of metaphysics, so
+          this is often what my work is most concerned with. I want to find a
+          way to continue the role that trans people have performed across all
+          of human history, a labor of spirituality, from and within my own
+          heavily technologized context.
+        </i>
+      </p>
+      <p>
         Her current practice is focused on computational digital and sculptural
         pieces, and beyond her focus she maintains regular painting and
         photography practices.
@@ -106,6 +129,12 @@ export default function About() {
         <li>Daniel Keller</li>
         <li>Robert Rauschenberg</li>
         <li>Grant Sanderson</li>
+        <li>Tomi Faison</li>
+        <li>Rachel Youn</li>
+        <li>Pedro Gómez-Egaña</li>
+        <li>
+          <i>Sybil</i> by Justine Triet
+        </li>
       </ul>
     </BasicText>
   );
