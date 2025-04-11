@@ -150,7 +150,7 @@ export default function Gallery({ children }: { children: ReactNode }) {
           child.props.className,
           // Abstracted this to its own class in css.css because it
           // contains a lot of secondary styling for child elements
-          "gallery-container",
+          "gallery-container h-[100dvh]",
           info[0] === i
             ? "[&>div]:opacity-100 cursor-auto"
             : "[&>div]:opacity-0 [&>div]:pointer-events-none"
@@ -165,7 +165,7 @@ export default function Gallery({ children }: { children: ReactNode }) {
       className="w-full overflow-y-auto overflow-x-hidden h-dvh sm:p-8 max-sm:px-8"
       ref={mainRef}
     >
-      <section className="flex items-center flex-shrink-0 mx-auto lg:gap-8 gap-4 sm:flex-wrap sm:max-w-screen-xxl max-sm:flex-col max-sm:w-full">
+      <section className="flex items-center justify-center flex-shrink-0 mx-auto lg:gap-8 gap-4 sm:flex-wrap sm:max-w-screen-xxl max-sm:flex-col max-sm:w-full">
         {renderChildren()}
       </section>
     </main>
