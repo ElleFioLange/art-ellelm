@@ -71,7 +71,7 @@ export default function TimeSpace() {
         slice slide across the width of the original video.
       </p>
       <Image
-        src="/computational/time-space/explainers/4.png"
+        src="/computational/time-space/explainers/4.gif"
         width={1080}
         height={1080}
         alt="An illustration of the new frame's relationship to the video. There is a series of frames lined up in one direction, and there is a perpendicular frame highlighted pink that cuts through all the original frames. The illustration is labeled Frame N."
