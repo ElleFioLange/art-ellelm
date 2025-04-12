@@ -9,14 +9,36 @@ export default function ReceiptsRaindrops() {
       <h1>Receipts as Raindrops</h1>
       <h2>2024 - Interactive Sculpture</h2>
       <p>
-        In the fall of 2024 I attended a partial hospitalization program
-        following a mental health crisis. This is a picture I took while there.
+        This piece allows viewers to explore my thoughts while I was in the
+        midst of a healing process. It takes an abstract, generative graphic and
+        adds modes of interaction for viewers to engage with the underlying
+        writing. This image was generated via the process I developed in my
+        series <a href="/perspectives-clouds">Perspectives on Clouds.</a> It was
+        formed out of a series of sentences I wrote while at a partial
+        hospitalization program following a mental health crisis, and its
+        geometry is defined along the continuum from the past to the future from
+        the perspective of the present.
         <br />
         ---
         <br />
-        The program consisted of 5 hours of group therapy 5 days a week for 2
-        weeks. During the experience, I often doodled and wrote little sentences
-        inspired by the topics of discussion.
+        When a viewer selects a point from the image, a receipt printer will
+        print out the sentence it corresponds to, allowing viewers to
+        interrogate the image to read its source material and find connections
+        between the position, color, and size of the points with the content of
+        their source sentence. The receipt printer adds a dimension of
+        physicality to the piece, as well as creates a gift for the viewer to
+        take home.
+      </p>
+      <Video
+        src="/multiple/receipts-raindrops/receipts-raindrops.mp4"
+        width={720}
+        height={720}
+      />
+      <p>
+        In the fall of 2024 I attended a partial hospitalization program, which
+        consisted of 5 hours of group therapy 5 days a week for 2 weeks. During
+        the experience, I often doodled and wrote little sentences inspired by
+        the topics of discussion.
         <br />
         ---
         <br />
@@ -53,29 +75,6 @@ export default function ReceiptsRaindrops() {
         width={1080}
         height={810}
         alt="A hospital building"
-      />
-      <p>
-        I took these sentences and generated an image via the process I
-        developed in my series{" "}
-        <a href="/perspectives-clouds">Perspectives on Clouds.</a> This image
-        was formed along the continuum from the past to the future from the
-        perspective of the present. I then used it to create the interactive
-        piece <i>Receipts as Raindrops.</i>
-        <br />
-        ---
-        <br />
-        When a viewer selects a point from the image, a receipt printer will
-        print out the sentence it corresponds to, allowing viewers to
-        interrogate the image to read its source material and find connections
-        between the position, color, and size of the points with the content of
-        their source sentence. The receipt printer adds a dimension of
-        physicality to the piece, as well as creates a gift for the viewer to
-        take home.
-      </p>
-      <Video
-        src="/multiple/receipts-raindrops/receipts-raindrops.mp4"
-        width={720}
-        height={720}
       />
     </Project>
   );
