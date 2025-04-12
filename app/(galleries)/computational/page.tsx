@@ -23,8 +23,8 @@ export default function Computational() {
       <div className="sm:w-[60vw] sm:h-[60vw]">
         <Video
           src="/multiple/perspectives-clouds/3d/render.mp4"
-          width={1080}
-          height={1350}
+          width={864}
+          height={1080}
         />
         <div>
           <h1 className="max-sm:text-4xl">

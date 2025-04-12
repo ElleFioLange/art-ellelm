@@ -20,8 +20,8 @@ export default function PerspectivesClouds() {
       </p>
       <Video
         src="/multiple/perspectives-clouds/3d/render.mp4"
-        width={1080}
-        height={1350}
+        width={864}
+        height={1080}
         loop={false}
       />
       <h1>
