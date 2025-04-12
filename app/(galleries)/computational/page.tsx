@@ -24,14 +24,14 @@ export default function Computational() {
         <Video
           src="/multiple/perspectives-clouds/3d/render.mp4"
           width={1080}
-          height={1080}
+          height={1350}
         />
         <div>
           <h1 className="max-sm:text-4xl">
             Human Activities Along the Planar Continuum of Man, Woman, and Human
             From the Perspective of Artificial Intelligence
           </h1>
-          <h2>2024</h2>
+          <h2>2025</h2>
           <h3>Computational 3D Render</h3>
         </div>
       </div>

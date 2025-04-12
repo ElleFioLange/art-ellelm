@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Project from "../components/project";
 import Video from "@/components/video";
+import Link from "next/link";
 
 export default function PerspectivesClouds() {
   return (
@@ -20,14 +21,54 @@ export default function PerspectivesClouds() {
       <Video
         src="/multiple/perspectives-clouds/3d/render.mp4"
         width={1080}
-        height={1080}
+        height={1350}
+        loop={false}
       />
+      <h1>
+        Human Activities Along the Planar Continuum of Man, Woman, and Human
+        From the Perspective of Artificial Intelligence
+      </h1>
+      <h2>2025 - Laser Engraved Glass</h2>
+      <p>
+        This is the first piece in the series I have put into glass through
+        sub-surface laser engraving. These glass sculptures are available for
+        purchase as well as commissionable from a source text that is meaningful
+        to you. If you are interested, please{" "}
+        <Link href="/contact">contact</Link> me for more info
+        <br />
+        ---
+        <br />
+        The data source for this piece began as a list of verbs I wrote down in
+        an effort to understand men. These are present in my painting{" "}
+        <a href="/painting/ghillie-suit.jpg">
+          <i>What a Ghillie Suit Means Will Be Our End.</i>
+        </a>{" "}
+        I later expanded this list beyond verbs with connotations of masculinity
+        to include verbs that are more generically human. The gendered source
+        for this content and the later expansion inspired the continuum anchor
+        points of <i>Man, Woman, and Human.</i> The perspective point was chosen
+        to create a symbolism related to the embedding system used in this
+        series. The piece is made to be a metaphor for how we are understood by
+        the AI systems that are beginning to weigh heavily on our lives{" "}
+        <b>made out of the material of that very understanding.</b>
+        <br />
+        ---
+        <br />
+      </p>
+      <Image
+        src="/multiple/perspectives-clouds/3d/glass-sculpture.jpg"
+        width={608}
+        height={1080}
+        alt="Glass sculpture"
+      />
+      <h1>Perspectives on Clouds</h1>
+      <h2>2021-current - Mixed Media</h2>
       <p>
         The pieces start from a body of text.
         <br />
         <br />
-        In the example given, the source is the religious texts of the Abrahamic
-        faiths.
+        In the example shown here, the source is the religious texts of the
+        Abrahamic faiths.
         <br />
         <br />
         This text is then transformed into a series of high-dimensional
@@ -127,73 +168,6 @@ export default function PerspectivesClouds() {
         width={1080}
         height={1007}
         alt="The Religious Texts of the Abrahamic Faiths Along the Continuum From Love to Hate From the Perspective of Faith"
-      />
-      <h1>
-        Human Activities Along the Planar Continuum of Man, Woman, and Human
-        From the Perspective of Artificial Intelligence
-      </h1>
-      <h2>2025 - Computational Digital Render</h2>
-      <p>
-        In the 3D case, the anchor points are depicted as icosahedrons instead
-        of spheres.
-        <br />
-        ---
-        <br />
-        The data source for this piece began as a list of verbs I wrote down in
-        an effort to understand men. These are present in my painting{" "}
-        <a href="/painting/ghillie-suit.jpg">
-          <i>What a Ghillie Suit Means Will Be Our End.</i>
-        </a>{" "}
-        I later expanded this list beyond verbs with connotations of masculinity
-        to include verbs that are more generically human. The gendered source
-        for this content and the later expansion inspired the continuum anchor
-        points of <i>Man, Woman, and Human.</i> The perspective point was chosen
-        to create a symbolism related to the embedding system used in this
-        series. The piece is made to be a metaphor for how we are understood by
-        the AI systems that are beginning to weigh heavily on our lives{" "}
-        <b>made out of the material of that very understanding.</b>
-      </p>
-      <Video
-        src="/multiple/perspectives-clouds/3d/render.mp4"
-        width={1080}
-        height={1080}
-      />
-      <h2>In Progress - 3D Printed Resin Sculpture</h2>
-      <p>
-        I am currently in the process of perfecting a physical sculpture. I have
-        been working with a resin 3D printer to create cubes with hollow
-        spheres/icosahedrons inside representing the data points. I intend to
-        sell these, as well as take commissions for sculptures that are built
-        from text that is significant to the commissioner. If you are interested
-        in being notified when these becomes available, please{" "}
-        <a href="/contact">contact</a> me to let me know.
-      </p>
-      <Image
-        src="/multiple/perspectives-clouds/3d/resin-sculpture.png"
-        width={1080}
-        height={1051}
-        alt="Human Activities Along the Planar Continuum of Man, Woman, and Human
-        From the Perspective of Artificial Intelligence"
-      />
-      <h1>Early prototypes</h1>
-      <p>Here are some early prototypes of the sculpture.</p>
-      <Video
-        src="/multiple/perspectives-clouds/3d/early-1.mp4"
-        width={720}
-        height={720}
-      />
-      <Image
-        src="/multiple/perspectives-clouds/3d/early-2.jpg"
-        width={1080}
-        height={1080}
-        alt="An early iteration of the resin sculpture"
-      />
-      <h1>Process</h1>
-      <p>And here's a video of some of the process of creating them.</p>
-      <Video
-        src="/multiple/perspectives-clouds/3d/process.mp4"
-        width={720}
-        height={1280}
       />
     </Project>
   );

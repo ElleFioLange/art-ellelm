@@ -7,10 +7,11 @@ export default function Featured() {
   return (
     <>
       <a href="/perspectives-clouds">
-        <Video
-          src="/multiple/perspectives-clouds/3d/render.mp4"
-          width={1080}
+        <Image
+          src="/multiple/perspectives-clouds/3d/glass-sculpture.jpg"
+          width={680}
           height={1080}
+          alt="Glass sculpture"
         />
         <h2>Perspectives on Clouds</h2>
       </a>

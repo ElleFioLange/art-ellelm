@@ -8,9 +8,9 @@ export default function Sculptures() {
     <Gallery>
       <div className="sm:w-[40vw] sm:h-[40vw]">
         <Image
-          src="/multiple/perspectives-clouds/3d/resin-sculpture.png"
-          width={1080}
-          height={1051}
+          src="/multiple/perspectives-clouds/3d/glass-sculpture.jpg"
+          width={680}
+          height={1080}
           alt="Human Activities Along the Planar Continuum of Man, Woman, and Human From the Perspective of Artificial Intelligence"
         />
         <div>
@@ -19,7 +19,7 @@ export default function Sculptures() {
             From the Perspective of Artificial Intelligence
           </h1>
           <h2>2024-current</h2>
-          <h3>3D Printed Resin Sculpture</h3>
+          <h3>Laser Engraved Glass</h3>
         </div>
       </div>
 

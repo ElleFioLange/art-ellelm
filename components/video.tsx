@@ -1,22 +1,12 @@
-export default function Video({
-  src,
-  width,
-  height,
-}: {
-  src: string;
-  width: number;
-  height: number;
-}) {
+import { DetailedHTMLProps, VideoHTMLAttributes } from "react";
+
+export default function Video(
+  props: DetailedHTMLProps<
+    VideoHTMLAttributes<HTMLVideoElement>,
+    HTMLVideoElement
+  >
+) {
   return (
-    <video
-      src={src}
-      width={width}
-      height={height}
-      autoPlay
-      muted
-      loop
-      playsInline
-      disablePictureInPicture
-    />
+    <video autoPlay muted loop playsInline disablePictureInPicture {...props} />
   );
 }
