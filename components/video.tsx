@@ -1,12 +1,13 @@
-import { DetailedHTMLProps, VideoHTMLAttributes } from "react";
+import { DetailedHTMLProps, ReactNode, VideoHTMLAttributes } from "react";
 
 export default function Video(
-  props: DetailedHTMLProps<
-    VideoHTMLAttributes<HTMLVideoElement>,
-    HTMLVideoElement
-  >
+  props:
+    | DetailedHTMLProps<VideoHTMLAttributes<HTMLVideoElement>, HTMLVideoElement>
+    | { children?: ReactNode }
 ) {
   return (
-    <video autoPlay muted loop playsInline disablePictureInPicture {...props} />
+    <video autoPlay muted loop playsInline disablePictureInPicture {...props}>
+      {props.children}
+    </video>
   );
 }
