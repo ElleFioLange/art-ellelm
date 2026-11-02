@@ -207,11 +207,14 @@ const GyroPermission = ({
   const show = useState(false);
 
   useEffect(() => {
-    const dme = DeviceMotionEvent as {
-      requestPermission?: () => Promise<PermissionState>;
-    };
+    const dme =
+      typeof DeviceMotionEvent !== "undefined"
+        ? (DeviceMotionEvent as {
+            requestPermission?: () => Promise<PermissionState>;
+          })
+        : undefined;
 
-    if (typeof dme.requestPermission === "function") {
+    if (typeof dme?.requestPermission === "function") {
       show[1](true);
     } else {
       callback("granted");
@@ -220,11 +223,14 @@ const GyroPermission = ({
 
   const onClick = async () => {
     // Typescript
-    const dme = DeviceMotionEvent as {
-      requestPermission?: () => Promise<PermissionState>;
-    };
+    const dme =
+      typeof DeviceMotionEvent !== "undefined"
+        ? (DeviceMotionEvent as {
+            requestPermission?: () => Promise<PermissionState>;
+          })
+        : undefined;
 
-    if (typeof dme.requestPermission !== "function") return;
+    if (typeof dme?.requestPermission !== "function") return;
 
     const access = await dme.requestPermission();
     show[1](false);

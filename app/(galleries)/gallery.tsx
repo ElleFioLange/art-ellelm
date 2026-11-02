@@ -35,12 +35,12 @@ export default function Gallery({ children }: { children: ReactNode }) {
 
   const numChildren = useMemo(
     () => Children.toArray(children).length,
-    [children]
+    [children],
   );
 
   const timelines = useRef<RefObject<Timeline | null>[]>(
     // Using this clunky array creation because Children.toMap causes type issues
-    Array(numChildren).fill(null)
+    Array(numChildren).fill(null),
   );
 
   // snapTL is separate so that scroll snap will be applied
@@ -57,7 +57,7 @@ export default function Gallery({ children }: { children: ReactNode }) {
             scrollTrigger: {
               trigger: "#container-0",
               start: "center center",
-              // markers: true,
+              markers: true,
               endTrigger: `#container-${numChildren - 1}`,
               end: "center center",
               scroller: mainRef.current,
@@ -102,11 +102,11 @@ export default function Gallery({ children }: { children: ReactNode }) {
               opacity: 1,
               duration: 0.7,
               ease: "power2.inOut",
-            }
+            },
           );
       }
     },
-    { revertOnUpdate: true, dependencies: [breakpoint] }
+    { revertOnUpdate: true, dependencies: [breakpoint] },
   );
 
   const onMouseOver = contextSafe((id: number) => {
@@ -129,7 +129,7 @@ export default function Gallery({ children }: { children: ReactNode }) {
       const show = info[0] !== id && tl.current?.progress() !== 0;
       info[1](show ? id : null);
     },
-    [breakpoint, info]
+    [breakpoint, info],
   );
 
   const renderChildren = useCallback(() => {
@@ -153,7 +153,7 @@ export default function Gallery({ children }: { children: ReactNode }) {
           "gallery-container h-[100dvh]",
           info[0] === i
             ? "[&>div]:opacity-100 cursor-auto"
-            : "[&>div]:opacity-0 [&>div]:pointer-events-none"
+            : "[&>div]:opacity-0 [&>div]:pointer-events-none",
         ),
         id: `container-${i}`,
       });
