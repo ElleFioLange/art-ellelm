@@ -13,6 +13,7 @@ import {
   ReactNode,
   RefObject,
   useCallback,
+  useEffect,
   useMemo,
   useRef,
   useState,
@@ -108,6 +109,39 @@ export default function Gallery({ children }: { children: ReactNode }) {
     },
     { revertOnUpdate: true, dependencies: [breakpoint] },
   );
+
+  // ScrollTrigger measures container positions once on mount, but on a cold
+  // load the large gallery images are often still decoding at that moment.
+  // Any container measured mid-load throws off the snap math for every item
+  // after it, which is most visible deep into the gallery. Refreshing as
+  // each image/video finishes loading keeps the trigger positions accurate.
+  useEffect(() => {
+    const scope = mainRef.current;
+    if (!scope) return;
+
+    const media = Array.from(
+      scope.querySelectorAll<HTMLImageElement | HTMLVideoElement>(
+        "img, video",
+      ),
+    ).filter(
+      (el) =>
+        el instanceof HTMLVideoElement
+          ? el.readyState < 1
+          : !el.complete,
+    );
+
+    if (media.length === 0) return;
+
+    const onLoad = () => ScrollTrigger.refresh();
+    const loadEvent = (el: Element) =>
+      el instanceof HTMLVideoElement ? "loadedmetadata" : "load";
+
+    media.forEach((el) => el.addEventListener(loadEvent(el), onLoad));
+
+    return () => {
+      media.forEach((el) => el.removeEventListener(loadEvent(el), onLoad));
+    };
+  }, [numChildren, breakpoint]);
 
   const onMouseOver = contextSafe((id: number) => {
     timelines.current[id].current?.play();
