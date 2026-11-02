@@ -13,7 +13,7 @@
     "@gsap/react": "^2.1.2",
     "@vercel/analytics": "^1.5.0",
     "gsap": "^3.12.7",
-    "next": "15.1.5",
+    "next": "15.1.11",
     "node-mailjet": "^6.0.6",
     "react": "^19.0.0",
     "react-device-detect": "^2.2.3",
